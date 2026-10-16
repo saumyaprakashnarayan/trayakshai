@@ -1,0 +1,56 @@
+# ========================================================
+# Git Ignore for TrayakshAI Project
+# ========================================================
+
+# --- Design Mockups & Screenshot Reference Folders (>30MB) ---
+# Raw screenshots used during UI reference; not used in production
+bespokeserv3r/
+datastorageandmanagement/
+hft/
+hpc/
+quantumcomputing/
+Screenshot*.png
+*.png
+
+# --- Duplicate & Draft Files ---
+# Exact duplicate of index.html with special characters
+TrayakshAI — Website.html
+# Early single-page draft
+reference.html
+
+# --- Operating System Files ---
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- IDE & Editor Artifacts ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# --- Node & Package Manager Artifacts ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# --- Environment & Secret Keys ---
+.env
+.env.local
+.env.*.local
+
+# --- Temporary & Log Files ---
+*.log
+.cache/
+.temp/
+.tmp/
