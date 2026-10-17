@@ -104,10 +104,11 @@
         switchView(slug);
         return;
       }
-      // Or check if this slug is an in-page section anchor on home (e.g. #services, #process, #industries, #partners, #contact)
-      const homeSections = ['services', 'process', 'industries', 'partners', 'contact', 'top'];
+      // Or check if this slug is an in-page section anchor on home (e.g. #services, #process, #industries, #leadership, #partners, #contact)
+      const homeSections = ['services', 'process', 'industries', 'leadership', 'founders', 'partners', 'contact', 'top'];
       if (homeSections.includes(slug)) {
-        switchView('home', slug);
+        const targetAnchor = slug === 'founders' ? 'leadership' : slug;
+        switchView('home', targetAnchor);
         return;
       }
     }
