@@ -444,17 +444,49 @@
        ======================================================================== -->
   <section class="section-alt" id="curriculum">
     <div class="wrap">
-      <div class="tag">TECHNICAL CURRICULUM</div>
-      <h2 class="section-title">Our <em>Training Programs</em></h2>
-      <p class="section-sub">8 comprehensive tracks engineered to build practical, production-ready mastery in enterprise GPU computing, accelerated fabrics, and AI Factory engineering.</p>
+      <div class="tag"><span class="pulse-dot"></span> TECHNICAL CURRICULUM // 2026 ARCHITECTURE</div>
+      <h2 class="section-title">Our <em>AI Factory Training Programs</em></h2>
+      <p class="section-sub">8 production-grade engineering tracks designed by datacenter architects. Built to take infrastructure engineers from silicon topology to multi-node cluster orchestration.</p>
+
+      <!-- Curriculum Value Metrics Strip -->
+      <div class="curriculum-metric-strip">
+        <div class="metric-strip-card">
+          <div class="metric-strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <div class="metric-strip-val">8 Core Tracks</div>
+          <div class="metric-strip-label">Silicon to 3D LLM orchestration</div>
+        </div>
+        <div class="metric-strip-card">
+          <div class="metric-strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          </div>
+          <div class="metric-strip-val">Bare-Metal DGX Labs</div>
+          <div class="metric-strip-label">NVIDIA H100, H200 &amp; 400G InfiniBand</div>
+        </div>
+        <div class="metric-strip-card">
+          <div class="metric-strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="metric-strip-val">40+ Hours Applied</div>
+          <div class="metric-strip-label">Masterclasses &amp; cluster runbooks</div>
+        </div>
+        <div class="metric-strip-card">
+          <div class="metric-strip-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="metric-strip-val">Production Blueprints</div>
+          <div class="metric-strip-label">Downloadable YAMLs &amp; Slurm configs</div>
+        </div>
+      </div>
 
       <!-- Category Filter Tabs -->
       <div class="curriculum-filter-bar">
-        <button class="filter-btn active" data-filter="all">All 8 Programs</button>
-        <button class="filter-btn" data-filter="architecture">Architecture &amp; Design</button>
-        <button class="filter-btn" data-filter="silicon">GPU &amp; Silicon Systems</button>
-        <button class="filter-btn" data-filter="networking">Networking &amp; Storage</button>
-        <button class="filter-btn" data-filter="orchestration">Orchestration &amp; LLMOps</button>
+        <button class="filter-btn active" data-filter="all">All 8 Programs <span class="filter-count">8</span></button>
+        <button class="filter-btn" data-filter="architecture">Architecture &amp; Design <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="silicon">GPU &amp; Silicon Systems <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="networking">Networking &amp; Storage <span class="filter-count">2</span></button>
+        <button class="filter-btn" data-filter="orchestration">Orchestration &amp; LLMOps <span class="filter-count">2</span></button>
       </div>
 
       <!-- Programs Grid -->
@@ -463,16 +495,33 @@
         <div class="program-card" data-category="architecture">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 01</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
+                </div>
+                <span class="program-number">TRACK 01</span>
+              </div>
               <span class="program-category-badge">Architecture &amp; Facility</span>
             </div>
             <h3>AI Factory Architecture &amp; Design</h3>
             <p class="program-card-desc">Master multi-rack cluster topologies, power delivery (40kW–100kW+/rack), facility cooling distribution, PUE optimization, and modular POD sizing for mission-critical deployments.</p>
             <ul class="program-highlights-list">
-              <li>Multi-tier AI Factory power budgeting &amp; thermal distribution loops</li>
-              <li>Direct-to-chip liquid cooling, CDUs, manifolds, and secondary loops</li>
-              <li>Compute-to-network-to-storage rack layout and structured cable plant design</li>
-              <li>Facility tiering, redundancy models, MTBF, and PUE minimization</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Power &amp; Thermodynamics:</strong> Multi-tier AI Factory power budgeting and thermal distribution loops</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Direct Liquid Cooling:</strong> CDU loop sizing, manifolds balancing, and secondary loop heat exchange</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Physical Plant Layout:</strong> Compute-to-network-to-storage rack layout and structured cable plant design</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Facility Resilience:</strong> MTBF calculations, redundancy tiering models, and PUE minimization</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -481,10 +530,9 @@
               <span>Liquid Cooling</span>
               <span>POD Sizing</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -492,16 +540,33 @@
         <div class="program-card" data-category="silicon">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 02</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                </div>
+                <span class="program-number">TRACK 02</span>
+              </div>
               <span class="program-category-badge">Hardware Systems</span>
             </div>
             <h3>NVIDIA DGX/HGX Infrastructure</h3>
             <p class="program-card-desc">Comprehensive architectural breakdown of NVIDIA DGX and HGX platforms, SXM baseboards, NVSwitch inter-GPU topologies, baseboard management, Redfish automation, and telemetry.</p>
             <ul class="program-highlights-list">
-              <li>DGX H100, H200 &amp; B200 hardware architecture &amp; board-level topologies</li>
-              <li>NVSwitch 900GB/s to 1.8TB/s non-blocking all-to-all GPU communication</li>
-              <li>Baseboard Management Controller (BMC), Redfish REST APIs &amp; automated provisioning</li>
-              <li>Firmware upgrades, thermal throttling diagnostics, and hardware validation</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>SXM Board Architecture:</strong> DGX H100, H200 &amp; B200 hardware topologies and PCIe Gen5 fabrics</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>NVSwitch Fabric:</strong> 900GB/s to 1.8TB/s non-blocking all-to-all GPU communication interconnects</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>BMC &amp; Redfish Automation:</strong> REST API automation for baseboard telemetry and automated PXE deployment</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Hardware Telemetry:</strong> Firmware flashing, thermal throttling alarms, and memory bit-error mitigation</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -510,10 +575,9 @@
               <span>HGX Baseboards</span>
               <span>NVSwitch</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -521,16 +585,33 @@
         <div class="program-card" data-category="silicon">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 03</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+                </div>
+                <span class="program-number">TRACK 03</span>
+              </div>
               <span class="program-category-badge">GPU Computing</span>
             </div>
             <h3>GPU Computing: H100, H200 &amp; B200</h3>
             <p class="program-card-desc">Unlock peak computational throughput across Hopper and Blackwell architectures. Master 4th &amp; 5th Gen Tensor Cores, FP8/FP4 precision, Transformer Engine, and HBM3e bandwidth.</p>
             <ul class="program-highlights-list">
-              <li>Hopper (GH100) vs Blackwell (GB200/B200) microarchitecture comparison</li>
-              <li>FP8 and FP4 micro-scaling formats with Transformer Engine auto-casting</li>
-              <li>Multi-Instance GPU (MIG) hardware partitioning and QoS guarantees</li>
-              <li>CUDA memory hierarchy: HBM3e, L2 cache residency, and shared memory tiling</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Microarchitectures:</strong> Hopper (GH100) vs Blackwell (GB200/B200) instruction set comparison</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Transformer Engine:</strong> FP8 and FP4 micro-scaling formats with dynamic range casting</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>MIG Partitioning:</strong> Multi-Instance GPU hardware isolation with hardware QoS enforcement</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>CUDA Memory Saturation:</strong> 3.35TB/s to 8TB/s HBM3e saturation and L2 cache residency tuning</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -539,10 +620,9 @@
               <span>Blackwell B200</span>
               <span>FP8 / FP4</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -550,16 +630,33 @@
         <div class="program-card" data-category="networking">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 04</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                </div>
+                <span class="program-number">TRACK 04</span>
+              </div>
               <span class="program-category-badge">Fabric &amp; RDMA</span>
             </div>
             <h3>AI Networking: InfiniBand, RoCE &amp; RDMA</h3>
             <p class="program-card-desc">Architect ultra-low latency, lossless networks for massive distributed training. Master Quantum-2 400G &amp; Quantum-X800 InfiniBand, Spectrum-X Ethernet, RoCE v2, and congestion control.</p>
             <ul class="program-highlights-list">
-              <li>Non-blocking fat-tree rail-optimized topologies for multi-node GPU clusters</li>
-              <li>Subnet Manager (OpenSM) routing, adaptive routing, and telemetry</li>
-              <li>RDMA over Converged Ethernet (RoCE v2): PFC, ECN, and buffer tuning</li>
-              <li>NCCL (NVIDIA Collective Communications Library) tuning for all-reduce collectives</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Rail-Optimized Topologies:</strong> Non-blocking fat-tree routing for 1,000+ GPU distributed clusters</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Fabric Orchestration:</strong> Subnet Manager (OpenSM) routing, adaptive routing, and cable diagnostic telemetry</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Lossless Ethernet:</strong> RoCE v2 tuning with Priority Flow Control (PFC) and Explicit Congestion Notification (ECN)</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>NCCL Tuning:</strong> All-reduce collective communications, tree vs ring algorithms, and buffer sizing</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -568,10 +665,9 @@
               <span>RoCE v2</span>
               <span>Lossless Fabric</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -579,16 +675,33 @@
         <div class="program-card" data-category="networking">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 05</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <span class="program-number">TRACK 05</span>
+              </div>
               <span class="program-category-badge">Storage &amp; HPC</span>
             </div>
             <h3>AI Storage &amp; High-Performance Computing</h3>
             <p class="program-card-desc">Eliminate I/O bottlenecks and GPU starvation in training pipelines. Configure high-throughput parallel file systems, GPUDirect Storage (GDS), NVMe-oF fabrics, and rapid checkpointing systems.</p>
             <ul class="program-highlights-list">
-              <li>Parallel file systems: WEKA, Lustre, and GPFS / IBM Storage Scale architectures</li>
-              <li>GPUDirect Storage (GDS) bypassing CPU bounce buffers for direct NVMe-to-GPU DMA</li>
-              <li>High-IOPS checkpointing architectures to minimize training interruption overhead</li>
-              <li>Data caching, tiered object storage, and massive dataset streaming pipelines</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Parallel File Systems:</strong> 120GB/s+ WEKA, Lustre, and GPFS / IBM Storage Scale architectures</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>GPUDirect Storage (GDS):</strong> Direct NVMe-to-GPU DMA bypassing CPU bounce buffers</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Rapid Checkpointing:</strong> High-IOPS checkpointing architectures to avoid multi-hour training stalls</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Data Caching:</strong> Multi-tier flash caching and high-speed streaming for petabyte training datasets</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -597,10 +710,9 @@
               <span>WEKA / Lustre</span>
               <span>NVMe-oF</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -608,16 +720,33 @@
         <div class="program-card" data-category="orchestration">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 06</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <span class="program-number">TRACK 06</span>
+              </div>
               <span class="program-category-badge">Cluster Orchestration</span>
             </div>
             <h3>Kubernetes, Slurm &amp; GPU Orchestration</h3>
             <p class="program-card-desc">Deploy and operate mission-critical cluster schedulers. Configure the NVIDIA GPU Operator, Slurm Workload Manager, Kubernetes scheduling plugins, MPI jobs, and multi-tenant quota systems.</p>
             <ul class="program-highlights-list">
-              <li>NVIDIA GPU Operator, Container Toolkit, and CDI (Container Device Interface)</li>
-              <li>Slurm cluster architecture: partitions, fair-share scheduling, backfill, and job arrays</li>
-              <li>Kubernetes AI scheduling: Kueue, KubeRay, Volcano, and Gang Scheduling</li>
-              <li>Multi-tenant GPU slicing: MIG vs time-slicing vs vGPU performance trade-offs</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>GPU Operator &amp; CDI:</strong> Automated driver injection, container device interfaces, and health monitors</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Slurm Workload Management:</strong> Partitions, fair-share scheduling, backfill, and multi-node job arrays</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Kubernetes AI Batching:</strong> Gang scheduling with Kueue, Volcano, and KubeRay operator clusters</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Multi-Tenant Slicing:</strong> MIG vs time-slicing vs vGPU performance trade-offs under heavy load</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -626,10 +755,9 @@
               <span>Slurm Manager</span>
               <span>GPU Operator</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -637,16 +765,33 @@
         <div class="program-card" data-category="orchestration">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 07</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.5 7.5"></path><path d="M12 12v10"></path></svg>
+                </div>
+                <span class="program-number">TRACK 07</span>
+              </div>
               <span class="program-category-badge">LLMOps &amp; Inference</span>
             </div>
             <h3>Generative AI Infrastructure &amp; LLM Deployment</h3>
             <p class="program-card-desc">End-to-end infrastructure engineering for large language models. Master 3D parallelism (Tensor, Pipeline, Data), Megatron-LM/DeepSpeed training, and high-throughput inference serving with vLLM.</p>
             <ul class="program-highlights-list">
-              <li>Distributed 3D parallelism: Tensor (TP), Pipeline (PP), Sequence (SP), and ZeRO-3</li>
-              <li>Megatron-LM and DeepSpeed cluster configuration for 70B+ parameter models</li>
-              <li>Production inference serving: vLLM, TensorRT-LLM, PagedAttention, and continuous batching</li>
-              <li>KV-cache memory sizing, GPU memory calculators, and latency-throughput trade-offs</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Distributed 3D Parallelism:</strong> Tensor (TP), Pipeline (PP), Sequence (SP), and ZeRO-3 data parallelism</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>70B+ LLM Training:</strong> Megatron-LM and DeepSpeed multi-node H100 cluster runbook execution</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>High-Throughput Serving:</strong> vLLM, TensorRT-LLM, PagedAttention, and continuous batching in production</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>KV-Cache Sizing:</strong> Memory footprint calculators, prefill vs decode separation, and latency budgets</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -655,10 +800,9 @@
               <span>vLLM &amp; TensorRT</span>
               <span>3D Parallelism</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
 
@@ -666,16 +810,33 @@
         <div class="program-card" data-category="architecture">
           <div>
             <div class="program-card-header">
-              <span class="program-number">TRACK 08</span>
+              <div class="program-header-left">
+                <div class="program-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                </div>
+                <span class="program-number">TRACK 08</span>
+              </div>
               <span class="program-category-badge">Optimization &amp; TCO</span>
             </div>
             <h3>AI Infrastructure Migration &amp; Optimisation</h3>
             <p class="program-card-desc">Practical methodologies for workload migration and cloud repatriation. Master NVIDIA DCGM profiling, GPU utilization auditing, power-performance curves, and infrastructure TCO modeling.</p>
             <ul class="program-highlights-list">
-              <li>Cloud-to-co-lo / On-prem repatriation financial models and TCO calculators</li>
-              <li>NVIDIA DCGM (Data Center GPU Manager) telemetry, Prometheus &amp; Grafana monitoring</li>
-              <li>Profiling GPU idle times, kernel bottlenecks, memory bandwidth, and power capping</li>
-              <li>Seamless cluster cutovers, storage migration, and high-availability operational runbooks</li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Cloud Repatriation:</strong> Hyperscaler to co-lo / bare-metal economic models and 3-year TCO calculators</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>DCGM Profiling:</strong> Data Center GPU Manager telemetry, Prometheus metrics, and Grafana dashboard suites</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Idle Auditing &amp; Power Capping:</strong> Profiling GPU idle cycles, kernel bottlenecks, and dynamic power curves</span>
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Zero-Downtime Migration:</strong> Multi-petabyte data synchronization and high-availability cutover runbooks</span>
+              </li>
             </ul>
           </div>
           <div class="program-card-footer">
@@ -684,10 +845,9 @@
               <span>DCGM Profiling</span>
               <span>TCO Optimization</span>
             </div>
-            <span class="syllabus-unlocked-tag">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              Shared After Registration
-            </span>
+            <a class="btn-track-action" href="register.html">
+              <span>Enroll in Track →</span>
+            </a>
           </div>
         </div>
       </div>

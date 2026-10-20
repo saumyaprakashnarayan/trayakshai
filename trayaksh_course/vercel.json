@@ -59,7 +59,15 @@
       "destination": "/admin-login.html"
     },
     {
+      "source": "/admin.html",
+      "destination": "/admin-login.html"
+    },
+    {
       "source": "/admin-studio",
+      "destination": "/course-upload.html"
+    },
+    {
+      "source": "/admin-studio.html",
       "destination": "/course-upload.html"
     }
   ]
