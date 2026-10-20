@@ -20,7 +20,7 @@ console.log('✓ Finding 1 Passed: JWT fallback secret eliminated, Admin guard c
 // 2. High: Service-page navigation and booking links misrouted
 console.log('Checking Finding 2: Router, Anchor Navigation, Consultation Modal & Duplicate IDs...');
 const appJsContent = fs.readFileSync(path.join(rootDir, 'app.js'), 'utf8');
-assert(appJsContent.includes("'academy'"), "app.js homeSections must include 'academy'");
+assert(appJsContent.includes("'services'") && appJsContent.includes("'process'"), "app.js homeSections must include core home sections");
 assert(appJsContent.includes('activeView.querySelector') && appJsContent.includes('scrollIntoView'), 'app.js must support intra-view scrolling for service anchors');
 assert(appJsContent.includes('data-open-modal'), 'app.js must register click listener for [data-open-modal]');
 

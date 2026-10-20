@@ -1,7 +1,7 @@
 {
   "name": "trayakshai-fullstack-platform",
   "version": "1.0.0",
-  "description": "TrayakshAI Infrastructure Platform & AI Factory Training Academy",
+  "description": "TrayakshAI Enterprise AI Infrastructure Consulting Platform",
   "engines": {
     "node": ">=18"
   },

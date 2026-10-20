@@ -107,7 +107,7 @@
       }
 
       // Check if this slug is an in-page section anchor on home
-      const homeSections = ['services', 'academy', 'process', 'industries', 'leadership', 'founders', 'partners', 'contact', 'top'];
+      const homeSections = ['services', 'process', 'industries', 'leadership', 'founders', 'partners', 'contact', 'top'];
       if (homeSections.includes(slug)) {
         const targetAnchor = slug === 'founders' ? 'leadership' : slug;
         switchView('home', targetAnchor);
