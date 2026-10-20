@@ -12,7 +12,7 @@
   const API_BASE = window.COURSE_API_URL || 
     (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
       ? 'http://localhost:10000/api' 
-      : 'https://trayaksh-course-api.onrender.com/api');
+      : 'https://trayakshai.onrender.com/api');
 
   const CONFIG = {
     razorpayKeyId: '',
