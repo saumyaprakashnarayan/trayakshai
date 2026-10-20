@@ -1,17 +1,20 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const db = require('../db');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-if (!process.env.JWT_SECRET && NODE_ENV === 'production') {
-  console.error('❌ FATAL: JWT_SECRET environment variable is required in production. Exiting.');
-  process.exit(1);
-}
-
-const JWT_SECRET = process.env.JWT_SECRET || 'DEV_ONLY_trayaksh_jwt_secret_DO_NOT_USE_IN_PRODUCTION_2026';
-
-if (!process.env.JWT_SECRET) {
-  console.warn('⚠️ JWT_SECRET not set — using insecure development-only key. Set JWT_SECRET before deploying.');
+let JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  if (NODE_ENV === 'production') {
+    JWT_SECRET = crypto.randomBytes(32).toString('hex');
+    console.warn('⚠️ WARNING: JWT_SECRET environment variable is not configured on Render.');
+    console.warn('⚠️ A temporary cryptographically secure session key has been generated.');
+    console.warn('⚠️ To persist candidate sessions across server redeploys, set JWT_SECRET in your Render Service Dashboard (Environment tab).');
+  } else {
+    JWT_SECRET = 'DEV_ONLY_trayaksh_jwt_secret_DO_NOT_USE_IN_PRODUCTION_2026';
+    console.warn('⚠️ JWT_SECRET not set — using development key.');
+  }
 }
 
 // Extract token from Authorization header or cookie

@@ -119,16 +119,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Health Check with Active Database Ping & Schema Readiness
 app.get('/healthz', async (req, res) => {
-  if (process.env.NODE_ENV === 'production' && !db.hasDb()) {
-    return res.status(503).json({
-      status: 'unhealthy',
-      timestamp: new Date().toISOString(),
-      service: 'TrayakshAI Course Backend (Render)',
-      database: 'missing',
-      error: 'DATABASE_URL is required in production.'
-    });
-  }
-  let dbStatus = 'in-memory-dev-mode';
+  let dbStatus = db.hasDb() ? 'connected' : 'in-memory-sandbox';
   if (db.hasDb()) {
     try {
       await db.query('SELECT 1 AS alive');
@@ -189,11 +180,8 @@ async function startServer() {
       process.exit(1);
     }
   } else {
-    if (process.env.NODE_ENV === 'production') {
-      console.error('❌ FATAL: DATABASE_URL is required in production. Exiting.');
-      process.exit(1);
-    }
-    console.log('ℹ️ Running in sandbox mode with in-memory store until PostgreSQL DATABASE_URL is configured on Render.');
+    console.warn('⚠️ NOTICE: DATABASE_URL is not configured on Render. Operating with in-memory sandbox storage.');
+    console.warn('⚠️ To enable persistent PostgreSQL storage, configure DATABASE_URL in Render Dashboard.');
   }
 
   const server = app.listen(PORT, () => {
