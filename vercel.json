@@ -2,23 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/course",
-      "destination": "https://course.trayakshai.com",
-      "permanent": true
-    },
-    {
-      "source": "/course/:match*",
-      "destination": "https://course.trayakshai.com/:match*",
-      "permanent": true
-    },
-    {
-      "source": "/trayaksh_course/:match*",
-      "destination": "https://course.trayakshai.com/:match*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
