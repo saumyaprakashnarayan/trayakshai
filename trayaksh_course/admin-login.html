@@ -171,19 +171,28 @@
       try {
         const res = await window.TrayakshAPI.adminLogin(email, password, code);
 
-        // Store secure JWT Token & Admin Profile
+        // Store secure JWT Token & Admin Profile respecting Remember Me selection
         if (!res.token) throw new Error('Admin sign-in did not return an authenticated session.');
-        localStorage.setItem('trayaksh_admin_token', res.token);
-        localStorage.setItem('trayaksh_admin_user', JSON.stringify(res.admin || {
+        const remember = document.getElementById('admin-remember') ? document.getElementById('admin-remember').checked : true;
+        const targetStore = remember ? localStorage : sessionStorage;
+        const altStore = remember ? sessionStorage : localStorage;
+
+        targetStore.setItem('trayaksh_admin_token', res.token);
+        targetStore.setItem('trayaksh_admin_user', JSON.stringify(res.admin || {
           email: email,
           name: 'TrayakshAI Infrastructure Operations',
           role: 'Super Administrator'
         }));
-        localStorage.setItem('trayaksh_admin_auth', 'true');
+        targetStore.setItem('trayaksh_admin_auth', 'true');
+        altStore.removeItem('trayaksh_admin_token');
+        altStore.removeItem('trayaksh_admin_user');
+        altStore.removeItem('trayaksh_admin_auth');
 
-        // High Issue Fix: Clear candidate tokens so admin requests never use candidate credentials
+        // Clear candidate tokens so admin requests never use candidate credentials
         localStorage.removeItem('trayaksh_token');
         localStorage.removeItem('trayaksh_user');
+        sessionStorage.removeItem('trayaksh_token');
+        sessionStorage.removeItem('trayaksh_user');
 
         showToast(`Authenticated successfully as ${email}! Entering Studio...`, 'success');
         setTimeout(() => {

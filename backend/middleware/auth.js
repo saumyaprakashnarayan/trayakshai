@@ -6,15 +6,11 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 let JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
-  if (NODE_ENV === 'production') {
-    JWT_SECRET = crypto.randomBytes(32).toString('hex');
-    console.warn('⚠️ WARNING: JWT_SECRET environment variable is not configured on Render.');
-    console.warn('⚠️ A temporary cryptographically secure session key has been generated.');
-    console.warn('⚠️ To persist candidate sessions across server redeploys, set JWT_SECRET in your Render Service Dashboard (Environment tab).');
-  } else {
-    JWT_SECRET = 'DEV_ONLY_trayaksh_jwt_secret_DO_NOT_USE_IN_PRODUCTION_2026';
-    console.warn('⚠️ JWT_SECRET not set — using development key.');
-  }
+  // Never fall back to a static/known secret string. Always generate an ephemeral, secure 256-bit key.
+  JWT_SECRET = crypto.randomBytes(32).toString('hex');
+  console.warn('⚠️ WARNING: JWT_SECRET environment variable is not configured.');
+  console.warn('⚠️ An ephemeral cryptographically secure 256-bit session key has been generated.');
+  console.warn('⚠️ To persist candidate sessions across server redeploys, set JWT_SECRET in your server environment.');
 }
 
 // Extract token from Authorization header or cookie
@@ -58,13 +54,35 @@ function optionalAuth(req, res, next) {
   next();
 }
 
-// Require administrator role
-function requireAdmin(req, res, next) {
-  requireAuth(req, res, () => {
-    if (req.user && req.user.role === 'admin') {
+// Require administrator role (Verifies token signature AND verifies against user store)
+async function requireAdmin(req, res, next) {
+  requireAuth(req, res, async () => {
+    if (!req.user || req.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Forbidden: Administrator privileges required.' });
+    }
+
+    try {
+      if (db.hasDb()) {
+        const adminCheck = await db.query(
+          `SELECT id, role, is_active FROM users WHERE (id = $1 OR email = $2) AND role = 'admin' AND is_active = TRUE`,
+          [req.user.id, req.user.email]
+        );
+        if (!adminCheck.rows.length) {
+          return res.status(403).json({ error: 'Forbidden: Administrator privileges could not be confirmed.' });
+        }
+      } else {
+        const storedAdmin = Array.from(db.inMemoryStore.users ? db.inMemoryStore.users.values() : []).find(
+          u => (u.id === req.user.id || u.email === req.user.email) && u.role === 'admin'
+        );
+        // Allow built-in root admin credentials
+        if (!storedAdmin && req.user.email !== 'info@trayakshai.com') {
+          return res.status(403).json({ error: 'Forbidden: Administrator privileges could not be confirmed.' });
+        }
+      }
       next();
-    } else {
-      res.status(403).json({ error: 'Forbidden: Administrator privileges required.' });
+    } catch (err) {
+      console.error('Admin verification check error:', err.message);
+      return res.status(500).json({ error: 'Failed to verify administrator privileges.' });
     }
   });
 }

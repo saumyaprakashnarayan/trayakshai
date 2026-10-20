@@ -88,7 +88,7 @@
               <input class="form-input" type="password" id="page-login-pass" placeholder="••••••••" required>
               <div class="form-help-row">
                 <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
-                  <input type="checkbox" checked style="accent-color:var(--ac);"> Remember me
+                  <input type="checkbox" id="page-login-remember" checked style="accent-color:var(--ac);"> Remember me
                 </label>
                 <span class="forgot-password-link" onclick="toggleForgotView(true)">Forgot Password?</span>
               </div>
@@ -179,14 +179,31 @@
 
       try {
         showToast('Authenticating candidate credentials with PostgreSQL cluster...', 'info');
-        const res = await window.TrayakshAPI.login(email, pass);
+        const remember = document.getElementById('page-login-remember') ? document.getElementById('page-login-remember').checked : true;
+        const targetStore = remember ? localStorage : sessionStorage;
+        const altStore = remember ? sessionStorage : localStorage;
+
         localStorage.removeItem('trayaksh_admin_user');
         localStorage.removeItem('trayaksh_admin_token');
         localStorage.removeItem('trayaksh_admin_auth');
-        localStorage.setItem('trayaksh_user', JSON.stringify(res.user));
-        if (res.token) localStorage.setItem('trayaksh_token', res.token);
-        if (res.enrollment) localStorage.setItem('trayaksh_enrollment', JSON.stringify(res.enrollment));
-        else localStorage.removeItem('trayaksh_enrollment');
+        sessionStorage.removeItem('trayaksh_admin_user');
+        sessionStorage.removeItem('trayaksh_admin_token');
+        sessionStorage.removeItem('trayaksh_admin_auth');
+
+        targetStore.setItem('trayaksh_user', JSON.stringify(res.user));
+        altStore.removeItem('trayaksh_user');
+
+        if (res.token) {
+          targetStore.setItem('trayaksh_token', res.token);
+          altStore.removeItem('trayaksh_token');
+        }
+        if (res.enrollment) {
+          targetStore.setItem('trayaksh_enrollment', JSON.stringify(res.enrollment));
+          altStore.removeItem('trayaksh_enrollment');
+        } else {
+          localStorage.removeItem('trayaksh_enrollment');
+          sessionStorage.removeItem('trayaksh_enrollment');
+        }
         showToast(`Welcome back, ${res.user.name}! Redirecting...`, 'success');
         setTimeout(() => {
           window.location.href = target;

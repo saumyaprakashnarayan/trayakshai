@@ -433,13 +433,13 @@ router.post('/google', async (req, res) => {
         return res.status(401).json({ error: 'Google authentication signature verification failed.' });
       }
     } else {
-      if (process.env.NODE_ENV === 'production') {
-        return res.status(503).json({ error: 'Google OAuth is not configured on this production server (GOOGLE_CLIENT_ID missing).' });
+      if (!process.env.ALLOW_SIMULATED_GOOGLE && process.env.NODE_ENV !== 'test') {
+        return res.status(503).json({ error: 'Google OAuth is not configured on this server (GOOGLE_CLIENT_ID environment variable is missing).' });
       }
-      // Development / sandbox simulation only: must decode a valid JWT credential payload with email_verified
+      // Automated testing / isolated sandbox simulation only: must have email_verified === true
       try {
         const decoded = jwt.decode(credential);
-        if (decoded && decoded.email && decoded.email_verified !== false) {
+        if (decoded && decoded.email && decoded.email_verified === true) {
           targetEmail = decoded.email;
           targetName = decoded.name || targetEmail.split('@')[0];
           targetGoogleId = decoded.sub;

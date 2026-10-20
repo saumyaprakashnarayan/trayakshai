@@ -796,11 +796,22 @@
           <td>
             <div style="display:flex;gap:8px;">
               <a class="btn btn-sm" href="classroom.html?lesson=${encodeURIComponent(m.id)}" target="_blank" style="padding:4px 8px;font-size:11px;">Play</a>
-              <button class="btn btn-sm" onclick="deleteModule('${escapeHtml(m.id)}')" style="padding:4px 8px;font-size:11px;color:var(--danger);border-color:var(--danger);">Delete</button>
+              <button class="btn btn-sm btn-delete-module" data-delete-module-id="${escapeHtml(m.id)}" type="button" style="padding:4px 8px;font-size:11px;color:var(--danger);border-color:var(--danger);">Delete</button>
             </div>
           </td>
         </tr>
       `).join('') : '<tr><td colspan="6" style="text-align:center;color:var(--mut);padding:20px;">No published lessons found.</td></tr>';
+
+      if (!tbody.dataset.hasListener) {
+        tbody.dataset.hasListener = 'true';
+        tbody.addEventListener('click', (e) => {
+          const btn = e.target.closest('[data-delete-module-id]');
+          if (btn) {
+            const id = btn.getAttribute('data-delete-module-id');
+            deleteModule(id);
+          }
+        });
+      }
     }
 
     async function deleteModule(id) {
@@ -1005,7 +1016,7 @@
     // =========================================================================
     function checkAdminAuth() {
       const admin = window.readStoredJson ? window.readStoredJson('trayaksh_admin_user') : null;
-      const adminToken = localStorage.getItem('trayaksh_admin_token');
+      const adminToken = localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
       const candidateUser = window.readStoredJson ? window.readStoredJson('trayaksh_user') : null;
       const gateModal = document.getElementById('admin-gate-modal');
       const emailDisplay = document.getElementById('nav-admin-email-display');
@@ -1043,6 +1054,9 @@
         localStorage.removeItem('trayaksh_admin_user');
         localStorage.removeItem('trayaksh_admin_token');
         localStorage.removeItem('trayaksh_admin_auth');
+        sessionStorage.removeItem('trayaksh_admin_user');
+        sessionStorage.removeItem('trayaksh_admin_token');
+        sessionStorage.removeItem('trayaksh_admin_auth');
         const studioWrap = document.getElementById('main-studio-layout');
         const gateModal = document.getElementById('admin-gate-modal');
         if (studioWrap) studioWrap.style.display = 'none';
@@ -1059,11 +1073,16 @@
       try {
         const res = await window.TrayakshAPI.adminLogin(DEFAULT_ADMIN_EMAIL, pass);
         if (!res.token) throw new Error('Admin sign-in did not return an authenticated session.');
-        if (res.token) localStorage.setItem('trayaksh_admin_token', res.token);
+        localStorage.setItem('trayaksh_admin_token', res.token);
         localStorage.setItem('trayaksh_admin_user', JSON.stringify(res.admin || { email: DEFAULT_ADMIN_EMAIL, role: 'Super Administrator' }));
         localStorage.setItem('trayaksh_admin_auth', 'true');
+        sessionStorage.removeItem('trayaksh_admin_token');
+        sessionStorage.removeItem('trayaksh_admin_user');
+        sessionStorage.removeItem('trayaksh_admin_auth');
         localStorage.removeItem('trayaksh_token');
         localStorage.removeItem('trayaksh_user');
+        sessionStorage.removeItem('trayaksh_token');
+        sessionStorage.removeItem('trayaksh_user');
 
         const studioWrap = document.getElementById('main-studio-layout');
         if (studioWrap) studioWrap.style.display = 'grid';
@@ -1088,6 +1107,9 @@
       localStorage.removeItem('trayaksh_admin_user');
       localStorage.removeItem('trayaksh_admin_token');
       localStorage.removeItem('trayaksh_admin_auth');
+      sessionStorage.removeItem('trayaksh_admin_user');
+      sessionStorage.removeItem('trayaksh_admin_token');
+      sessionStorage.removeItem('trayaksh_admin_auth');
       showToast('Admin session terminated. Redirecting to Admin Sign In...', 'info');
       setTimeout(() => {
         window.location.href = 'admin-login.html';

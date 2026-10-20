@@ -99,17 +99,44 @@
     const serviceMatch = hash.match(/^#\/?services\/([a-zA-Z0-9_-]+)/) || hash.match(/^#\/?([a-zA-Z0-9_-]+)$/);
     if (serviceMatch) {
       const slug = serviceMatch[1];
-      // Check if this slug matches a known service
+
+      // Check if this slug matches a known service view
       if (SERVICE_TITLES[slug]) {
         switchView(slug);
         return;
       }
-      // Or check if this slug is an in-page section anchor on home (e.g. #services, #process, #industries, #leadership, #partners, #contact)
-      const homeSections = ['services', 'process', 'industries', 'leadership', 'founders', 'partners', 'contact', 'top'];
+
+      // Check if this slug is an in-page section anchor on home
+      const homeSections = ['services', 'academy', 'process', 'industries', 'leadership', 'founders', 'partners', 'contact', 'top'];
       if (homeSections.includes(slug)) {
         const targetAnchor = slug === 'founders' ? 'leadership' : slug;
         switchView('home', targetAnchor);
         return;
+      }
+
+      // Check if the currently active view contains an element with this ID (intra-view navigation)
+      const activeView = document.querySelector('.spa-view.active');
+      if (activeView && activeView.id !== 'view-home') {
+        const elInView = activeView.querySelector(`#${slug}`) || 
+                         activeView.querySelector(`[id*="${slug}"]`) ||
+                         (slug === 'contact' ? activeView.querySelector('.cta-band-section') : null);
+        if (elInView) {
+          setTimeout(() => {
+            elInView.scrollIntoView({ behavior: 'smooth' });
+          }, 40);
+          return;
+        }
+      }
+
+      // Check if an element with this ID exists elsewhere in the DOM (e.g. service-specific anchor)
+      const anyTarget = document.getElementById(slug);
+      if (anyTarget) {
+        const parentView = anyTarget.closest('.spa-view');
+        if (parentView) {
+          const viewRoute = parentView.getAttribute('data-route') || parentView.id.replace('view-', '');
+          switchView(viewRoute, slug);
+          return;
+        }
       }
     }
 
@@ -117,14 +144,79 @@
     switchView('home');
   }
 
+  // Consultation Modal Controls
+  function openConsultationModal(serviceName = 'AI Infrastructure', serviceSlug = '') {
+    const modal = document.getElementById('consultation-modal');
+    if (!modal) return;
+    const nameEl = document.getElementById('modal-service-name');
+    const mailtoLink = document.getElementById('consult-mailto-link');
+    if (nameEl) nameEl.textContent = serviceName;
+    if (mailtoLink) {
+      const subject = encodeURIComponent(`TrayakshAI Consultation Request: ${serviceName}`);
+      mailtoLink.href = `mailto:hello@trayakshai.com?subject=${subject}`;
+    }
+    const form = document.getElementById('consultation-form');
+    const success = document.getElementById('consultation-success');
+    if (form) form.style.display = 'block';
+    if (success) success.style.display = 'none';
+    modal.style.display = 'flex';
+  }
+
+  function closeConsultationModal() {
+    const modal = document.getElementById('consultation-modal');
+    if (modal) modal.style.display = 'none';
+  }
+
+  window.handleConsultationSubmit = function (e) {
+    e.preventDefault();
+    const name = (document.getElementById('consult-name') || {}).value || '';
+    const email = (document.getElementById('consult-email') || {}).value || '';
+    const notes = (document.getElementById('consult-notes') || {}).value || '';
+    const serviceName = (document.getElementById('modal-service-name') || {}).textContent || 'AI Infrastructure';
+
+    // Construct direct mailto fallback link for client convenience
+    const subject = encodeURIComponent(`TrayakshAI Discovery Call: ${serviceName}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nArchitecture Interest: ${serviceName}\nScope / Details:\n${notes}\n`);
+    
+    const form = document.getElementById('consultation-form');
+    const success = document.getElementById('consultation-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+
+    setTimeout(() => {
+      window.location.href = `mailto:hello@trayakshai.com?subject=${subject}&body=${body}`;
+    }, 1200);
+  };
+
   // Set up event listeners on DOM Ready
   window.addEventListener('DOMContentLoaded', () => {
     // Initial Route
     handleRoute();
     window.addEventListener('hashchange', handleRoute);
 
+    // Modal close listeners
+    const closeBtn = document.getElementById('close-consultation-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeConsultationModal);
+
+    const consultModal = document.getElementById('consultation-modal');
+    if (consultModal) {
+      consultModal.addEventListener('click', (e) => {
+        if (e.target === consultModal) closeConsultationModal();
+      });
+    }
+
     // Global Click Delegation
     document.addEventListener('click', (e) => {
+      // Consultation Modal Trigger
+      const modalTrigger = e.target.closest('[data-open-modal]');
+      if (modalTrigger) {
+        e.preventDefault();
+        const serviceSlug = modalTrigger.getAttribute('data-service') || '';
+        const serviceName = SERVICE_TITLES[serviceSlug] ? SERVICE_TITLES[serviceSlug].split('—')[0].trim() : 'AI Infrastructure';
+        openConsultationModal(serviceName, serviceSlug);
+        return;
+      }
+
       // Accordion Trigger Handler
       const trigger = e.target.closest('.acc-trigger');
       if (trigger) {
@@ -179,6 +271,9 @@
 
     // Keyboard accessibility for Service Cards (Enter / Space)
     document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeConsultationModal();
+      }
       if (e.key === 'Enter' || e.key === ' ') {
         const activeCard = document.activeElement;
         if (activeCard && activeCard.classList.contains('card') && activeCard.getAttribute('data-service')) {

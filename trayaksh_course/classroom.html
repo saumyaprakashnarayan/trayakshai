@@ -449,17 +449,28 @@
       }
 
       container.innerHTML = modulesList.map((m) => `
-        <div class="playlist-item ${currentSelectedModule && m.id === currentSelectedModule.id ? 'active' : ''}" onclick="selectModule('${escapeHtml(escapeModuleId(m.id))}')">
-          <div style="flex:1;">
+        <div class="playlist-item ${currentSelectedModule && m.id === currentSelectedModule.id ? 'active' : ''}" data-module-id="${escapeHtml(m.id)}">
+          <div style="flex:1;pointer-events:none;">
             <div style="font-size:11px;color:var(--lt);font-weight:700;margin-bottom:2px;">${escapeHtml(m.track.split(':')[0])}</div>
             <div style="font-size:13px;font-weight:600;color:var(--tx);line-height:1.3;">${escapeHtml(m.title)}</div>
             <div style="font-size:11.5px;color:var(--mut);margin-top:4px;">⏱ ${escapeHtml(m.duration)} • ${escapeHtml(m.type)}</div>
           </div>
-          <div style="color:var(--lt);font-size:14px;margin-left:8px;">
+          <div style="color:var(--lt);font-size:14px;margin-left:8px;pointer-events:none;">
             ${currentSelectedModule && m.id === currentSelectedModule.id ? '▶' : '✓'}
           </div>
         </div>
       `).join('');
+
+      if (!container.dataset.hasListener) {
+        container.dataset.hasListener = 'true';
+        container.addEventListener('click', (e) => {
+          const item = e.target.closest('.playlist-item[data-module-id]');
+          if (item) {
+            const modId = item.getAttribute('data-module-id');
+            selectModule(modId);
+          }
+        });
+      }
     }
 
     function escapeModuleId(str) {
@@ -700,6 +711,9 @@
         localStorage.removeItem('trayaksh_user');
         localStorage.removeItem('trayaksh_token');
         localStorage.removeItem('trayaksh_enrollment');
+        sessionStorage.removeItem('trayaksh_user');
+        sessionStorage.removeItem('trayaksh_token');
+        sessionStorage.removeItem('trayaksh_enrollment');
       }
       showToast('Signed out of candidate account.', 'info');
       setTimeout(() => {
@@ -727,10 +741,10 @@
         const enrollmentBox = document.getElementById('course-enrollment-detail-box');
         const actionContainer = document.getElementById('portal-action-container');
 
-        // Critical Fix: Local storage alone must NEVER unlock the classroom without a valid authenticated token
+        // Critical Fix: Storage alone must NEVER unlock the classroom without a valid authenticated token
         isEnrolledCandidate = false;
 
-        const adminToken = localStorage.getItem('trayaksh_admin_token');
+        const adminToken = localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
         if (admin && admin.email && adminToken && window.TrayakshAPI && window.TrayakshAPI.getAdminSession) {
           try {
             const adminSession = await window.TrayakshAPI.getAdminSession();
@@ -746,6 +760,9 @@
           localStorage.removeItem('trayaksh_enrollment');
           localStorage.removeItem('trayaksh_token');
           localStorage.removeItem('trayaksh_user');
+          sessionStorage.removeItem('trayaksh_enrollment');
+          sessionStorage.removeItem('trayaksh_token');
+          sessionStorage.removeItem('trayaksh_user');
           if (regBadge) regBadge.textContent = 'Admin Studio Access';
           const studioBtn = document.getElementById('nav-instructor-studio-btn');
           if (studioBtn) studioBtn.style.display = 'inline-flex';
@@ -759,7 +776,7 @@
           if (avatarEl) avatarEl.textContent = initials || 'AI';
         }
 
-        const candidateToken = localStorage.getItem('trayaksh_token');
+        const candidateToken = localStorage.getItem('trayaksh_token') || sessionStorage.getItem('trayaksh_token');
         const activeToken = isAdminUser ? adminToken : candidateToken;
 
         if (activeToken) {
@@ -778,7 +795,9 @@
                   clusterSshGranted: Boolean(meRes.enrollment.clusterSshGranted)
                 };
                 activeEnrollment = savedEnrollment;
-                localStorage.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
+                const isPersistent = Boolean(localStorage.getItem('trayaksh_token'));
+                const targetStore = isPersistent ? localStorage : sessionStorage;
+                targetStore.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
               }
             } catch (meErr) {
               console.warn('Session profile check:', meErr.message);
@@ -811,7 +830,9 @@
                     status: 'active'
                   };
                   activeEnrollment = savedEnrollment;
-                  localStorage.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
+                  const isPersistent = Boolean(localStorage.getItem('trayaksh_token'));
+                  const targetStore = isPersistent ? localStorage : sessionStorage;
+                  targetStore.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
                 }
               }
               if (remoteData && Array.isArray(remoteData.modules) && remoteData.modules.length === 0) {
@@ -829,10 +850,12 @@
             activeEnrollment = null;
             savedEnrollment = null;
             localStorage.removeItem('trayaksh_enrollment');
+            sessionStorage.removeItem('trayaksh_enrollment');
           }
         } else {
-          // No token present: clear any unverified enrollment cached in local storage
+          // No token present: clear any unverified enrollment cached in storage
           localStorage.removeItem('trayaksh_enrollment');
+          sessionStorage.removeItem('trayaksh_enrollment');
           isEnrolledCandidate = false;
           activeEnrollment = null;
         }

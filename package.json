@@ -2,13 +2,29 @@
   "name": "trayakshai-fullstack-platform",
   "version": "1.0.0",
   "description": "TrayakshAI Infrastructure Platform & AI Factory Training Academy",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
+    "postinstall": "cd backend && npm install",
     "start": "node backend/server.js",
     "server": "cd backend && npm start",
     "dev:backend": "cd backend && npm run dev",
     "dev:course": "python3 -m http.server 3000 --directory trayaksh_course",
     "dev:main": "python3 -m http.server 8000",
     "test": "node -c trayaksh_course/course.js && node -c backend/server.js && node -c backend/db.js && node -c backend/routes/auth.js && node -c backend/routes/payment.js && node -c backend/routes/admin.js && node -c backend/routes/classroom.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.7.1",
+    "google-auth-library": "^11.3.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "razorpay": "^2.9.5"
   },
   "keywords": [
     "trayaksh",

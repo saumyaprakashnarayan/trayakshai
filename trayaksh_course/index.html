@@ -1537,7 +1537,7 @@
           <input class="form-input" type="password" id="signin-password" placeholder="••••••••" required>
           <div class="form-help-row">
             <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
-              <input type="checkbox" checked style="accent-color:var(--ac);"> Remember me
+              <input type="checkbox" id="signin-remember" checked style="accent-color:var(--ac);"> Remember me
             </label>
             <span class="forgot-password-link" onclick="switchAuthTab('forgot')">Forgot Password?</span>
           </div>
@@ -1614,43 +1614,29 @@
         </button>
       </form>
 
-      <!-- 3. Forgot Password Wizard -->
+      <!-- 3. Password Recovery Support -->
       <div id="auth-forgot-form" style="display:none;">
         <div class="modal-header">
-          <h2>Reset Password</h2>
-          <p>We'll send a 6-digit verification code to reset your TrayakshAI account access.</p>
+          <h2>Account Access &amp; Support</h2>
+          <p>To safeguard enterprise cohort access and credentials, password resets are processed via authenticated support verification.</p>
         </div>
 
-        <!-- Step 1: Email entry -->
-        <form id="forgot-step-1" onsubmit="handleForgotStep1(event)">
-          <div class="form-group">
-            <label class="form-label" for="forgot-email">Your Registered Email</label>
-            <input class="form-input" type="email" id="forgot-email" placeholder="name@company.com" required>
-          </div>
-          <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Send Verification Code →</button>
-          <div style="text-align:center;margin-top:14px;">
-            <span class="forgot-password-link" onclick="switchAuthTab('signin')">← Return to Sign In</span>
-          </div>
-        </form>
-
-        <!-- Step 2: OTP & New Password -->
-        <form id="forgot-step-2" style="display:none;" onsubmit="handleForgotStep2(event)">
-          <p style="font-size:13px;color:var(--lt);margin-bottom:12px;">
-            ✓ OTP sent to <strong id="forgot-target-email"></strong>
+        <div style="background:#040c06;border:1px solid var(--line);border-radius:var(--radius-md);padding:18px;margin-bottom:16px;text-align:left;">
+          <div style="color:var(--lt);font-weight:700;margin-bottom:8px;font-size:13px;">Direct Candidate Support:</div>
+          <p style="color:var(--tx);font-size:12.5px;line-height:1.6;margin-bottom:10px;">
+            Please send an account recovery request from your registered workplace email address to:
           </p>
-          <div class="form-group">
-            <label class="form-label" for="forgot-otp">6-Digit Code (Enter 849201 or any 6 digits)</label>
-            <input class="form-input" type="text" id="forgot-otp" placeholder="849201" maxlength="6" required style="font-family:var(--font-mono);letter-spacing:0.2em;font-size:18px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:13.5px;color:var(--gold);background:#07160b;padding:10px;border-radius:6px;border:1px dashed var(--line);text-align:center;">
+            hello@trayakshai.com
           </div>
-          <div class="form-group">
-            <label class="form-label" for="forgot-new-password">Set New Password</label>
-            <input class="form-input" type="password" id="forgot-new-password" placeholder="Min 6 characters" required>
-          </div>
-          <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Verify &amp; Update Password →</button>
-          <div style="text-align:center;margin-top:14px;">
-            <span class="forgot-password-link" onclick="switchAuthTab('signin')">Cancel and Sign In</span>
-          </div>
-        </form>
+          <p style="color:var(--mut);font-size:11.5px;margin-top:10px;line-height:1.5;">
+            Include your registered full name or Candidate ID for identity verification within 2 business hours.
+          </p>
+        </div>
+
+        <div style="text-align:center;">
+          <button class="btn btn-sm" type="button" onclick="switchAuthTab('signin')" style="width:100%;padding:12px;">← Return to Sign In</button>
+        </div>
       </div>
 
     </div>

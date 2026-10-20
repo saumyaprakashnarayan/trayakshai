@@ -40,24 +40,55 @@
     }
   };
 
-  // State Management
+  // State Management (Session vs Local Storage based on Remember Me)
+  function getStoredItem(key) {
+    try {
+      return localStorage.getItem(key) || sessionStorage.getItem(key);
+    } catch (_) {
+      return null;
+    }
+  }
+
   function readStoredJson(key) {
     try {
-      const value = localStorage.getItem(key);
+      const value = getStoredItem(key);
       return value ? JSON.parse(value) : null;
     } catch (err) {
       return null;
     }
   }
+
+  function setStoredItem(key, value, remember = true) {
+    try {
+      if (remember) {
+        localStorage.setItem(key, value);
+        sessionStorage.removeItem(key);
+      } else {
+        sessionStorage.setItem(key, value);
+        localStorage.removeItem(key);
+      }
+    } catch (_) {}
+  }
+
+  function removeStoredItem(key) {
+    try {
+      localStorage.removeItem(key);
+      sessionStorage.removeItem(key);
+    } catch (_) {}
+  }
+
+  window.getStoredItem = getStoredItem;
   window.readStoredJson = readStoredJson;
+  window.setStoredItem = setStoredItem;
+  window.removeStoredItem = removeStoredItem;
 
   let currentUser = readStoredJson('trayaksh_user');
   let currentEnrollment = readStoredJson('trayaksh_enrollment');
 
-  function syncEnrollmentFromApi(enrollment, user) {
+  function syncEnrollmentFromApi(enrollment, user, remember = true) {
     if (!enrollment || !enrollment.regId) {
       currentEnrollment = null;
-      localStorage.removeItem('trayaksh_enrollment');
+      removeStoredItem('trayaksh_enrollment');
       return;
     }
     const isCourseFee = enrollment.plan === 'course_fee';
@@ -70,16 +101,16 @@
       status: enrollment.status || 'active',
       date: enrollment.enrolledAt ? new Date(enrollment.enrolledAt).toLocaleDateString('en-IN') : 'Active'
     };
-    localStorage.setItem('trayaksh_enrollment', JSON.stringify(currentEnrollment));
+    setStoredItem('trayaksh_enrollment', JSON.stringify(currentEnrollment), remember);
   }
 
   async function apiRequest(endpoint, method = 'GET', data = null, customToken = null) {
     let token = customToken;
     if (!token) {
       if (endpoint.startsWith('/admin')) {
-        token = localStorage.getItem('trayaksh_admin_token') || localStorage.getItem('trayaksh_token');
+        token = getStoredItem('trayaksh_admin_token') || getStoredItem('trayaksh_token');
       } else {
-        token = localStorage.getItem('trayaksh_token') || localStorage.getItem('trayaksh_admin_token');
+        token = getStoredItem('trayaksh_token') || getStoredItem('trayaksh_admin_token');
       }
     }
     const headers = { 'Content-Type': 'application/json' };
@@ -362,6 +393,7 @@
     if (e) e.preventDefault();
     const email = document.getElementById('signin-email').value.trim();
     const password = document.getElementById('signin-password').value;
+    const remember = document.getElementById('signin-remember') ? document.getElementById('signin-remember').checked : true;
 
     if (!email || !password) {
       showToast('Please enter both email and password.', 'error');
@@ -371,13 +403,13 @@
     try {
       showToast('Authenticating with TrayakshAI security service...', 'info');
       const data = await window.TrayakshAPI.login(email, password);
-      localStorage.removeItem('trayaksh_admin_user');
-      localStorage.removeItem('trayaksh_admin_token');
-      localStorage.removeItem('trayaksh_admin_auth');
+      removeStoredItem('trayaksh_admin_user');
+      removeStoredItem('trayaksh_admin_token');
+      removeStoredItem('trayaksh_admin_auth');
       currentUser = data.user;
-      localStorage.setItem('trayaksh_user', JSON.stringify(currentUser));
-      if (data.token) localStorage.setItem('trayaksh_token', data.token);
-      syncEnrollmentFromApi(data.enrollment, currentUser);
+      setStoredItem('trayaksh_user', JSON.stringify(currentUser), remember);
+      if (data.token) setStoredItem('trayaksh_token', data.token, remember);
+      syncEnrollmentFromApi(data.enrollment, currentUser, remember);
       updateUserNavState();
       closeAuthModal();
       showToast(`Welcome back, ${currentUser.name}!`, 'success');
@@ -406,9 +438,9 @@
       showToast('Creating candidate account in PostgreSQL...', 'info');
       const data = await window.TrayakshAPI.register({ name, email, phone, role, password });
       currentUser = data.user;
-      localStorage.setItem('trayaksh_user', JSON.stringify(currentUser));
-      if (data.token) localStorage.setItem('trayaksh_token', data.token);
-      syncEnrollmentFromApi(data.enrollment, currentUser);
+      setStoredItem('trayaksh_user', JSON.stringify(currentUser), true);
+      if (data.token) setStoredItem('trayaksh_token', data.token, true);
+      syncEnrollmentFromApi(data.enrollment, currentUser, true);
       updateUserNavState();
       closeAuthModal();
       showToast(`Account created successfully! Welcome to TrayakshAI, ${name}.`, 'success');
@@ -486,10 +518,14 @@
       if (!data || !data.token) {
         throw new Error(data && data.error ? data.error : 'Google auth did not return a valid session token.');
       }
+      const remember = document.getElementById('signin-remember') ? document.getElementById('signin-remember').checked : true;
+      removeStoredItem('trayaksh_admin_user');
+      removeStoredItem('trayaksh_admin_token');
+      removeStoredItem('trayaksh_admin_auth');
       currentUser = data.user;
-      localStorage.setItem('trayaksh_user', JSON.stringify(currentUser));
-      localStorage.setItem('trayaksh_token', data.token);
-      syncEnrollmentFromApi(data.enrollment, currentUser);
+      setStoredItem('trayaksh_user', JSON.stringify(currentUser), remember);
+      setStoredItem('trayaksh_token', data.token, remember);
+      syncEnrollmentFromApi(data.enrollment, currentUser, remember);
       updateUserNavState();
       closeAuthModal();
       showToast(`Google authenticated as ${currentUser.name}!`, 'success');
@@ -521,11 +557,12 @@
   window.handleSignOut = function () {
     currentUser = null;
     currentEnrollment = null;
-    localStorage.removeItem('trayaksh_user');
-    localStorage.removeItem('trayaksh_token');
-    localStorage.removeItem('trayaksh_admin_user');
-    localStorage.removeItem('trayaksh_admin_token');
-    localStorage.removeItem('trayaksh_admin_auth');
+    removeStoredItem('trayaksh_user');
+    removeStoredItem('trayaksh_token');
+    removeStoredItem('trayaksh_enrollment');
+    removeStoredItem('trayaksh_admin_user');
+    removeStoredItem('trayaksh_admin_token');
+    removeStoredItem('trayaksh_admin_auth');
     updateUserNavState();
     toggleUserDropdown(false);
     showToast('You have been signed out successfully.', 'info');
@@ -1144,24 +1181,25 @@ Support: hello@trayakshai.com | TrayakshAI Consulting Ltd.
 
   // Medusa / Saleor session hydration on page load
   async function hydrateUserSession() {
-    const token = localStorage.getItem('trayaksh_token');
+    const token = getStoredItem('trayaksh_token');
     if (!token) return;
 
     try {
       const data = await window.TrayakshAPI.getMe();
       if (data && data.user) {
         currentUser = data.user;
-        localStorage.setItem('trayaksh_user', JSON.stringify(data.user));
-        syncEnrollmentFromApi(data.enrollment, data.user);
+        const isPersistent = Boolean(localStorage.getItem('trayaksh_token'));
+        setStoredItem('trayaksh_user', JSON.stringify(data.user), isPersistent);
+        syncEnrollmentFromApi(data.enrollment, data.user, isPersistent);
         updateUserNavState();
       }
     } catch (err) {
       if (err.status === 401) {
         currentUser = null;
         currentEnrollment = null;
-        localStorage.removeItem('trayaksh_user');
-        localStorage.removeItem('trayaksh_token');
-        localStorage.removeItem('trayaksh_enrollment');
+        removeStoredItem('trayaksh_user');
+        removeStoredItem('trayaksh_token');
+        removeStoredItem('trayaksh_enrollment');
         updateUserNavState();
       }
       console.warn('Session hydration note:', err.message);

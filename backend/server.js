@@ -143,6 +143,14 @@ app.get('/healthz', async (req, res) => {
         error: dbErr.message
       });
     }
+  } else if (process.env.NODE_ENV === 'production' && process.env.ALLOW_IN_MEMORY_FALLBACK !== 'true') {
+    return res.status(503).json({
+      status: 'unhealthy',
+      timestamp: new Date().toISOString(),
+      service: 'TrayakshAI Course Backend (Render)',
+      database: 'missing_database_url',
+      error: 'DATABASE_URL is required in production to safeguard candidate and payment records.'
+    });
   }
   res.status(200).json({
     status: 'healthy',
@@ -179,6 +187,11 @@ async function startServer() {
       console.error('❌ FATAL: Database initialization failed in production. Exiting.');
       process.exit(1);
     }
+  } else if (process.env.NODE_ENV === 'production' && process.env.ALLOW_IN_MEMORY_FALLBACK !== 'true') {
+    console.error('❌ FATAL: DATABASE_URL is not configured in production environment.');
+    console.error('❌ In-memory fallback will lose student payments & accounts on Render service restart.');
+    console.error('❌ Please provision PostgreSQL on Render and configure DATABASE_URL (or set ALLOW_IN_MEMORY_FALLBACK=true to override).');
+    process.exit(1);
   } else {
     console.warn('⚠️ NOTICE: DATABASE_URL is not configured on Render. Operating with in-memory sandbox storage.');
     console.warn('⚠️ To enable persistent PostgreSQL storage, configure DATABASE_URL in Render Dashboard.');

@@ -27,6 +27,10 @@
           "value": "camera=(), microphone=(), geolocation=()"
         },
         {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://checkout.razorpay.com https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.razorpay.com https://accounts.google.com https://trayaksh-course-backend.onrender.com http://localhost:5000 http://127.0.0.1:5000; frame-src 'self' https://api.razorpay.com https://accounts.google.com https://www.youtube-nocookie.com https://www.youtube.com; object-src 'none'; base-uri 'self';"
+        },
+        {
           "key": "Access-Control-Allow-Origin",
           "value": "https://trayakshai.com"
         },
