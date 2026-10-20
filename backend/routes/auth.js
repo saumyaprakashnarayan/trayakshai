@@ -9,6 +9,7 @@ const { JWT_SECRET, requireAuth } = require('../middleware/auth');
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const googleClient = GOOGLE_CLIENT_ID ? new OAuth2Client(GOOGLE_CLIENT_ID) : null;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 router.get('/google-config', (req, res) => {
   if (!GOOGLE_CLIENT_ID) {
@@ -120,8 +121,10 @@ async function verifyEmailClaimCode(email, code) {
 // 0. DISPATCH EMAIL VERIFICATION CODE
 router.post('/send-verification-code', async (req, res) => {
   try {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ error: 'Email is required.' });
+    const email = req.body && req.body.email;
+    if (typeof email !== 'string' || email.length > 255 || !EMAIL_PATTERN.test(email.trim())) {
+      return res.status(400).json({ error: 'A valid email address is required.' });
+    }
     const normalizedEmail = email.trim().toLowerCase();
     const sentCode = await createAndSendClaimCode(normalizedEmail);
     res.json({
@@ -138,15 +141,19 @@ router.post('/send-verification-code', async (req, res) => {
 // 1. REGISTER CANDIDATE
 router.post('/register', async (req, res) => {
   try {
-    const { email, password, phone, role, company, gstin, verification_code } = req.body;
-    const fullName = (req.body.full_name || req.body.name || '').trim();
+    const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+    const { email, password, phone, company, gstin, verification_code } = body;
+    const fullNameInput = typeof body.full_name === 'string' ? body.full_name : (typeof body.name === 'string' ? body.name : '');
+    const fullName = fullNameInput.trim();
 
-    if (!email || !password || !fullName) {
+    if (typeof email !== 'string' || email.length > 255 || !EMAIL_PATTERN.test(email.trim()) ||
+        typeof password !== 'string' || !fullName || fullName.length > 255) {
       return res.status(400).json({ error: 'Full name, email, and password are required.' });
     }
 
-    if (password.length < 6) {
-      return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
+    const passwordBytes = Buffer.byteLength(password, 'utf8');
+    if (passwordBytes < 6 || passwordBytes > 72) {
+      return res.status(400).json({ error: 'Password must be 6 to 72 bytes long.' });
     }
 
     const normalizedEmail = email.trim().toLowerCase();
@@ -304,9 +311,11 @@ router.post('/register', async (req, res) => {
 // 2. SIGN IN CANDIDATE
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const body = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? req.body : {};
+    const { email, password } = body;
 
-    if (!email || !password) {
+    if (typeof email !== 'string' || email.length > 255 || !EMAIL_PATTERN.test(email.trim()) ||
+        typeof password !== 'string' || !password || Buffer.byteLength(password, 'utf8') > 72) {
       return res.status(400).json({ error: 'Please enter both email and password.' });
     }
 
@@ -454,6 +463,9 @@ router.post('/google', async (req, res) => {
       const userRes = await db.query('SELECT * FROM users WHERE email = $1', [normalizedEmail]);
       if (userRes.rows.length > 0) {
         user = userRes.rows[0];
+        if (user.is_active === false) {
+          return res.status(401).json({ error: 'This account is inactive. Contact support for help.' });
+        }
         if (targetGoogleId && !user.google_id) {
           await db.query('UPDATE users SET google_id = $1, updated_at = NOW() WHERE id = $2', [targetGoogleId, user.id]);
         }

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /backend/
+Disallow: /scratch/
+
+Sitemap: https://www.trayakshai.com/sitemap.xml

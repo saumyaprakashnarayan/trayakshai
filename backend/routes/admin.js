@@ -195,11 +195,34 @@ function generateCandidateCredentials(email) {
   ]);
   const privateKeyPem = `-----BEGIN OPENSSH PRIVATE KEY-----\n${opensshKey.toString('base64').match(/.{1,70}/g).join('\n')}\n-----END OPENSSH PRIVATE KEY-----`;
 
+  // Generate real WireGuard client private/public key (X25519)
+  const wgPair = crypto.generateKeyPairSync('x25519', {
+    publicKeyEncoding: { type: 'spki', format: 'der' },
+    privateKeyEncoding: { type: 'pkcs8', format: 'der' }
+  });
+  const wgPrivateKey = wgPair.privateKey.subarray(wgPair.privateKey.length - 32).toString('base64');
+  const serverPubKey = process.env.WIREGUARD_SERVER_PUBKEY || 'TrayakshClusterVpnPubKeyDefault1234567890=';
+  const vpnEndpoint = process.env.WIREGUARD_ENDPOINT || `${process.env.CLUSTER_SSH_HOST || 'cluster.trayakshai.com'}:51820`;
+
+  const vpnProfile = [
+    '[Interface]',
+    `PrivateKey = ${wgPrivateKey}`,
+    `Address = 10.140.0.10/32`,
+    `DNS = 1.1.1.1`,
+    '',
+    '[Peer]',
+    `PublicKey = ${serverPubKey}`,
+    `Endpoint = ${vpnEndpoint}`,
+    `AllowedIPs = 10.140.0.0/16`,
+    `PersistentKeepalive = 25`
+  ].join('\n');
+
   return {
     username,
     sshPublicKey,
     sshPrivateKey: privateKeyPem,
-    keyFingerprint
+    keyFingerprint,
+    vpnProfile
   };
 }
 
@@ -726,7 +749,7 @@ router.post('/send-ssh-keys', requireAdmin, async (req, res) => {
       credentials: {
         publicKey: creds.sshPublicKey,
         privateKey: creds.sshPrivateKey,
-        wireguardConfig: provisioned.wireguardConfig || '',
+        wireguardConfig: provisioned.wireguardConfig || creds.vpnProfile || '',
         sshCommand
       }
     });

@@ -325,14 +325,14 @@ router.post('/create-order', optionalAuth, async (req, res) => {
         const existingUser = Array.from(db.inMemoryStore.users ? db.inMemoryStore.users.values() : []).find(
           u => u.email && u.email.toLowerCase() === candidateEmail.toLowerCase()
         );
+        if (existingUser && existingUser.is_active === false) {
+          return res.status(401).json({ error: 'This account is inactive. Contact support before starting checkout.' });
+        }
         if (existingUser && (existingUser.password_hash || existingUser.google_id)) {
           return res.status(409).json({
             error: 'An account with this email already exists. Please log in first to secure your registration.',
             requiresLogin: true
           });
-        }
-        if (existingUser && existingUser.is_active === false) {
-          return res.status(401).json({ error: 'This account is inactive. Contact support before starting checkout.' });
         }
         if (existingUser) {
           userId = existingUser.id;

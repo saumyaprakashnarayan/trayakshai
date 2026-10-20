@@ -92,6 +92,12 @@ async function requireEnrollment(req, res, next) {
         }
       } else {
         // In-memory check for dev
+        const storedUser = Array.from(db.inMemoryStore.users.values()).find(
+          user => user.id === userId || String(user.email || '').toLowerCase() === String(userEmail || '').toLowerCase()
+        );
+        if (!storedUser || storedUser.is_active === false) {
+          return res.status(401).json({ error: 'This account is inactive or no longer exists.' });
+        }
         for (const [id, enr] of db.inMemoryStore.enrollments) {
           const matchUser = (enr.user_id === userId || enr.user_email === userEmail);
           const matchCourse = (!enr.course_id || enr.course_id === courseId);
