@@ -1,0 +1,22 @@
+{
+  "name": "trayakshai-fullstack-platform",
+  "version": "1.0.0",
+  "description": "TrayakshAI Infrastructure Platform & AI Factory Training Academy",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "cd backend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:course": "python3 -m http.server 3000 --directory trayaksh_course",
+    "dev:main": "python3 -m http.server 8000",
+    "test": "node -c trayaksh_course/course.js && node -c backend/server.js && node -c backend/db.js && node -c backend/routes/auth.js && node -c backend/routes/payment.js && node -c backend/routes/admin.js && node -c backend/routes/classroom.js"
+  },
+  "keywords": [
+    "trayaksh",
+    "ai-infrastructure",
+    "hpc",
+    "gpu-computing",
+    "course"
+  ],
+  "author": "TrayakshAI Consulting Ltd.",
+  "license": "ISC"
+}

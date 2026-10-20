@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Candidate Portal &amp; Course Classroom | TrayakshAI AI Infrastructure Training</title>
+  <meta name="description" content="Candidate learning portal and classroom player for enrolled TrayakshAI AI Infrastructure &amp; AI Factory Training participants. Access lecture videos, architecture blueprints, and cluster terminals.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#050F09">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  
+  <!-- Fonts & CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="course.css">
+</head>
+<body style="background:var(--bg);">
+
+  <!-- Classroom Navigation -->
+  <nav>
+    <div class="wrap" style="max-width:1440px;">
+      <a class="brand" href="index.html">
+        <svg width="34" height="26" viewBox="0 0 100 62" aria-hidden="true">
+          <g fill="none" stroke-linecap="round">
+            <circle cx="50" cy="28" r="19" stroke="#1E9E4A" stroke-width="6"/>
+            <circle cx="50" cy="28" r="8" fill="#1E9E4A" stroke="none"/>
+            <circle cx="17" cy="40" r="12" stroke="#74D08F" stroke-width="5"/>
+            <circle cx="17" cy="40" r="5" fill="#74D08F" stroke="none"/>
+            <circle cx="83" cy="40" r="12" stroke="#3FC06C" stroke-width="5"/>
+            <circle cx="83" cy="40" r="5" fill="#3FC06C" stroke="none"/>
+          </g>
+        </svg>
+        <span>Trayaksh<b>AI</b></span>
+        <span class="brand-badge" style="background:rgba(30,158,74,0.18);color:var(--lt);border-color:var(--ac);">CANDIDATE PORTAL</span>
+      </a>
+
+      <!-- View Switcher Pills -->
+      <div class="portal-nav-pills">
+        <button class="portal-nav-btn active" id="pnav-courses" type="button" onclick="switchPortalView('courses')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>My Enrolled Courses</span>
+        </button>
+        <button class="portal-nav-btn" id="pnav-classroom" type="button" onclick="switchPortalView('classroom')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Course Classroom &amp; Labs</span>
+        </button>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span style="font-size:12.5px;color:var(--lt);background:#06150b;border:1px solid var(--line-light);padding:5px 12px;border-radius:99px;" id="classroom-reg-badge">
+          Candidate Portal
+        </span>
+        <a class="btn btn-sm" id="nav-instructor-studio-btn" href="course-upload.html" style="display:none;border-color:var(--gold);color:var(--gold);">
+          <span>⚙ Instructor Studio</span>
+        </a>
+        <a class="btn btn-sm" href="index.html">Course Overview</a>
+        <button class="btn btn-sm" type="button" onclick="handlePortalSignOut()" style="border-color:rgba(239,68,68,0.4);color:#fca5a5;">
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap" style="max-width:1440px;">
+    
+    <!-- =========================================================================
+         VIEW 1: MY ENROLLED COURSES (STUDENT PORTAL DASHBOARD)
+         ========================================================================= -->
+    <section id="portal-courses-view" style="display:block;">
+      
+      <!-- Candidate Profile Banner -->
+      <div class="candidate-dashboard-header">
+        <div class="candidate-profile-row">
+          <div class="candidate-profile-meta">
+            <div class="candidate-big-avatar" id="portal-avatar">AI</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+                <h1 style="font-size:24px;margin:0;" id="portal-user-name">Candidate Portal</h1>
+                <span id="portal-status-badge" style="font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(245,166,35,0.15);color:var(--gold);border:1px solid rgba(245,166,35,0.3);">
+                  REGISTRATION PENDING
+                </span>
+              </div>
+              <p style="color:var(--mut);font-size:13.5px;margin:0;" id="portal-user-email">candidate@enterprise.ai</p>
+            </div>
+          </div>
+          
+          <div style="display:flex;align-items:center;gap:12px;" id="portal-action-container">
+            <!-- Dynamic action depending on enrollment -->
+          </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="candidate-stats-bar">
+          <div class="candidate-stat-item">
+            <div class="candidate-stat-label">Active Cohort</div>
+            <div class="candidate-stat-val" style="color:var(--lt);">October 2026 AI Factory</div>
+          </div>
+          <div class="candidate-stat-item">
+            <div class="candidate-stat-label">Registration Deadline</div>
+            <div class="candidate-stat-val" style="color:var(--gold);">23 October (Strict)</div>
+          </div>
+          <div class="candidate-stat-item">
+            <div class="candidate-stat-label">Cluster Lab Status</div>
+            <div class="candidate-stat-val" id="portal-lab-status" style="color:var(--mut);">Locked (Requires Registration)</div>
+          </div>
+          <div class="candidate-stat-item">
+            <div class="candidate-stat-label">Registration ID</div>
+            <div class="candidate-stat-val" id="portal-reg-id" style="font-family:var(--font-mono);font-size:13.5px;color:var(--tx);">None (Unregistered)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <div>
+          <h2 style="font-size:22px;margin:0 0 4px;">My Enrolled Courses &amp; Cohorts</h2>
+          <p style="color:var(--mut);font-size:13.5px;margin:0;">Select a course to enter your live masterclass streams, architecture blueprints, and cluster terminal shells.</p>
+        </div>
+        <a class="btn btn-sm" href="index.html#curriculum" style="border-color:var(--line);">Browse Full Curriculum</a>
+      </div>
+
+      <!-- Courses Grid -->
+      <div class="courses-dashboard-grid">
+        
+        <!-- Primary Course Card: AI Infrastructure & AI Factory Training -->
+        <div class="course-portal-card" id="card-ai-infrastructure">
+          <div class="course-portal-header">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <span class="pulse-badge"><span class="pulse-dot"></span> UPCOMING COHORT</span>
+              <span id="course-card-status-pill" style="font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;background:rgba(245,166,35,0.15);color:var(--gold);">
+                REGISTRATION REQUIRED
+              </span>
+            </div>
+            <h3 style="font-size:20px;margin:0 0 6px;">AI Infrastructure &amp; AI Factory Training</h3>
+            <div style="font-size:12.5px;color:var(--lt);font-weight:600;">8 Production Tracks • NVIDIA DGX H100 / H200 / B200</div>
+          </div>
+
+          <div class="course-portal-body">
+            <p style="font-size:13.5px;color:var(--tx);line-height:1.55;margin-bottom:16px;">
+              Master bare-metal accelerated compute architectures, 80kW+ direct-to-chip liquid cooling loops (CDUs &amp; secondary manifolds), 400G Quantum-2 InfiniBand, WEKA GPUDirect parallel storage, and Slurm multi-node orchestration.
+            </p>
+
+            <!-- Dynamic Enrollment Box -->
+            <div id="course-enrollment-detail-box">
+              <div class="course-lock-overlay-banner">
+                <div style="display:flex;align-items:center;gap:8px;color:var(--gold);font-weight:700;font-size:13px;margin-bottom:6px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>Seat Registration Required (₹9,999)</span>
+                </div>
+                <p style="font-size:12.5px;color:#c9e3d4;line-height:1.5;margin:0 0 10px;">
+                  To access the 8 production track masterclasses, blueprints, and bare-metal GPU cluster labs, seat registration is required before the 23 October deadline. Course fee (₹49,999) applies post-registration.
+                </p>
+                <div style="font-size:12px;color:var(--mut);">
+                  Includes: All 8 Tracks • Video Streams • WEKA GDS Runbooks • Slurm Scripts
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-portal-footer" id="course-card-footer">
+            <a class="btn p" href="register.html" id="course-card-action-btn" style="width:100%;text-align:center;padding:12px;">
+              <span>Register &amp; Unlock Course (₹9,999) →</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Upcoming Catalog Card 1 -->
+        <div class="course-portal-card" style="opacity:0.85;">
+          <div class="course-portal-header">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:11px;font-weight:700;color:var(--mut);background:#020804;padding:3px 8px;border-radius:4px;border:1px solid var(--line);">EXPANSION COHORT</span>
+              <span style="font-size:11px;font-weight:700;color:var(--lt);background:rgba(30,158,74,0.12);padding:3px 8px;border-radius:4px;">Q1 2027</span>
+            </div>
+            <h3 style="font-size:18px;margin:0 0 6px;">Quantum-X800 InfiniBand &amp; Lossless RoCE</h3>
+            <div style="font-size:12.5px;color:var(--mut);">High-Speed Fabric Design &amp; Congestion Control</div>
+          </div>
+
+          <div class="course-portal-body">
+            <p style="font-size:13px;color:var(--mut);line-height:1.5;margin-bottom:16px;">
+              Advanced hardware-level buffer sizing, Priority Flow Control (PFC), Explicit Congestion Notification (ECN) tuning, and non-blocking multi-rail fat-tree fabrics for distributed 70B+ LLM clusters.
+            </p>
+            <div style="background:#020804;border:1px solid var(--line);border-radius:var(--radius-md);padding:12px;font-size:12px;color:var(--mut);">
+              Integrated into Track 04 of the AI Factory Masterclass.
+            </div>
+          </div>
+
+          <div class="course-portal-footer">
+            <button class="btn btn-sm" type="button" disabled style="width:100%;opacity:0.6;cursor:not-allowed;">
+              Included in AI Factory Cohort
+            </button>
+          </div>
+        </div>
+
+        <!-- Upcoming Catalog Card 2 -->
+        <div class="course-portal-card" style="opacity:0.85;">
+          <div class="course-portal-header">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-size:11px;font-weight:700;color:var(--mut);background:#020804;padding:3px 8px;border-radius:4px;border:1px solid var(--line);">EXPANSION COHORT</span>
+              <span style="font-size:11px;font-weight:700;color:var(--accent-cyan);background:rgba(0,210,255,0.1);padding:3px 8px;border-radius:4px;">Q2 2027</span>
+            </div>
+            <h3 style="font-size:18px;margin:0 0 6px;">Parallel Storage &amp; WEKA GDS at Hyperscale</h3>
+            <div style="font-size:12.5px;color:var(--mut);">GPUDirect Storage, NVMe-oF &amp; Checkpointing</div>
+          </div>
+
+          <div class="course-portal-body">
+            <p style="font-size:13px;color:var(--mut);line-height:1.5;margin-bottom:16px;">
+              Architecting 100+ GB/s throughput parallel storage topologies directly into GPU HBM memory bypassing CPU bottlenecks. Lustre, GPFS, and WEKA deployment patterns.
+            </p>
+            <div style="background:#020804;border:1px solid var(--line);border-radius:var(--radius-md);padding:12px;font-size:12px;color:var(--mut);">
+              Integrated into Track 05 of the AI Factory Masterclass.
+            </div>
+          </div>
+
+          <div class="course-portal-footer">
+            <button class="btn btn-sm" type="button" disabled style="width:100%;opacity:0.6;cursor:not-allowed;">
+              Included in AI Factory Cohort
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         VIEW 2: COURSE CLASSROOM & LAB LMS PLAYER
+         ========================================================================= -->
+    <section id="portal-classroom-view" style="display:none;padding-top:16px;">
+      
+      <!-- Top Action Navigation -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+        <button class="btn btn-sm" type="button" onclick="switchPortalView('courses')" style="border-color:var(--line);color:var(--lt);">
+          ← Return to My Courses
+        </button>
+        <span style="font-size:12.5px;color:var(--mut);" id="classroom-player-subhead">
+          AI Infrastructure &amp; AI Factory Training • 8 Production Tracks
+        </span>
+      </div>
+
+      <!-- Classroom Player Grid -->
+      <div class="classroom-grid" style="padding-top:0;">
+        
+        <!-- Left Column: Video Screen & Blueprint Downloads -->
+        <div>
+          <div class="video-player-container">
+            <div style="background:#06150b;padding:16px 24px;border-bottom:1px solid var(--line);">
+              <div style="font-size:12px;color:var(--lt);font-weight:700;letter-spacing:0.05em;" id="current-player-track">Track 01: AI Factory Architecture &amp; Design • 78 mins</div>
+              <h2 style="font-size:20px;margin-top:4px;" id="current-player-title">Masterclass: Sizing 80kW High-Density Liquid Cooling Loops &amp; CDUs</h2>
+            </div>
+
+            <div class="video-screen" id="video-screen-container">
+              <!-- Video Placeholder Banner -->
+              <div class="video-placeholder-banner" id="video-placeholder-banner">
+                <div style="width:68px;height:68px;border-radius:50%;background:rgba(30,158,74,0.25);border:2px solid var(--lt);display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;cursor:pointer;box-shadow:0 0 25px rgba(30,158,74,0.4);" onclick="playCurrentVideo()">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--lt)" stroke="none"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+                <div style="font-size:16px;font-weight:700;color:var(--tx);margin-bottom:6px;">Stream Bare-Metal Live Cluster Masterclass</div>
+                <p style="color:var(--mut);font-size:13.5px;max-width:560px;">Click play to launch live high-bitrate stream from NVIDIA DGX / H100 cluster nodes.</p>
+              </div>
+              <!-- Embedded Video Stream -->
+              <iframe id="video-player-iframe" style="display:none;width:100%;height:100%;border:none;min-height:460px;" src="" title="TrayakshAI Stream" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- Video Controls / Action Bar -->
+            <div style="background:#06150b;padding:18px 24px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+              <div>
+                <span class="lesson-badge-tag" id="current-player-badge">VIDEO LECTURE + LAB</span>
+                <span style="font-size:12.5px;color:var(--mut);margin-left:10px;" id="current-player-duration">Duration: 78 mins</span>
+              </div>
+              <div style="display:flex;gap:10px;">
+                <button class="btn btn-sm p" type="button" onclick="downloadCurrentBlueprint()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span id="download-blueprint-btn-text">Download Blueprint (.MD)</span>
+                </button>
+                <button class="btn btn-sm" type="button" onclick="openTerminalModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                  <span>Launch SSH Lab Shell</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Objectives & Notes -->
+          <div style="background:var(--card-glass);border:1px solid var(--line);border-radius:var(--radius-xl);padding:30px;margin-top:24px;">
+            <h3 style="font-size:18px;margin-bottom:12px;">Lesson Overview &amp; Architecture Runbook</h3>
+            <p style="color:var(--mut);font-size:14.5px;line-height:1.65;margin-bottom:20px;" id="current-player-desc">
+              Direct-to-chip secondary loop thermal modeling, manifold balancing, and PUE calculators. Covers CDUs (Coolant Distribution Units), quick-disconnect couplings, and flow rate budgeting for high-density 100kW+ racks.
+            </p>
+
+            <div style="background:#040c06;border:1px solid var(--line);border-radius:var(--radius-md);padding:18px;font-family:var(--font-mono);font-size:12.5px;color:#c9e3d4;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <div>
+                <div style="color:var(--lt);margin-bottom:6px;"># Cluster diagnostics</div>
+                <div id="cluster-ssh-cmd" style="color:#ffffff;font-weight:600;">No SSH command has been provisioned for this session.</div>
+                <div style="color:var(--mut);margin-top:4px;font-size:11.5px;">Live diagnostics require course fee access or instructor assignment.</div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-sm p" type="button" onclick="openTerminalModal()">
+                  <span>Open Diagnostics</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Course Playlist & Progress -->
+        <div>
+          <div class="classroom-playlist-card">
+            <div class="playlist-header">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <strong style="font-size:15px;color:var(--tx);">Course Curriculum</strong>
+                <span id="classroom-track-count" style="font-size:12px;color:var(--lt);font-weight:700;">0 TRACKS</span>
+              </div>
+              <span id="classroom-module-count" style="font-size:11.5px;color:var(--mut);">Loading published lessons…</span>
+            </div>
+
+            <!-- Interactive Playlist Scroll -->
+            <div class="playlist-tracks-scroll" id="classroom-playlist-container">
+              <!-- Dynamically populated from JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Cluster diagnostics console -->
+  <div class="modal-backdrop" id="terminal-modal" role="dialog" aria-modal="true" style="display:none;" onclick="handleModalBackdropClick(event, 'terminal-modal')">
+    <div class="terminal-modal-dialog">
+      <div class="terminal-titlebar">
+        <div class="terminal-dots">
+          <span class="terminal-dot" style="background:#ef4444;cursor:pointer;" onclick="closeTerminalModal()"></span>
+          <span class="terminal-dot" style="background:#f59e0b;"></span>
+          <span class="terminal-dot" style="background:#10b981;"></span>
+          <span style="font-family:var(--font-mono);font-size:12px;color:var(--mut);margin-left:8px;">TrayakshAI cluster diagnostics</span>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="closeTerminalModal()" aria-label="Close" style="position:static;line-height:1;">&times;</button>
+      </div>
+
+      <div class="terminal-console-screen" id="terminal-output">
+        <div style="color:var(--mut);">No cluster connection has been established.</div>
+        <div style="color:var(--mut);margin:8px 0;">Run an approved diagnostic command to request live output from the configured lab service.</div>
+      </div>
+
+      <div style="background:#06150b;padding:12px 18px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--mut);">
+          <span>Quick Commands:</span>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('nvidia-smi')">nvidia-smi</button>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('squeue')">squeue</button>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('ibstat')">ibstat</button>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('dcgm')">dcgm-diag</button>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('free -h')">free -h</button>
+          <button class="terminal-command-pill" type="button" onclick="runTerminalCmd('clear')">clear</button>
+        </div>
+        <form onsubmit="handleTerminalCustomSubmit(event)" style="display:flex;gap:6px;align-items:center;flex:1;max-width:320px;">
+          <input type="text" id="terminal-custom-input" placeholder="Custom command (uptime, help)..." style="background:#020b05;border:1px solid var(--line);color:var(--tx);padding:4px 8px;font-family:var(--font-mono);font-size:11.5px;border-radius:4px;flex:1;">
+          <button class="btn btn-sm" type="submit" style="padding:4px 8px;font-size:11px;">Run</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Candidate Access Gate Modal -->
+  <div class="modal-backdrop" id="classroom-gate-modal" role="dialog" aria-modal="true" style="display:none;" onclick="handleModalBackdropClick(event, 'classroom-gate-modal')">
+    <div class="modal-dialog" style="max-width:480px;text-align:center;position:relative;">
+      <button class="modal-close-btn" type="button" onclick="closeGateModal()" aria-label="Close">&times;</button>
+      
+      <div style="width:58px;height:58px;border-radius:50%;background:rgba(30,158,74,0.15);border:2px solid var(--lt);color:var(--lt);display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <h2 style="font-size:22px;margin-bottom:8px;">Candidate Portal Access</h2>
+      <p style="font-size:13.5px;color:var(--mut);line-height:1.5;margin-bottom:20px;">
+        Sign in to your candidate account or register for the upcoming cohort to access bare-metal GPU cluster terminals, recordings, and blueprints.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a class="btn p" href="login.html?returnTo=classroom.html" style="padding:12px;font-size:14px;">Sign In to Candidate Account →</a>
+        <a class="btn" href="register.html?returnTo=classroom.html" style="padding:12px;font-size:14px;">Register for Cohort (₹9,999)</a>
+        <button class="btn btn-sm" type="button" onclick="continueAsDemoCandidate()" style="border-color:var(--line);color:var(--mut);margin-top:6px;">
+          Explore in Candidate Sandbox Preview Mode
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="course.js"></script>
+  <script>
+    const MODULES_STORAGE_KEY = 'trayaksh_course_modules';
+    let isEnrolledCandidate = false;
+    let isAdminUser = false;
+    let activeEnrollment = null;
+
+
+    let modulesList = [];
+    let currentSelectedModule = null;
+    let isVideoPlaying = false;
+
+    // View Switching: 'courses' vs 'classroom'
+    function switchPortalView(view) {
+      const coursesSec = document.getElementById('portal-courses-view');
+      const classroomSec = document.getElementById('portal-classroom-view');
+      const btnCourses = document.getElementById('pnav-courses');
+      const btnClassroom = document.getElementById('pnav-classroom');
+
+      if (view === 'courses') {
+        if (coursesSec) coursesSec.style.display = 'block';
+        if (classroomSec) classroomSec.style.display = 'none';
+        if (btnCourses) btnCourses.classList.add('active');
+        if (btnClassroom) btnClassroom.classList.remove('active');
+      } else {
+        if (!isEnrolledCandidate && !isAdminUser) {
+          showToast('Candidate registration (₹9,999) is required to enter the live classroom.', 'warn');
+          const gate = document.getElementById('classroom-gate-modal');
+          if (gate) gate.style.display = 'flex';
+          return;
+        }
+        if (coursesSec) coursesSec.style.display = 'none';
+        if (classroomSec) classroomSec.style.display = 'block';
+        if (btnCourses) btnCourses.classList.remove('active');
+        if (btnClassroom) btnClassroom.classList.add('active');
+      }
+    }
+
+    function renderClassroomPlaylist() {
+      const container = document.getElementById('classroom-playlist-container');
+      if (!container) return;
+      const trackCount = new Set(modulesList.map(module => module.track)).size;
+      const trackCountEl = document.getElementById('classroom-track-count');
+      const moduleCountEl = document.getElementById('classroom-module-count');
+      if (trackCountEl) trackCountEl.textContent = `${trackCount} ${trackCount === 1 ? 'TRACK' : 'TRACKS'}`;
+      if (moduleCountEl) moduleCountEl.textContent = `${modulesList.length} published ${modulesList.length === 1 ? 'lesson' : 'lessons'}`;
+
+      if (!modulesList.length) {
+        container.innerHTML = '<div style="padding:16px;color:var(--mut);">No published lessons are available yet.</div>';
+        const title = document.getElementById('current-player-title');
+        const track = document.getElementById('current-player-track');
+        const description = document.getElementById('current-player-desc');
+        if (title) title.textContent = 'No published lesson selected';
+        if (track) track.textContent = '';
+        if (description) description.textContent = 'Published lesson details will appear here when the instructor adds course content.';
+        return;
+      }
+
+      container.innerHTML = modulesList.map((m) => `
+        <div class="playlist-item ${currentSelectedModule && m.id === currentSelectedModule.id ? 'active' : ''}" onclick="selectModule('${escapeHtml(escapeModuleId(m.id))}')">
+          <div style="flex:1;">
+            <div style="font-size:11px;color:var(--lt);font-weight:700;margin-bottom:2px;">${escapeHtml(m.track.split(':')[0])}</div>
+            <div style="font-size:13px;font-weight:600;color:var(--tx);line-height:1.3;">${escapeHtml(m.title)}</div>
+            <div style="font-size:11.5px;color:var(--mut);margin-top:4px;">⏱ ${escapeHtml(m.duration)} • ${escapeHtml(m.type)}</div>
+          </div>
+          <div style="color:var(--lt);font-size:14px;margin-left:8px;">
+            ${currentSelectedModule && m.id === currentSelectedModule.id ? '▶' : '✓'}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escapeModuleId(str) {
+      return String(str).replace(/'/g, "\\'");
+    }
+
+    function escapeHtml(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function normalizeVideoEmbedUrl(url) {
+      if (!url || typeof url !== 'string') return null;
+      try {
+        const trimmed = url.trim();
+        const parsed = new URL(trimmed);
+        if (parsed.protocol !== 'https:') return null;
+        const host = parsed.hostname.toLowerCase();
+
+        if (host === 'youtube.com' || host === 'www.youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com' || host === 'www.youtube-nocookie.com' || host === 'youtu.be') {
+          let videoId = null;
+          if (host === 'youtu.be') {
+            videoId = parsed.pathname.replace(/^\/+/, '').split('/')[0];
+          } else if (parsed.pathname === '/watch') {
+            videoId = parsed.searchParams.get('v');
+          } else if (parsed.pathname.startsWith('/embed/')) {
+            videoId = parsed.pathname.split('/embed/')[1].split('/')[0];
+          } else if (parsed.pathname.startsWith('/shorts/')) {
+            videoId = parsed.pathname.split('/shorts/')[1].split('/')[0];
+          } else if (parsed.pathname.startsWith('/live/')) {
+            videoId = parsed.pathname.split('/live/')[1].split('/')[0];
+          }
+          if (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
+            return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+          }
+        }
+
+        if (host === 'vimeo.com' || host === 'www.vimeo.com' || host === 'player.vimeo.com') {
+          if (host === 'player.vimeo.com') {
+            const playerId = parsed.pathname.match(/^\/video\/(\d+)\/?$/);
+            return playerId ? `https://player.vimeo.com/video/${playerId[1]}` : null;
+          }
+          const vimeoId = parsed.pathname.replace(/^\/+/, '').split('/')[0];
+          if (/^\d+$/.test(vimeoId)) {
+            return `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
+          }
+        }
+        if (host === 'trayakshai.com' || host === 'course.trayakshai.com') return trimmed;
+        return null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function selectModule(id) {
+      const found = modulesList.find(m => m.id === id);
+      if (found) {
+        currentSelectedModule = found;
+        const titleEl = document.getElementById('current-player-title');
+        const trackEl = document.getElementById('current-player-track');
+        const badgeEl = document.getElementById('current-player-badge');
+        const durEl = document.getElementById('current-player-duration');
+        const descEl = document.getElementById('current-player-desc');
+        const downBtn = document.getElementById('download-blueprint-btn-text');
+
+        if (titleEl) titleEl.textContent = found.title;
+        if (trackEl) trackEl.textContent = `${found.track} • ${found.duration}`;
+        if (badgeEl) badgeEl.textContent = found.type;
+        if (durEl) durEl.textContent = `Duration: ${found.duration}`;
+        if (descEl) descEl.textContent = found.desc;
+        if (downBtn) downBtn.textContent = `Download Blueprint (.MD)`;
+
+        const iframe = document.getElementById('video-player-iframe');
+        if (isVideoPlaying && iframe && found.videoUrl) {
+          const embedUrl = normalizeVideoEmbedUrl(found.videoUrl);
+          if (embedUrl) iframe.src = embedUrl;
+        }
+
+        renderClassroomPlaylist();
+        showToast(`Loaded: ${found.title}`, 'info');
+      }
+    }
+
+    function playCurrentVideo() {
+      if (!currentSelectedModule) {
+        showToast('No published lesson is selected.', 'warn');
+        return;
+      }
+      if (!isEnrolledCandidate && !isAdminUser) {
+        showToast('Active paid enrollment is required to view live masterclass streams.', 'warn');
+        const gateModal = document.getElementById('classroom-gate-modal');
+        if (gateModal) gateModal.style.display = 'flex';
+        return;
+      }
+
+      const iframe = document.getElementById('video-player-iframe');
+      const placeholder = document.getElementById('video-placeholder-banner');
+      const embedUrl = normalizeVideoEmbedUrl(currentSelectedModule.videoUrl);
+      if (!embedUrl) {
+        showToast('This lesson has no valid hosted video URL.', 'error');
+        return;
+      }
+
+      isVideoPlaying = true;
+      if (placeholder) placeholder.style.display = 'none';
+      if (iframe) {
+        iframe.style.display = 'block';
+        iframe.src = embedUrl;
+      }
+      showToast(`Opening video player: ${currentSelectedModule.title}`, 'info');
+    }
+
+    async function downloadCurrentBlueprint() {
+      if (!currentSelectedModule) {
+        showToast('No published lesson is selected.', 'warn');
+        return;
+      }
+      if (!isEnrolledCandidate && !isAdminUser) {
+        showToast('Active cohort enrollment is required to download verified engineering blueprints.', 'warn');
+        const gateModal = document.getElementById('classroom-gate-modal');
+        if (gateModal) gateModal.style.display = 'flex';
+        return;
+      }
+
+      showToast(`Requesting architecture blueprint: ${currentSelectedModule.attachment}...`, 'info');
+      try {
+        const bpRes = await window.TrayakshAPI.downloadBlueprint(currentSelectedModule.id);
+        if (bpRes && bpRes.blueprintContent) {
+          const blob = new Blob([bpRes.blueprintContent], { type: 'text/markdown;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = (bpRes.filename || currentSelectedModule.attachment || 'TrayakshAI_Blueprint.md').replace(/\.(pdf|zip)$/i, '.md');
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          showToast(`Downloaded: ${a.download}`, 'success');
+          return;
+        }
+      } catch (err) {
+        showToast(err.message || 'Blueprint download failed.', 'error');
+        return;
+      }
+
+      showToast('The backend returned no blueprint content.', 'error');
+    }
+
+    // Interactive Terminal Modal Control
+    function openTerminalModal() {
+      const hasLabAccess = Boolean(activeEnrollment && (activeEnrollment.clusterSshGranted || activeEnrollment.plan === 'course_fee'));
+      if (!isAdminUser && !hasLabAccess) {
+        showToast('Course Fee payment or instructor cluster assignment is required for lab diagnostics.', 'warn');
+        return;
+      }
+      const modal = document.getElementById('terminal-modal');
+      if (modal) {
+        modal.style.display = 'flex';
+        const out = document.getElementById('terminal-output');
+        if (out) out.innerHTML = '<div style="color:var(--mut);">Diagnostics are sent to the configured lab service. Run an approved command to request live output.</div>';
+      }
+    }
+
+    function closeTerminalModal() {
+      const modal = document.getElementById('terminal-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function closeGateModal() {
+      const modal = document.getElementById('classroom-gate-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleModalBackdropClick(e, modalId) {
+      if (e.target && e.target.id === modalId) {
+        document.getElementById(modalId).style.display = 'none';
+      }
+    }
+
+    async function runTerminalCmd(cmd) {
+      const out = document.getElementById('terminal-output');
+      if (!out) return;
+
+      if (cmd === 'clear') {
+        out.innerHTML = '<div>diagnostics&gt; <span id="terminal-cursor" style="border-right:2px solid var(--lt);animation:pulse 1s infinite;">&nbsp;</span></div>';
+        return;
+      }
+
+      const promptDiv = document.createElement('div');
+      promptDiv.style.cssText = 'color:#64748b;margin-top:8px;font-size:11.5px;font-family:var(--font-mono);';
+      promptDiv.textContent = `diagnostics> ${cmd}`;
+      out.appendChild(promptDiv);
+
+      let resp = '';
+      try {
+        if (window.TrayakshAPI && window.TrayakshAPI.executeLabCommand) {
+          const res = await window.TrayakshAPI.executeLabCommand(cmd);
+          resp = res.output || 'No output returned from cluster node.';
+        } else {
+          resp = 'Cluster diagnostics service unavailable.';
+        }
+      } catch (err) {
+        resp = `[CLUSTER DIAGNOSTIC REJECTED]: ${err.message || 'Cohort seat registration required to access cluster nodes.'}`;
+      }
+
+      const pre = document.createElement('pre');
+      pre.style.cssText = resp.includes('REJECTED') || resp.includes('error') ? 'color:#ef4444;margin:4px 0;font-size:11.5px;font-family:var(--font-mono);' : 'color:#ffffff;margin:4px 0;font-size:11.5px;font-family:var(--font-mono);';
+      pre.textContent = resp;
+      out.appendChild(pre);
+      out.scrollTop = out.scrollHeight;
+    }
+
+    function handleTerminalCustomSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('terminal-custom-input');
+      if (input && input.value.trim()) {
+        runTerminalCmd(input.value.trim());
+        input.value = '';
+      }
+    }
+
+    function continueAsDemoCandidate() {
+      isEnrolledCandidate = false;
+      closeGateModal();
+      const regBadge = document.getElementById('classroom-reg-badge');
+      if (regBadge) regBadge.textContent = 'Preview Mode (Read-Only)';
+      showToast('Viewing course curriculum in preview mode. Enroll to unlock streams and labs.', 'info');
+      switchPortalView('courses');
+    }
+
+    function handlePortalSignOut() {
+      if (window.handleSignOut) window.handleSignOut();
+      else {
+        localStorage.removeItem('trayaksh_user');
+        localStorage.removeItem('trayaksh_token');
+        localStorage.removeItem('trayaksh_enrollment');
+      }
+      showToast('Signed out of candidate account.', 'info');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    }
+
+    // Portal State Hydration & RBAC
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const user = window.readStoredJson ? window.readStoredJson('trayaksh_user') : null;
+        const admin = window.readStoredJson ? window.readStoredJson('trayaksh_admin_user') : null;
+        let savedEnrollment = window.readStoredJson ? window.readStoredJson('trayaksh_enrollment') : null;
+        const gateModal = document.getElementById('classroom-gate-modal');
+        const regBadge = document.getElementById('classroom-reg-badge');
+
+        const userNameEl = document.getElementById('portal-user-name');
+        const userEmailEl = document.getElementById('portal-user-email');
+        const avatarEl = document.getElementById('portal-avatar');
+        const statusBadgeEl = document.getElementById('portal-status-badge');
+        const regIdEl = document.getElementById('portal-reg-id');
+        const labStatusEl = document.getElementById('portal-lab-status');
+        const cardStatusPill = document.getElementById('course-card-status-pill');
+        const cardFooter = document.getElementById('course-card-footer');
+        const enrollmentBox = document.getElementById('course-enrollment-detail-box');
+        const actionContainer = document.getElementById('portal-action-container');
+
+        // Critical Fix: Local storage alone must NEVER unlock the classroom without a valid authenticated token
+        isEnrolledCandidate = false;
+
+        const adminToken = localStorage.getItem('trayaksh_admin_token');
+        if (admin && admin.email && adminToken && window.TrayakshAPI && window.TrayakshAPI.getAdminSession) {
+          try {
+            const adminSession = await window.TrayakshAPI.getAdminSession();
+            isAdminUser = Boolean(adminSession && adminSession.success);
+          } catch (adminErr) {
+            console.warn('Admin session check:', adminErr.message);
+          }
+        }
+        if (isAdminUser) {
+          isEnrolledCandidate = true;
+          savedEnrollment = null;
+          activeEnrollment = null;
+          localStorage.removeItem('trayaksh_enrollment');
+          localStorage.removeItem('trayaksh_token');
+          localStorage.removeItem('trayaksh_user');
+          if (regBadge) regBadge.textContent = 'Admin Studio Access';
+          const studioBtn = document.getElementById('nav-instructor-studio-btn');
+          if (studioBtn) studioBtn.style.display = 'inline-flex';
+          if (userNameEl) userNameEl.textContent = admin.name || 'Administrator';
+          if (userEmailEl) userEmailEl.textContent = admin.email;
+          if (avatarEl) avatarEl.textContent = 'AD';
+        } else if (user) {
+          if (userNameEl) userNameEl.textContent = user.name || 'Candidate';
+          if (userEmailEl) userEmailEl.textContent = user.email || '';
+          const initials = (user.name || 'AI').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          if (avatarEl) avatarEl.textContent = initials || 'AI';
+        }
+
+        const candidateToken = localStorage.getItem('trayaksh_token');
+        const activeToken = isAdminUser ? adminToken : candidateToken;
+
+        if (activeToken) {
+          // Verify with Backend Auth Service
+          let verified = false;
+          if (window.TrayakshAPI && window.TrayakshAPI.getMe) {
+            try {
+              const meRes = isAdminUser ? null : await window.TrayakshAPI.getMe();
+              if (meRes && meRes.enrollment) {
+                isEnrolledCandidate = true;
+                verified = true;
+                savedEnrollment = {
+                  regId: meRes.enrollment.regId,
+                  status: meRes.enrollment.status,
+                  plan: meRes.enrollment.plan,
+                  clusterSshGranted: Boolean(meRes.enrollment.clusterSshGranted)
+                };
+                activeEnrollment = savedEnrollment;
+                localStorage.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
+              }
+            } catch (meErr) {
+              console.warn('Session profile check:', meErr.message);
+            }
+          }
+
+          // Fetch Modules from Backend (which enforces JWT & enrollment)
+          if (window.TrayakshAPI && window.TrayakshAPI.getClassroomModules) {
+            try {
+              const remoteData = await window.TrayakshAPI.getClassroomModules();
+              if (remoteData && remoteData.modules && remoteData.modules.length > 0) {
+                isEnrolledCandidate = true;
+                verified = true;
+                modulesList = remoteData.modules.map(m => ({
+                  id: m.id,
+                  track: m.track_title || `Track 0${m.track_number}`,
+                  title: m.lesson_title,
+                  type: m.lesson_type,
+                  duration: m.duration,
+                  videoUrl: normalizeVideoEmbedUrl(m.video_url || 'https://www.youtube-nocookie.com/embed/8yU91E1V_xM?autoplay=1'),
+                  attachment: (m.attachment || 'TrayakshAI_Blueprint.md').replace(/\.(pdf|zip)$/i, '.md'),
+                  desc: m.description
+                }));
+                currentSelectedModule = modulesList[0] || null;
+                if (remoteData.enrollment) {
+                  savedEnrollment = {
+                    regId: remoteData.enrollment.regId,
+                    plan: remoteData.enrollment.plan,
+                    clusterSshGranted: Boolean(remoteData.enrollment.clusterSshGranted),
+                    status: 'active'
+                  };
+                  activeEnrollment = savedEnrollment;
+                  localStorage.setItem('trayaksh_enrollment', JSON.stringify(savedEnrollment));
+                }
+              }
+              if (remoteData && Array.isArray(remoteData.modules) && remoteData.modules.length === 0) {
+                modulesList = [];
+                currentSelectedModule = null;
+              }
+            } catch (mErr) {
+              console.warn('Remote modules fetch notice:', mErr.message);
+            }
+          }
+
+          if (!verified && !isAdminUser) {
+            // Token is invalid, expired, or user not enrolled in course
+            isEnrolledCandidate = false;
+            activeEnrollment = null;
+            savedEnrollment = null;
+            localStorage.removeItem('trayaksh_enrollment');
+          }
+        } else {
+          // No token present: clear any unverified enrollment cached in local storage
+          localStorage.removeItem('trayaksh_enrollment');
+          isEnrolledCandidate = false;
+          activeEnrollment = null;
+        }
+
+        // Render Candidate Portal Cards based on real enrollment status
+        if (isEnrolledCandidate || isAdminUser) {
+          const regCode = isAdminUser ? 'Admin' : ((savedEnrollment && savedEnrollment.regId) || 'Active enrollment');
+          const plan = savedEnrollment && savedEnrollment.plan;
+          const hasLabAccess = Boolean(isAdminUser || savedEnrollment && (savedEnrollment.clusterSshGranted || plan === 'course_fee'));
+          if (regBadge) regBadge.textContent = isAdminUser ? 'Admin Studio Access' : `Reg ID: ${regCode}`;
+          if (statusBadgeEl) {
+            statusBadgeEl.textContent = isAdminUser ? 'ADMIN ACCESS' : '✓ COHORT SEAT LOCKED';
+            statusBadgeEl.style.background = 'rgba(30,158,74,0.18)';
+            statusBadgeEl.style.color = 'var(--lt)';
+            statusBadgeEl.style.borderColor = 'var(--ac)';
+          }
+          if (regIdEl) regIdEl.textContent = regCode;
+          if (labStatusEl) {
+            labStatusEl.textContent = isAdminUser ? 'Admin diagnostics access' : (hasLabAccess ? 'Diagnostics access enabled' : 'Course Fee or instructor assignment required');
+            labStatusEl.style.color = hasLabAccess ? 'var(--lt)' : 'var(--gold)';
+          }
+          if (cardStatusPill) {
+            cardStatusPill.textContent = isAdminUser ? 'ADMIN ACCESS' : 'ENROLLED & ACTIVE';
+            cardStatusPill.style.background = 'rgba(30,158,74,0.18)';
+            cardStatusPill.style.color = 'var(--lt)';
+          }
+
+          if (enrollmentBox) {
+            enrollmentBox.innerHTML = `
+              <div style="background:#020804;border:1px solid var(--line-light);border-radius:var(--radius-md);padding:16px;margin:16px 0;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <strong style="color:var(--tx);font-size:13.5px;">Enrollment</strong>
+                  <span style="font-size:12px;color:var(--lt);font-weight:700;">${isAdminUser ? 'Administrator' : (plan === 'course_fee' ? 'Course Fee Paid' : 'Seat Registered')}</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--mut);">
+                  <span>Registration ID: ${escapeHtml(regCode)}</span>
+                  <span style="color:${hasLabAccess ? 'var(--lt)' : 'var(--gold)'};">${isAdminUser ? 'Admin diagnostics' : (hasLabAccess ? 'Lab diagnostics enabled' : 'Lab diagnostics locked')}</span>
+                </div>
+              </div>
+            `;
+          }
+
+          if (cardFooter) {
+            cardFooter.innerHTML = `
+              <button class="btn p" type="button" onclick="switchPortalView('classroom')" style="flex:1;text-align:center;padding:12px;">
+                Enter Course Classroom &amp; Labs →
+              </button>
+            `;
+          }
+
+          if (actionContainer) {
+            actionContainer.innerHTML = `
+              <button class="btn p" type="button" onclick="switchPortalView('classroom')">
+                Enter Active Classroom →
+              </button>
+            `;
+          }
+        } else {
+          // Unenrolled Candidate State
+          if (statusBadgeEl) {
+            statusBadgeEl.textContent = 'REGISTRATION REQUIRED';
+            statusBadgeEl.style.background = 'rgba(245,166,35,0.15)';
+            statusBadgeEl.style.color = 'var(--gold)';
+            statusBadgeEl.style.borderColor = 'rgba(245,166,35,0.3)';
+          }
+          if (labStatusEl) {
+            labStatusEl.textContent = 'Pending Registration (₹9,999)';
+            labStatusEl.style.color = 'var(--gold)';
+          }
+          if (actionContainer) {
+            actionContainer.innerHTML = `
+              <a class="btn p" href="register.html">
+                Register &amp; Unlock Seat (₹9,999) →
+              </a>
+            `;
+          }
+        }
+
+        // URL direct lesson access handler (?lesson=mod_3)
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonParam = urlParams.get('lesson');
+        if (lessonParam) {
+          const found = modulesList.find(m => m.id === lessonParam);
+          if (found) currentSelectedModule = found;
+          if (isEnrolledCandidate || isAdminUser) {
+            switchPortalView('classroom');
+          }
+        }
+
+        renderClassroomPlaylist();
+        if (currentSelectedModule) selectModule(currentSelectedModule.id);
+      } catch (fatalErr) {
+        console.error('Classroom portal initialization notice:', fatalErr);
+      }
+    });
+  </script>
+</body>
+</html>

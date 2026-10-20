@@ -1,0 +1,1649 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TrayakshAI | AI Infrastructure &amp; AI Factory Training</title>
+  <meta name="description" content="Building Expertise in AI Infrastructure, GPU Computing &amp; AI Factories. Production-grade enterprise training on NVIDIA DGX/HGX, H100, H200, B200, InfiniBand, RoCE, AI Storage, Kubernetes, and Slurm.">
+  <meta name="keywords" content="AI Infrastructure Training, AI Factory Architecture, GPU Computing, NVIDIA H100, NVIDIA B200, DGX HGX Infrastructure, InfiniBand, RoCE RDMA, Kubernetes GPU Operator, Slurm Orchestration, TrayakshAI">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="TrayakshAI Consulting Ltd.">
+  <link rel="canonical" href="https://course.trayakshai.com/">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://course.trayakshai.com/">
+  <meta property="og:title" content="TrayakshAI | AI Infrastructure &amp; AI Factory Training">
+  <meta property="og:description" content="Building Expertise in AI Infrastructure, GPU Computing &amp; AI Factories. Enterprise hands-on cohorts for engineers and architects. Registration closes 23 October.">
+  <meta property="og:image" content="https://course.trayakshai.com/assets/og-image.jpg">
+  <meta property="og:site_name" content="TrayakshAI Academy">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://course.trayakshai.com/">
+  <meta name="twitter:title" content="TrayakshAI | AI Infrastructure &amp; AI Factory Training">
+  <meta name="twitter:description" content="Building Expertise in AI Infrastructure, GPU Computing &amp; AI Factories. Registration fee ₹9,999 only. Course fee ₹49,999 (applicable after registering). Registration ends 23 October.">
+  <meta name="twitter:image" content="https://course.trayakshai.com/assets/og-image.jpg">
+
+  <!-- Favicon / Theme -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <meta name="theme-color" content="#050F09">
+  
+  <!-- Fonts & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="course.css">
+
+  <!-- Razorpay Official Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Google Identity Services for Google Auth -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- Schema.org JSON-LD for Real Domain SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AI Infrastructure & AI Factory Training",
+    "description": "Building Expertise in AI Infrastructure, GPU Computing & AI Factories. Practical enterprise training covering NVIDIA DGX/HGX, H100, H200, B200, InfiniBand, RoCE, AI Storage, Kubernetes, Slurm, and production-ready AI Factory deployments.",
+    "provider": {
+      "@type": "Organization",
+      "name": "TrayakshAI",
+      "sameAs": "https://trayakshai.com"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Registration Fee",
+        "price": "9999",
+        "priceCurrency": "INR",
+        "category": "Registration Fee",
+        "description": "Registration fee to secure seat and unlock course content. Ends 23 October.",
+        "availability": "https://schema.org/LimitedAvailability"
+      },
+      {
+        "@type": "Offer",
+        "name": "Course Fee (Applicable After Registering)",
+        "price": "49999",
+        "priceCurrency": "INR",
+        "category": "Course Fee",
+        "description": "Course fee applicable after registering for complete 8-track live training and bare-metal cluster labs.",
+        "availability": "https://schema.org/InStock"
+      }
+    ],
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Blended (Live Bare-Metal Labs + Guided Cohort)",
+      "courseWorkload": "8 Comprehensive Modules",
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Trayaksh",
+          "jobTitle": "Chief AI Systems Architect"
+        },
+        {
+          "@type": "Person",
+          "name": "Geeta",
+          "jobTitle": "Head of Strategic Operations"
+        }
+      ]
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP URGENCY NOTIFICATION BAR
+       ======================================================================== -->
+  <div class="urgency-bar">
+    <div class="wrap urgency-wrap">
+      <div class="urgency-message">
+        <span class="pulse-badge"><span class="pulse-dot"></span> Registration Ends: 23 October</span>
+        <span>Next Cohort Enrolling Now • Limited to 25 Engineers per cluster lab!</span>
+      </div>
+
+      <div class="urgency-timer">
+        <span class="timer-label">Ends In:</span>
+        <div class="countdown-box" id="urgency-countdown">
+          <span class="time-unit" id="cd-days">00</span><span class="time-sep">:</span>
+          <span class="time-unit" id="cd-hours">00</span><span class="time-sep">:</span>
+          <span class="time-unit" id="cd-mins">00</span><span class="time-sep">:</span>
+          <span class="time-unit" id="cd-secs">00</span>
+        </div>
+        <a class="urgency-cta-link" onclick="openCheckout('registration')">Reserve Seat (₹9,999) →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       HEADER & NAVIGATION
+       ======================================================================== -->
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <svg width="36" height="28" viewBox="0 0 100 62" aria-hidden="true">
+          <g fill="none" stroke-linecap="round">
+            <circle cx="50" cy="28" r="19" stroke="#1E9E4A" stroke-width="6"/>
+            <circle cx="50" cy="28" r="8" fill="#1E9E4A" stroke="none"/>
+            <circle cx="17" cy="40" r="12" stroke="#74D08F" stroke-width="5"/>
+            <circle cx="17" cy="40" r="5" fill="#74D08F" stroke="none"/>
+            <circle cx="83" cy="40" r="12" stroke="#3FC06C" stroke-width="5"/>
+            <circle cx="83" cy="40" r="5" fill="#3FC06C" stroke="none"/>
+          </g>
+        </svg>
+        <span>Trayaksh<b>AI</b></span>
+        <span class="brand-badge">ACADEMY</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#curriculum">Curriculum (8 Tracks)</a>
+        <a href="#audience">Who Should Attend</a>
+        <a href="#calculator">ROI Calculator</a>
+        <a href="#pricing">Fees &amp; Registration</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#faqs">FAQs</a>
+      </div>
+
+      <div class="nav-right">
+        <!-- Auth Guest State -->
+        <div id="nav-auth-buttons" style="display:flex;align-items:center;gap:10px;">
+          <a class="btn btn-sm" href="login.html">Sign In</a>
+          <a class="btn btn-sm p" href="register.html">Register Now (₹9,999)</a>
+          <a class="btn btn-sm" href="https://trayakshai.com" style="border-color:var(--line);color:var(--mut);">← Main Site</a>
+        </div>
+
+        <!-- Auth Logged In State (Pill) -->
+        <div class="user-pill" id="nav-user-pill" onclick="toggleUserDropdown()">
+          <div class="user-avatar-circle" id="nav-user-avatar">AI</div>
+          <span class="user-pill-name" id="nav-user-name">Member</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+
+          <!-- Dropdown Menu -->
+          <div class="user-dropdown-menu" id="user-dropdown-menu">
+            <div class="user-dropdown-header">
+              <strong style="display:block;font-size:13px;color:var(--tx);">My Account</strong>
+              <span class="user-dropdown-email" id="user-dropdown-email">user@domain.com</span>
+            </div>
+            <a class="user-dropdown-item" href="classroom.html" style="color:var(--lt);font-weight:600;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Enter Student Classroom</span>
+            </a>
+            <div class="user-dropdown-item" onclick="openCheckout('registration')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <span>Manage Enrollment</span>
+            </div>
+            <div class="user-dropdown-item" onclick="downloadSyllabusUnlocked()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download Blueprint PDF</span>
+            </div>
+            <div class="user-dropdown-item danger" onclick="handleSignOut()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              <span>Sign Out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       HERO SECTION
+       ======================================================================== -->
+  <header class="hero-section" id="top">
+    <div class="hero-glow-bg"></div>
+    <div class="wrap hero-grid">
+      <!-- Left Content -->
+      <div>
+        <div class="eye">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          AI INFRASTRUCTURE &amp; AI FACTORY TRAINING // NVIDIA H100 • H200 • B200
+        </div>
+        <h1>Building Expertise in <em>AI Infrastructure, GPU Computing &amp; AI Factories.</em></h1>
+        <p class="hero-lead">TrayakshAI helps IT professionals, solution architects, enterprises, and technology partners develop expertise in designing, deploying, and optimising end-to-end AI infrastructure.</p>
+
+        <!-- Pricing Pill Component -->
+        <div class="hero-pricing-pill">
+          <div class="hero-pricing-col">
+            <span class="hero-price-label">Registration Fee</span>
+            <span class="hero-price-val highlight">₹9,999</span>
+          </div>
+          <div class="hero-price-divider"></div>
+          <div class="hero-pricing-col">
+            <span class="hero-price-label">Course Fee (After Registering)</span>
+            <span class="hero-price-val">₹49,999</span>
+          </div>
+          <div class="hero-price-divider"></div>
+          <span class="hero-price-badge">Deadline: 23 October</span>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <a class="btn p" href="register.html">
+            <span>Pay Registration Fee (₹9,999)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a class="btn" href="#curriculum">Explore 8 Tracks ↓</a>
+          <a class="btn" href="login.html">Candidate Portal</a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-trust-notes">
+          <div class="hero-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Bare-metal GPU Lab Access</span>
+          </div>
+          <div class="hero-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Razorpay 256-Bit Secure</span>
+          </div>
+          <div class="hero-trust-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Corporate GST Invoicing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Terminal / AI Factory Visual -->
+      <div class="hero-visual-container">
+        <div class="cluster-terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+            </div>
+            <span class="terminal-title">trayaksh-ai-factory-h100.cluster</span>
+            <span class="terminal-badge">ONLINE</span>
+          </div>
+
+          <div class="terminal-body">
+            <div class="cmd-line">
+              <span class="cmd-prompt">trayaksh@control-plane:~$</span> nvidia-smi topo -m
+            </div>
+            <div class="cmd-output">
+              GPU0..GPU7: 8x NVIDIA H100 SXM5 [80GB HBM3]<br>
+              Interconnect: NVLink 4.0 [900 GB/s All-to-All]<br>
+              Fabric: Quantum-2 400G InfiniBand Rail-Optimized
+            </div>
+
+            <div class="cmd-line">
+              <span class="cmd-prompt">trayaksh@control-plane:~$</span> scontrol show nodes
+            </div>
+            <div class="cmd-output">
+              NodeName=dgx-node-01 State=ALLOCATED CPUs=112 GPUs=8 Sockets=2 RealMemory=2048000MB
+            </div>
+
+            <div class="hw-cluster-visual">
+              <div class="hw-node-row active">
+                <span><span class="hw-status-dot"></span> DGX H100 Node #1 (Liquid-Cooled)</span>
+                <span style="color:var(--lt);font-weight:600;">99.4% UTIL</span>
+              </div>
+              <div class="hw-node-row active">
+                <span><span class="hw-status-dot"></span> Quantum-2 InfiniBand Spine (3.2Tb/s)</span>
+                <span style="color:var(--lt);font-weight:600;">0.8μs LAT</span>
+              </div>
+              <div class="hw-node-row">
+                <span><span class="hw-status-dot"></span> Parallel Storage Pool (WEKA GDS)</span>
+                <span style="color:var(--lt);font-weight:600;">142 GB/s IO</span>
+              </div>
+            </div>
+
+            <!-- Live Cluster Telemetry Engine Feed -->
+            <div class="terminal-telemetry-strip">
+              <div class="telemetry-live-badge"><span class="pulse-dot"></span> LIVE TELEMETRY</div>
+              <div class="telemetry-ticker-wrap">
+                <span id="live-cluster-ticker" class="telemetry-ticker-text">NVIDIA H100 SXM5 [Node 01..04]: 99.2% Tensor Active | FP8 Transformer Engine Enabled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       KEY STATS STRIP
+       ======================================================================== -->
+  <div class="stats-bar">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">8 Tracks</span>
+          <span class="stat-label">Production AI Infrastructure &amp; AI Factory Engineering Modules</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">H100 • H200 • B200</span>
+          <span class="stat-label">Hands-on bare metal accelerated compute hardware environments</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">₹9,999</span>
+          <span class="stat-label">Registration Fee (Ends 23 Oct) • Course Fee ₹49,999 Applicable After Registering</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">400G / 800G</span>
+          <span class="stat-label">Quantum InfiniBand &amp; Spectrum-X lossless RDMA fabrics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       IMPORTANT COURSE POLICY CALLOUT BANNER
+       "Course content will be shared after registration"
+       ======================================================================== -->
+  <div class="wrap policy-banner-wrap">
+    <div class="policy-banner">
+      <div class="policy-icon-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+      </div>
+      <div class="policy-text">
+        <h3>
+          <span>Course Content &amp; Lab Access Policy</span>
+          <span class="policy-badge">Important Notice</span>
+        </h3>
+        <p><strong>Please note:</strong> In accordance with enterprise confidentiality and proprietary cluster provisioning, <strong>complete course content, full lecture modules, lab cluster credentials, and downloadable architecture blueprints will be shared immediately after registration.</strong> Review the 8 comprehensive track outlines below to inspect the curriculum.</p>
+      </div>
+      <div class="policy-action-btn">
+        <button class="btn p btn-sm" onclick="openCheckout('registration')">Register to Unlock Content →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       OUR MISSION SECTION
+       ======================================================================== -->
+  <div class="wrap mission-section">
+    <div class="mission-card">
+      <div class="mission-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 6 12 12 16 14"></polygon></svg>
+        OUR CORE MISSION
+      </div>
+      <div class="mission-quote">
+        Our mission: Develop the skills required to <em>design, build, deploy, and operate</em> next-generation AI Factories.
+      </div>
+      <div class="mission-badges-row">
+        <div class="mission-badge-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Bare-Metal Hardware Architecture
+        </div>
+        <div class="mission-badge-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Direct-to-Chip Liquid Cooling
+        </div>
+        <div class="mission-badge-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Slurm &amp; Kubernetes Orchestration
+        </div>
+        <div class="mission-badge-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Enterprise Cohort Certification
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       ABOUT US SECTION
+       ======================================================================== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-header-grid">
+        <div>
+          <div class="tag">ABOUT US</div>
+          <h2 class="section-title">Empowering the Architects of <em>Next-Gen AI Factories</em></h2>
+        </div>
+        <div>
+          <p class="about-desc-lead">TrayakshAI helps IT professionals, solution architects, enterprises, and technology partners develop expertise in designing, deploying, and optimising end-to-end AI infrastructure.</p>
+          <p class="about-desc-sub">Our training programs focus on practical AI infrastructure architecture, GPU computing, AI networking, high-performance storage, AI platforms, and production-ready AI Factory deployments.</p>
+        </div>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          </div>
+          <h3>Practical Architecture</h3>
+          <p>Real-world rack topologies, 40kW–100kW+ power delivery, direct-to-chip liquid cooling loops, manifolds, CDUs, and facility PUE optimization.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+          </div>
+          <h3>Silicon Mastery</h3>
+          <p>Hopper H100/H200 and Blackwell B200 architectural internals, FP8/FP4 micro-precision, and NVLink 900GB/s to 1.8TB/s meshes.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          </div>
+          <h3>High-Speed RDMA Fabrics</h3>
+          <p>Quantum-2 InfiniBand and Spectrum-X RoCE v2, adaptive routing, PFC/ECN flow control, and non-blocking fat trees.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <h3>Production Orchestration</h3>
+          <p>Kubernetes GPU Operator, Slurm workload scheduling, distributed parallel training (Megatron/DeepSpeed), and vLLM serving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       TRAINING PROGRAMS CURRICULUM (8 TRACKS)
+       ======================================================================== -->
+  <section class="section-alt" id="curriculum">
+    <div class="wrap">
+      <div class="tag">TECHNICAL CURRICULUM</div>
+      <h2 class="section-title">Our <em>Training Programs</em></h2>
+      <p class="section-sub">8 comprehensive tracks engineered to build practical, production-ready mastery in enterprise GPU computing, accelerated fabrics, and AI Factory engineering.</p>
+
+      <!-- Category Filter Tabs -->
+      <div class="curriculum-filter-bar">
+        <button class="filter-btn active" data-filter="all">All 8 Programs</button>
+        <button class="filter-btn" data-filter="architecture">Architecture &amp; Design</button>
+        <button class="filter-btn" data-filter="silicon">GPU &amp; Silicon Systems</button>
+        <button class="filter-btn" data-filter="networking">Networking &amp; Storage</button>
+        <button class="filter-btn" data-filter="orchestration">Orchestration &amp; LLMOps</button>
+      </div>
+
+      <!-- Programs Grid -->
+      <div class="programs-grid">
+        <!-- 01. AI Factory Architecture & Design -->
+        <div class="program-card" data-category="architecture">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 01</span>
+              <span class="program-category-badge">Architecture &amp; Facility</span>
+            </div>
+            <h3>AI Factory Architecture &amp; Design</h3>
+            <p class="program-card-desc">Master multi-rack cluster topologies, power delivery (40kW–100kW+/rack), facility cooling distribution, PUE optimization, and modular POD sizing for mission-critical deployments.</p>
+            <ul class="program-highlights-list">
+              <li>Multi-tier AI Factory power budgeting &amp; thermal distribution loops</li>
+              <li>Direct-to-chip liquid cooling, CDUs, manifolds, and secondary loops</li>
+              <li>Compute-to-network-to-storage rack layout and structured cable plant design</li>
+              <li>Facility tiering, redundancy models, MTBF, and PUE minimization</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>AI Factory</span>
+              <span>Liquid Cooling</span>
+              <span>POD Sizing</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 02. NVIDIA DGX/HGX Infrastructure -->
+        <div class="program-card" data-category="silicon">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 02</span>
+              <span class="program-category-badge">Hardware Systems</span>
+            </div>
+            <h3>NVIDIA DGX/HGX Infrastructure</h3>
+            <p class="program-card-desc">Comprehensive architectural breakdown of NVIDIA DGX and HGX platforms, SXM baseboards, NVSwitch inter-GPU topologies, baseboard management, Redfish automation, and telemetry.</p>
+            <ul class="program-highlights-list">
+              <li>DGX H100, H200 &amp; B200 hardware architecture &amp; board-level topologies</li>
+              <li>NVSwitch 900GB/s to 1.8TB/s non-blocking all-to-all GPU communication</li>
+              <li>Baseboard Management Controller (BMC), Redfish REST APIs &amp; automated provisioning</li>
+              <li>Firmware upgrades, thermal throttling diagnostics, and hardware validation</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>DGX Systems</span>
+              <span>HGX Baseboards</span>
+              <span>NVSwitch</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 03. GPU Computing: H100, H200 & B200 -->
+        <div class="program-card" data-category="silicon">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 03</span>
+              <span class="program-category-badge">GPU Computing</span>
+            </div>
+            <h3>GPU Computing: H100, H200 &amp; B200</h3>
+            <p class="program-card-desc">Unlock peak computational throughput across Hopper and Blackwell architectures. Master 4th &amp; 5th Gen Tensor Cores, FP8/FP4 precision, Transformer Engine, and HBM3e bandwidth.</p>
+            <ul class="program-highlights-list">
+              <li>Hopper (GH100) vs Blackwell (GB200/B200) microarchitecture comparison</li>
+              <li>FP8 and FP4 micro-scaling formats with Transformer Engine auto-casting</li>
+              <li>Multi-Instance GPU (MIG) hardware partitioning and QoS guarantees</li>
+              <li>CUDA memory hierarchy: HBM3e, L2 cache residency, and shared memory tiling</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>Hopper H100/H200</span>
+              <span>Blackwell B200</span>
+              <span>FP8 / FP4</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 04. AI Networking: InfiniBand, RoCE & RDMA -->
+        <div class="program-card" data-category="networking">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 04</span>
+              <span class="program-category-badge">Fabric &amp; RDMA</span>
+            </div>
+            <h3>AI Networking: InfiniBand, RoCE &amp; RDMA</h3>
+            <p class="program-card-desc">Architect ultra-low latency, lossless networks for massive distributed training. Master Quantum-2 400G &amp; Quantum-X800 InfiniBand, Spectrum-X Ethernet, RoCE v2, and congestion control.</p>
+            <ul class="program-highlights-list">
+              <li>Non-blocking fat-tree rail-optimized topologies for multi-node GPU clusters</li>
+              <li>Subnet Manager (OpenSM) routing, adaptive routing, and telemetry</li>
+              <li>RDMA over Converged Ethernet (RoCE v2): PFC, ECN, and buffer tuning</li>
+              <li>NCCL (NVIDIA Collective Communications Library) tuning for all-reduce collectives</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>InfiniBand 400G/800G</span>
+              <span>RoCE v2</span>
+              <span>Lossless Fabric</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 05. AI Storage & High-Performance Computing -->
+        <div class="program-card" data-category="networking">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 05</span>
+              <span class="program-category-badge">Storage &amp; HPC</span>
+            </div>
+            <h3>AI Storage &amp; High-Performance Computing</h3>
+            <p class="program-card-desc">Eliminate I/O bottlenecks and GPU starvation in training pipelines. Configure high-throughput parallel file systems, GPUDirect Storage (GDS), NVMe-oF fabrics, and rapid checkpointing systems.</p>
+            <ul class="program-highlights-list">
+              <li>Parallel file systems: WEKA, Lustre, and GPFS / IBM Storage Scale architectures</li>
+              <li>GPUDirect Storage (GDS) bypassing CPU bounce buffers for direct NVMe-to-GPU DMA</li>
+              <li>High-IOPS checkpointing architectures to minimize training interruption overhead</li>
+              <li>Data caching, tiered object storage, and massive dataset streaming pipelines</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>GPUDirect Storage</span>
+              <span>WEKA / Lustre</span>
+              <span>NVMe-oF</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 06. Kubernetes, Slurm & GPU Orchestration -->
+        <div class="program-card" data-category="orchestration">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 06</span>
+              <span class="program-category-badge">Cluster Orchestration</span>
+            </div>
+            <h3>Kubernetes, Slurm &amp; GPU Orchestration</h3>
+            <p class="program-card-desc">Deploy and operate mission-critical cluster schedulers. Configure the NVIDIA GPU Operator, Slurm Workload Manager, Kubernetes scheduling plugins, MPI jobs, and multi-tenant quota systems.</p>
+            <ul class="program-highlights-list">
+              <li>NVIDIA GPU Operator, Container Toolkit, and CDI (Container Device Interface)</li>
+              <li>Slurm cluster architecture: partitions, fair-share scheduling, backfill, and job arrays</li>
+              <li>Kubernetes AI scheduling: Kueue, KubeRay, Volcano, and Gang Scheduling</li>
+              <li>Multi-tenant GPU slicing: MIG vs time-slicing vs vGPU performance trade-offs</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>Kubernetes</span>
+              <span>Slurm Manager</span>
+              <span>GPU Operator</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 07. Generative AI Infrastructure & LLM Deployment -->
+        <div class="program-card" data-category="orchestration">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 07</span>
+              <span class="program-category-badge">LLMOps &amp; Inference</span>
+            </div>
+            <h3>Generative AI Infrastructure &amp; LLM Deployment</h3>
+            <p class="program-card-desc">End-to-end infrastructure engineering for large language models. Master 3D parallelism (Tensor, Pipeline, Data), Megatron-LM/DeepSpeed training, and high-throughput inference serving with vLLM.</p>
+            <ul class="program-highlights-list">
+              <li>Distributed 3D parallelism: Tensor (TP), Pipeline (PP), Sequence (SP), and ZeRO-3</li>
+              <li>Megatron-LM and DeepSpeed cluster configuration for 70B+ parameter models</li>
+              <li>Production inference serving: vLLM, TensorRT-LLM, PagedAttention, and continuous batching</li>
+              <li>KV-cache memory sizing, GPU memory calculators, and latency-throughput trade-offs</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>Megatron-LM</span>
+              <span>vLLM &amp; TensorRT</span>
+              <span>3D Parallelism</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+
+        <!-- 08. AI Infrastructure Migration & Optimisation -->
+        <div class="program-card" data-category="architecture">
+          <div>
+            <div class="program-card-header">
+              <span class="program-number">TRACK 08</span>
+              <span class="program-category-badge">Optimization &amp; TCO</span>
+            </div>
+            <h3>AI Infrastructure Migration &amp; Optimisation</h3>
+            <p class="program-card-desc">Practical methodologies for workload migration and cloud repatriation. Master NVIDIA DCGM profiling, GPU utilization auditing, power-performance curves, and infrastructure TCO modeling.</p>
+            <ul class="program-highlights-list">
+              <li>Cloud-to-co-lo / On-prem repatriation financial models and TCO calculators</li>
+              <li>NVIDIA DCGM (Data Center GPU Manager) telemetry, Prometheus &amp; Grafana monitoring</li>
+              <li>Profiling GPU idle times, kernel bottlenecks, memory bandwidth, and power capping</li>
+              <li>Seamless cluster cutovers, storage migration, and high-availability operational runbooks</li>
+            </ul>
+          </div>
+          <div class="program-card-footer">
+            <div class="program-tags">
+              <span>Cloud Repatriation</span>
+              <span>DCGM Profiling</span>
+              <span>TCO Optimization</span>
+            </div>
+            <span class="syllabus-unlocked-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Shared After Registration
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       WHO SHOULD ATTEND SECTION (7 PROFILES)
+       ======================================================================== -->
+  <section id="audience">
+    <div class="wrap">
+      <div class="tag">TARGET AUDIENCE</div>
+      <h2 class="section-title">Who Should <em>Attend?</em></h2>
+      <p class="section-sub">Engineered specifically for technical practitioners and leaders responsible for designing, deploying, and operating accelerated compute environments.</p>
+
+      <div class="audience-grid">
+        <!-- 1. IT Infrastructure Engineers -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><circle cx="6" cy="6" r="1"></circle><circle cx="6" cy="18" r="1"></circle></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Compute &amp; Hardware</span>
+                <h3>IT Infrastructure Engineers</h3>
+              </div>
+            </div>
+            <p>Transitioning from legacy x86 virtualization and SAN storage to high-density GPU supercomputing, direct liquid cooling, and 800G fabrics.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Deploy and maintain DGX/HGX clusters with high reliability.
+          </div>
+        </div>
+
+        <!-- 2. Solution Architects -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Design &amp; Sizing</span>
+                <h3>Solution Architects</h3>
+              </div>
+            </div>
+            <p>Architecting multi-tenant AI platforms, sizing GPU-to-storage bandwidth, and validating end-to-end BOMs before multi-crore capital commitments.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Design scalable, bottleneck-free reference architectures.
+          </div>
+        </div>
+
+        <!-- 3. AI/ML Engineers -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Model &amp; Platform Ops</span>
+                <h3>AI/ML Engineers</h3>
+              </div>
+            </div>
+            <p>Moving from single-GPU experiments to multi-node distributed training, optimizing NCCL ring collectives, and scaling vLLM inference engines.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Maximize MFU (Model Flops Utilization) &amp; cut training times.
+          </div>
+        </div>
+
+        <!-- 4. Cloud & Data Centre Professionals -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Facilities &amp; Power</span>
+                <h3>Cloud &amp; Data Centre Professionals</h3>
+              </div>
+            </div>
+            <p>Managing facilities retrofitting for 50kW–100kW+ racks, facility water loops, secondary manifolds, and high-efficiency PUE strategies.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Run high-density liquid-cooled compute facilities reliably.
+          </div>
+        </div>
+
+        <!-- 5. Enterprise IT Teams -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Enterprise Operations</span>
+                <h3>Enterprise IT Teams</h3>
+              </div>
+            </div>
+            <p>Migrating proprietary enterprise workflows on-premises or into sovereign clouds, meeting compliance, privacy, and budget ROI benchmarks.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Accelerate private sovereign AI deployments with lower TCO.
+          </div>
+        </div>
+
+        <!-- 6. Neocloud and GPU Cloud Teams -->
+        <div class="audience-card">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Hyperscale &amp; Neocloud</span>
+                <h3>Neocloud &amp; GPU Cloud Teams</h3>
+              </div>
+            </div>
+            <p>Building high-performance bare-metal IaaS/PaaS clouds, automating Slurm/K8s cluster provisioning, and multi-tenant GPU monetization.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Deliver tier-1 SLA cloud GPU compute instances to clients.
+          </div>
+        </div>
+
+        <!-- 7. Technology Partners and System Integrators -->
+        <div class="audience-card" style="grid-column: span 1;">
+          <div>
+            <div class="audience-card-top">
+              <div class="audience-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <div>
+                <span class="audience-role-tag">Ecosystem &amp; SIs</span>
+                <h3>Technology Partners &amp; System Integrators</h3>
+              </div>
+            </div>
+            <p>VARs, OEMs, and consultancy engineering teams upskilling their workforce to deliver turnkey AI Factory deployments for enterprise clientele.</p>
+          </div>
+          <div class="audience-outcome-box">
+            <strong>Outcome:</strong> Deliver certified deployment services with higher margins.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       AI FACTORY TCO & CLOUD REPATRIATION ROI CALCULATOR
+       Interactive sizing engine for enterprise architects
+       ======================================================================== -->
+  <section class="roi-calculator-section" id="calculator">
+    <div class="wrap">
+      <div style="text-align:center;max-width:780px;margin:0 auto 48px;">
+        <div class="tag">ENTERPRISE SIZING &amp; FINANCIAL MODEL</div>
+        <h2 class="section-title">AI Factory TCO &amp; <em>Cloud Repatriation Calculator</em></h2>
+        <p class="section-sub" style="margin:0 auto;">Compare public hyperscaler on-demand GPU pricing against private DGX/HGX AI Factory infrastructure. Discover your break-even horizon and physical facility power footprint.</p>
+      </div>
+
+      <div class="calc-master-card">
+        <div class="calc-inputs-pane">
+          <!-- GPU Capacity Slider -->
+          <div class="calc-input-block">
+            <div class="calc-input-header">
+              <div>
+                <span class="calc-input-label">Compute Capacity</span>
+                <div class="calc-input-sub">Select number of enterprise NVIDIA SXM5 accelerators</div>
+              </div>
+              <div class="calc-pill-value" id="calc-gpu-count">16x H100 SXM5</div>
+            </div>
+            <div class="calc-slider-container">
+              <input type="range" id="calc-gpu-slider" min="8" max="512" step="8" value="16" class="calc-range-slider" aria-label="GPU Accelerator Count">
+              <div class="calc-slider-ticks">
+                <span>8 (1 Node)</span>
+                <span>64 (1 Pod)</span>
+                <span>128</span>
+                <span>256</span>
+                <span>512 (SuperPOD)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Workload Profile Selector -->
+          <div class="calc-input-block" style="margin-top:28px;">
+            <span class="calc-input-label">Workload Profile</span>
+            <div class="calc-input-sub">Calibrates hourly cloud rate vs amortized hardware, power &amp; cooling</div>
+            <div class="calc-workload-grid">
+              <button type="button" class="calc-workload-btn active" data-workload="pretrain">
+                <span class="workload-title">Foundation LLM Pretraining</span>
+                <span class="workload-sub">Heavy FP8 TensorCore • Non-blocking Fat-Tree</span>
+              </button>
+              <button type="button" class="calc-workload-btn" data-workload="finetune">
+                <span class="workload-title">Enterprise LoRA / Fine-Tuning</span>
+                <span class="workload-sub">Mixed Precision • Multi-Tenant Partitioning</span>
+              </button>
+              <button type="button" class="calc-workload-btn" data-workload="inference">
+                <span class="workload-title">High-Throughput Inference (vLLM / TensorRT-LLM)</span>
+                <span class="workload-sub">KV-Cache Optimized • Low-Latency Serving</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hardware Blueprint Metrics (Dynamically Calculated) -->
+          <div class="calc-specs-bar">
+            <div class="calc-spec-item">
+              <span class="calc-spec-label">Facility Thermal Load</span>
+              <strong class="calc-spec-value" id="calc-power-kw">24 kW</strong>
+            </div>
+            <div class="calc-spec-item">
+              <span class="calc-spec-label">CDU Secondary Loop Flow</span>
+              <strong class="calc-spec-value" id="calc-cdu-flow">37.0 L/min</strong>
+            </div>
+            <div class="calc-spec-item">
+              <span class="calc-spec-label">Quantum-2 Rail Switches</span>
+              <strong class="calc-spec-value" id="calc-fabric-switches">2x QM9700 (400G)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Financial Comparison Output Card -->
+        <div class="calc-results-pane">
+          <div class="calc-results-header">
+            <span class="calc-results-badge">FINANCIAL RUNRATE PROJECTION</span>
+            <h3 style="font-size:18px;margin-top:6px;">Hyperscaler Cloud vs Private AI Factory</h3>
+          </div>
+
+          <div class="calc-comparison-grid">
+            <div class="calc-cost-box cloud">
+              <span class="calc-cost-title">Public GPU Cloud</span>
+              <div class="calc-cost-figure" id="calc-cloud-cost">$52,560/mo</div>
+              <span class="calc-cost-note">On-demand multi-cloud blended rates</span>
+            </div>
+            <div class="calc-cost-box factory">
+              <span class="calc-cost-title">Private AI Factory</span>
+              <div class="calc-cost-figure" id="calc-factory-cost">$14,600/mo</div>
+              <span class="calc-cost-note">Amortized capex, power, PUE 1.15 &amp; liquid CDU</span>
+            </div>
+          </div>
+
+          <div class="calc-savings-banner">
+            <div class="calc-savings-label">ESTIMATED ANNUAL NET SAVINGS</div>
+            <div class="calc-savings-number" id="calc-annual-savings">$455,520</div>
+            <p class="calc-savings-caption">Direct savings achieved through bare-metal infrastructure design taught in this 8-track curriculum.</p>
+          </div>
+
+          <div class="calc-cta-group">
+            <a class="btn p" href="register.html" style="width:100%;text-align:center;padding:14px;">
+              <span>Learn How to Build This (Reserve Seat ₹9,999) →</span>
+            </a>
+            <button type="button" class="btn btn-sm" onclick="downloadSyllabusUnlocked()" style="width:100%;border-color:var(--line-light);color:var(--mut);">
+              Download Comprehensive Infrastructure Blueprint
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PRICING & REGISTRATION OPTIONS
+       ₹9,999 Registration fee vs ₹49,999 Course fee
+       Registration ends 23rd
+       ======================================================================== -->
+  <section class="section-alt pricing-section" id="pricing">
+    <div class="wrap">
+      <div style="text-align:center;max-width:750px;margin:0 auto 48px;">
+        <div class="tag">FEE STRUCTURE &amp; ENROLLMENT</div>
+        <h2 class="section-title">Transparent <em>Program Tuition</em></h2>
+        <p class="section-sub" style="margin:0 auto;">Registration fees are ₹9,999 only (closing 23 October). Course fees are ₹49,999, which are applicable after registering.</p>
+      </div>
+
+      <div class="pricing-cards-grid">
+        <!-- Card 1: Registration Fee (₹9,999) -->
+        <div class="pricing-card reserve-plan" id="pricing-card-registration">
+          <div class="featured-pill-top" style="background:linear-gradient(90deg, #f5a623, #ffc837);color:#1a0f00;">STAGE 1 • PAYABLE TODAY</div>
+          <div>
+            <div class="pricing-card-header">
+              <div class="pricing-plan-name">Registration Fee</div>
+              <p class="pricing-plan-sub">Pay ₹9,999 today to register and lock your seat before the 23 October deadline.</p>
+              
+              <div class="price-display-wrap">
+                <span class="currency-sym">₹</span>
+                <span class="amount-num">9,999</span>
+                <span class="price-subtext">only (Registration Fee)</span>
+              </div>
+
+              <div class="urgency-badge-pricing">
+                <span class="pulse-dot"></span> Registration Closes: 23 October
+              </div>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>Full Course Content Shared Immediately</strong> upon registration</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Guaranteed seat reservation (Cohort strictly capped at 25 engineers)</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Bare-metal H100/H200 hardware cluster pre-allocation slot</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Candidate onboarding packet, Discord VIP invite &amp; prerequisite guides</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Official Razorpay GST tax receipt generated instantly</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pricing-card-action">
+            <a class="btn gold" href="register.html">
+              <span>Pay Registration Fee (₹9,999) →</span>
+            </a>
+            <div class="pricing-guarantee-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Instant Confirmation via Razorpay Gateway</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Course Fee (₹49,999) -->
+        <div class="pricing-card featured" id="pricing-card-full">
+          <div class="featured-pill-top">STAGE 2 • APPLICABLE AFTER REGISTERING</div>
+          <div>
+            <div class="pricing-card-header">
+              <div class="pricing-plan-name">Course Fee</div>
+              <p class="pricing-plan-sub">Applicable after registering. Covers complete training, cluster hours &amp; capstone.</p>
+              
+              <div class="price-display-wrap">
+                <span class="currency-sym">₹</span>
+                <span class="amount-num">49,999</span>
+                <span class="price-subtext">only (Course Fee)</span>
+              </div>
+
+              <div class="urgency-badge-pricing" style="background:rgba(30,158,74,0.15);border-color:rgba(116,208,143,0.35);color:var(--lt);">
+                <span class="pulse-dot" style="background:var(--lt);"></span> Applicable After Registering
+              </div>
+            </div>
+
+            <ul class="pricing-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Complete curriculum access across <strong>all 8 production tracks</strong></span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full access to bare-metal H100/H200 cluster lab hours &amp; Slurm queues</span>
+              </li>
+              <li class="highlight-feature">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>1-on-1 AI Architecture Design Review Session with Trayaksh</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Certified AI Systems Architect Credential upon capstone</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>1-Year VIP Access to Architect Discord community &amp; alumni network</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Corporate GST Tax Invoice for enterprise reimbursement</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pricing-card-action">
+            <div style="background:#06150b;border:1px solid var(--line-light);border-radius:var(--radius-md);padding:14px;text-align:center;">
+              <span style="color:var(--lt);font-weight:700;font-size:13.5px;">Applicable After Registering</span>
+              <p style="font-size:12px;color:var(--mut);margin-top:4px;">First register with ₹9,999 to lock in your cohort seat before 23 October.</p>
+            </div>
+            <a class="btn p" href="register.html">
+              <span>Register for ₹9,999 to Unlock →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOUNDERS & LEADERSHIP SECTION
+       (Featuring Trayaksh & Geeta with verified photos)
+       ======================================================================== -->
+  <section id="leadership">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 48px;">
+        <div class="tag">EXPERT FACULTY &amp; LEADERSHIP</div>
+        <h2 class="section-title">Learn Directly from <em>Industry Architects</em></h2>
+        <p class="section-sub" style="margin:0 auto;">Our instructors have architected accelerated compute clusters, high-frequency trading rigs, and hyperscale GPU fabrics.</p>
+      </div>
+
+      <div class="founders-grid">
+        <!-- Founder 1: Trayaksh -->
+        <div class="founder-card">
+          <div class="founder-header">
+            <div class="founder-avatar-wrap">
+              <div class="founder-placeholder" aria-label="Trayaksh Avatar Placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="founder-initial">T</span>
+              </div>
+            </div>
+            <div class="founder-title-meta">
+              <span class="founder-pill">Owner &amp; Founder</span>
+              <h3 class="founder-name">Trayaksh</h3>
+              <p class="founder-designation">Founder &amp; Chief AI Systems Architect</p>
+            </div>
+          </div>
+          <p class="founder-bio">Directs technological architecture and infrastructure engineering at TrayakshAI. Trayaksh specializes in high-density accelerated computing, liquid-cooled cluster topologies, and ultra-low-latency fabrics for high-frequency trading and enterprise AI workloads.</p>
+          <div class="founder-tags">
+            <span>HPC Clusters</span>
+            <span>Liquid Cooling Loops</span>
+            <span>NVIDIA H100 / B200</span>
+            <span>Low-Latency Fabrics</span>
+          </div>
+          <div class="founder-footer">
+            <a class="founder-email-link" href="mailto:trayaksh@trayakshai.com">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>trayaksh@trayakshai.com</span>
+            </a>
+            <span class="founder-badge-verified">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Lead Systems Architect
+            </span>
+          </div>
+        </div>
+
+        <!-- Founder 2: Geeta -->
+        <div class="founder-card">
+          <div class="founder-header">
+            <div class="founder-avatar-wrap">
+              <div class="founder-placeholder" aria-label="Geeta Avatar Placeholder">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="founder-initial">G</span>
+              </div>
+            </div>
+            <div class="founder-title-meta">
+              <span class="founder-pill">Founding Member</span>
+              <h3 class="founder-name">Geeta</h3>
+              <p class="founder-designation">Co-Founder &amp; Head of Strategic Operations</p>
+            </div>
+          </div>
+          <p class="founder-bio">Spearheads corporate strategy, ecosystem alliances, and enterprise client execution. Geeta oversees commercial operations and strategic hardware partnerships across accelerated computing ecosystems, ensuring rapid transitions from prototypes to mission-critical deployments.</p>
+          <div class="founder-tags">
+            <span>Enterprise Strategy</span>
+            <span>Silicon Ecosystems</span>
+            <span>Operational Scaling</span>
+            <span>Client Architecture</span>
+          </div>
+          <div class="founder-footer">
+            <a class="founder-email-link" href="mailto:geeta@trayakshai.com">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>geeta@trayakshai.com</span>
+            </a>
+            <span class="founder-badge-verified">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Head of Strategic Ops
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ECOSYSTEM PARTNERS STRIP
+       ======================================================================== -->
+  <section class="section-alt" id="partners">
+    <div class="wrap">
+      <div class="tag">ECOSYSTEM TECHNOLOGIES</div>
+      <h2 class="section-title">Mastering the <em>Global AI Hardware Stack</em></h2>
+      <p class="section-sub">We train on production-grade reference architectures from the industry leaders in accelerated computing, networking, and parallel storage.</p>
+      
+      <div class="partners-row">
+        <div class="partner-chip">NVIDIA</div>
+        <div class="partner-chip">AMD</div>
+        <div class="partner-chip">WEKA</div>
+        <div class="partner-chip">DDN Storage</div>
+        <div class="partner-chip">Supermicro</div>
+        <div class="partner-chip">Intel</div>
+        <div class="partner-chip">VAST Data</div>
+        <div class="partner-chip">Cisco</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FREQUENTLY ASKED QUESTIONS (FAQS)
+       ======================================================================== -->
+  <section id="faqs">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 48px;">
+        <div class="tag">CLARITY &amp; PREREQUISITES</div>
+        <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+        <p class="section-sub" style="margin:0 auto;">Everything you need to know about the cohort curriculum, Razorpay payment options, lab access, and registration.</p>
+      </div>
+
+      <div class="faqs-wrap">
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>When will the detailed course content and lab blueprints be shared?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            To protect proprietary enterprise hardware reference architectures and bare-metal cluster automation runbooks, complete lecture modules, downloadable configuration scripts, and lab cluster credentials will be shared immediately after registration. Upon completing the ₹9,999 registration fee, you will receive full access to the onboarding repository and curriculum PDF.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Why is the registration fee ₹9,999 and the course fee ₹49,999?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            The registration fee is ₹9,999 only, payable today to reserve your seat and unlock all course content before registration closes on 23 October. The course fee is ₹49,999, which is only applicable after registering and covers the complete 8-track live training, dedicated bare-metal cluster lab hours, 1-on-1 architecture review with Trayaksh, and certification.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What payment methods are supported via Razorpay?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Razorpay supports all major Indian and international payment methods including UPI (Google Pay, PhonePe, Paytm), Net Banking across 50+ banks, Credit and Debit Cards (Visa, MasterCard, RuPay, Amex), Corporate Purchasing Cards, and No-Cost/Standard EMI options.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I get a GST invoice for enterprise corporate reimbursement?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Yes! During the Razorpay checkout, simply enter your company name and GSTIN number. An official tax invoice with TrayakshAI's corporate registration and GST details will be automatically generated and emailed to your work address.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What are the technical prerequisites for this training?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            Attendees should have basic familiarity with Linux command-line environments and fundamental concepts of IP networking or server hardware. Prior GPU programming experience is NOT required; we cover hardware topologies, Slurm/Kubernetes operators, InfiniBand fabric routing, and thermal engineering from the ground up.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What happens after the registration deadline on 23 October?</span>
+            <span class="faq-icon-arrow">▼</span>
+          </button>
+          <div class="faq-answer">
+            On 23 October, batch enrollment closes so our engineering team can freeze cluster provisioning and allocate dedicated GPU slice compute quotas for registered candidates. Late applicants are placed on a waitlist for the subsequent cohort.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#top">
+            <svg width="34" height="26" viewBox="0 0 100 62" aria-hidden="true">
+              <g fill="none" stroke-linecap="round">
+                <circle cx="50" cy="28" r="19" stroke="#1E9E4A" stroke-width="6"/>
+                <circle cx="50" cy="28" r="8" fill="#1E9E4A" stroke="none"/>
+                <circle cx="17" cy="40" r="12" stroke="#74D08F" stroke-width="5"/>
+                <circle cx="17" cy="40" r="5" fill="#74D08F" stroke="none"/>
+                <circle cx="83" cy="40" r="12" stroke="#3FC06C" stroke-width="5"/>
+                <circle cx="83" cy="40" r="5" fill="#3FC06C" stroke="none"/>
+              </g>
+            </svg>
+            <span>Trayaksh<b>AI</b></span>
+          </a>
+          <p style="margin:14px 0 0;max-width:320px;line-height:1.6;font-size:13.5px;">
+            Building expertise in AI Infrastructure, GPU Computing &amp; AI Factories. Production-grade architectures, bare-metal hardware access, and certified engineering cohorts.
+          </p>
+          <div style="margin-top:16px;">
+            <span class="brand-badge" style="margin-left:0;">Registration Deadline: 23 October</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>8 Master Tracks</h4>
+          <a href="#curriculum">AI Factory Architecture</a>
+          <a href="#curriculum">DGX/HGX Infrastructure</a>
+          <a href="#curriculum">H100 • H200 • B200 Systems</a>
+          <a href="#curriculum">InfiniBand &amp; RoCE Fabric</a>
+          <a href="#curriculum">AI Storage &amp; WEKA GDS</a>
+          <a href="#curriculum">Kubernetes &amp; Slurm</a>
+          <a href="#curriculum">Generative AI &amp; vLLM Ops</a>
+          <a href="#curriculum">Cloud Repatriation &amp; TCO</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Academy &amp; Company</h4>
+          <a href="https://trayakshai.com">TrayakshAI Main Site</a>
+          <a href="#about">About TrayakshAI</a>
+          <a href="#audience">Who Should Attend</a>
+          <a href="#pricing">Fees &amp; Registration</a>
+          <a href="#leadership">Faculty Leadership</a>
+          <a href="#partners">Ecosystem Partners</a>
+          <a href="#faqs">Frequently Asked Questions</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact &amp; Admissions</h4>
+          <a href="mailto:info@trayakshai.com">info@trayakshai.com</a>
+          <a href="mailto:hello@trayakshai.com">hello@trayakshai.com</a>
+          <a href="mailto:trayaksh@trayakshai.com">trayaksh@trayakshai.com</a>
+          <div style="margin-top:14px;">
+            <a href="admin-login.html" style="color:var(--gold);font-size:12px;display:inline-flex;align-items:center;gap:4px;">
+              <span>Instructor &amp; Admin Studio →</span>
+            </a>
+          </div>
+          <p style="margin-top:8px;font-size:12px;color:var(--mut);">Global Headquarters &amp; Accelerated Systems Assembly Lab</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 TrayakshAI Consulting Ltd. All rights reserved. Building next-generation AI Factories.</div>
+        <div style="display:flex;gap:18px;">
+          <a href="#faqs">Privacy Policy</a>
+          <span>•</span>
+          <a href="#faqs">Terms of Admission</a>
+          <span>•</span>
+          <a href="#pricing">Razorpay Payment Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODAL 1: AUTHENTICATION (LOGIN, SIGN UP, GOOGLE AUTH, FORGOT PASSWORD)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="auth-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" type="button" onclick="closeAuthModal()" aria-label="Close">&times;</button>
+      
+      <!-- Modal Tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tab-btn-signin" onclick="switchAuthTab('signin')">Sign In</button>
+        <button class="modal-tab-btn" id="tab-btn-signup" onclick="switchAuthTab('signup')">Create Account</button>
+      </div>
+
+      <!-- 1. Sign In Form -->
+      <form id="auth-signin-form" onsubmit="handleSignIn(event)">
+        <div class="modal-header">
+          <h2>Welcome Back</h2>
+          <p>Access your enrolled courses, syllabus blueprints, and cluster lab credentials.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signin-email">Work Email</label>
+          <input class="form-input" type="email" id="signin-email" placeholder="name@company.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signin-password">Password</label>
+          <input class="form-input" type="password" id="signin-password" placeholder="••••••••" required>
+          <div class="form-help-row">
+            <label style="display:inline-flex;align-items:center;gap:6px;cursor:pointer;">
+              <input type="checkbox" checked style="accent-color:var(--ac);"> Remember me
+            </label>
+            <span class="forgot-password-link" onclick="switchAuthTab('forgot')">Forgot Password?</span>
+          </div>
+        </div>
+
+        <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Sign In to Dashboard →</button>
+
+        <div class="social-divider">Or continue with</div>
+
+        <button class="google-auth-btn" type="button" onclick="handleGoogleAuth()">
+          <svg viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </form>
+
+      <!-- 2. Sign Up Form -->
+      <form id="auth-signup-form" style="display:none;" onsubmit="handleSignUp(event)">
+        <div class="modal-header">
+          <h2>Create Candidate Account</h2>
+          <p>Register as an architect or engineer to enroll in AI Factory cohorts.</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-name">Full Name</label>
+          <input class="form-input" type="text" id="signup-name" placeholder="e.g. Alex Mercer" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="signup-email">Work Email</label>
+            <input class="form-input" type="email" id="signup-email" placeholder="alex@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-phone">Phone Number</label>
+            <input class="form-input" type="tel" id="signup-phone" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-role">Professional Role / Focus</label>
+          <select class="form-select" id="signup-role">
+            <option value="IT Infrastructure Engineer">IT Infrastructure Engineer</option>
+            <option value="Solution Architect">Solution Architect</option>
+            <option value="AI/ML Engineer">AI/ML Engineer</option>
+            <option value="Cloud & Data Centre Professional">Cloud &amp; Data Centre Professional</option>
+            <option value="Enterprise IT Lead">Enterprise IT Lead</option>
+            <option value="Neocloud / GPU Cloud Team">Neocloud / GPU Cloud Team</option>
+            <option value="Technology Partner / SI">Technology Partner / SI</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Create Password</label>
+          <input class="form-input" type="password" id="signup-password" placeholder="At least 6 characters" required>
+        </div>
+
+        <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Create Account &amp; Continue →</button>
+
+        <div class="social-divider">Or continue with</div>
+
+        <button class="google-auth-btn" type="button" onclick="handleGoogleAuth()">
+          <svg viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Sign Up with Google</span>
+        </button>
+      </form>
+
+      <!-- 3. Forgot Password Wizard -->
+      <div id="auth-forgot-form" style="display:none;">
+        <div class="modal-header">
+          <h2>Reset Password</h2>
+          <p>We'll send a 6-digit verification code to reset your TrayakshAI account access.</p>
+        </div>
+
+        <!-- Step 1: Email entry -->
+        <form id="forgot-step-1" onsubmit="handleForgotStep1(event)">
+          <div class="form-group">
+            <label class="form-label" for="forgot-email">Your Registered Email</label>
+            <input class="form-input" type="email" id="forgot-email" placeholder="name@company.com" required>
+          </div>
+          <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Send Verification Code →</button>
+          <div style="text-align:center;margin-top:14px;">
+            <span class="forgot-password-link" onclick="switchAuthTab('signin')">← Return to Sign In</span>
+          </div>
+        </form>
+
+        <!-- Step 2: OTP & New Password -->
+        <form id="forgot-step-2" style="display:none;" onsubmit="handleForgotStep2(event)">
+          <p style="font-size:13px;color:var(--lt);margin-bottom:12px;">
+            ✓ OTP sent to <strong id="forgot-target-email"></strong>
+          </p>
+          <div class="form-group">
+            <label class="form-label" for="forgot-otp">6-Digit Code (Enter 849201 or any 6 digits)</label>
+            <input class="form-input" type="text" id="forgot-otp" placeholder="849201" maxlength="6" required style="font-family:var(--font-mono);letter-spacing:0.2em;font-size:18px;text-align:center;">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="forgot-new-password">Set New Password</label>
+            <input class="form-input" type="password" id="forgot-new-password" placeholder="Min 6 characters" required>
+          </div>
+          <button class="btn p" type="submit" style="width:100%;margin-top:10px;">Verify &amp; Update Password →</button>
+          <div style="text-align:center;margin-top:14px;">
+            <span class="forgot-password-link" onclick="switchAuthTab('signin')">Cancel and Sign In</span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: RAZORPAY CHECKOUT GATEWAY MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="checkout-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" type="button" onclick="closeCheckoutModal()" aria-label="Close">&times;</button>
+      
+      <div class="modal-header">
+        <div class="eye" style="margin-bottom:6px;">OFFICIAL COHORT ADMISSIONS</div>
+        <h2>Secure Enrollment Checkout</h2>
+        <p>Complete your registration via Razorpay. Registration deadline closes on 23 October.</p>
+      </div>
+
+      <!-- Plan Selector -->
+      <div class="checkout-plan-selector">
+        <div class="checkout-plan-opt selected" id="plan-opt-reg" onclick="selectCheckoutPlan('registration')">
+          <span class="checkout-badge-tiny">ENDS 23 OCT</span>
+          <div class="checkout-plan-title">Registration Fee</div>
+          <div class="checkout-plan-price">₹9,999</div>
+          <p style="font-size:11.5px;color:var(--mut);margin-top:4px;">Payable today to register</p>
+        </div>
+
+        <div class="checkout-plan-opt" id="plan-opt-full" onclick="selectCheckoutPlan('course_fee')">
+          <span class="checkout-badge-tiny" style="background:rgba(30,158,74,0.2);color:var(--lt);">POST-REGISTRATION</span>
+          <div class="checkout-plan-title">Course Fee</div>
+          <div class="checkout-plan-price">₹49,999</div>
+          <p style="font-size:11.5px;color:var(--mut);margin-top:4px;">Applicable after registering</p>
+        </div>
+      </div>
+
+      <!-- Checkout Form -->
+      <form onsubmit="handleCheckoutSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="checkout-name">Full Candidate Name</label>
+          <input class="form-input" type="text" id="checkout-name" placeholder="e.g. Alex Mercer" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="checkout-email">Email Address</label>
+            <input class="form-input" type="email" id="checkout-email" placeholder="alex@company.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="checkout-phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="checkout-phone" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="checkout-company">Company / Organization</label>
+            <input class="form-input" type="text" id="checkout-company" placeholder="e.g. Enterprise / Neocloud">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="checkout-gstin">GSTIN (Optional for Invoice)</label>
+            <input class="form-input" type="text" id="checkout-gstin" placeholder="29AAAAA0000A1Z5">
+          </div>
+        </div>
+
+        <div style="background:#06150b;border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;margin:16px 0;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:14px;color:var(--tx);">Total Payable Today:</span>
+          <span style="font-size:24px;font-weight:800;color:var(--lt);" id="checkout-summary-amount">₹9,999</span>
+        </div>
+
+        <button class="btn p" type="submit" id="checkout-submit-btn" style="width:100%;font-size:15px;padding:14px;">
+          <span id="checkout-pay-btn-text">Pay Registration Fee (₹9,999) →</span>
+        </button>
+
+        <div class="razorpay-trust-footer">
+          <div class="razorpay-logo-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            <span>Razorpay Secure</span>
+          </div>
+          <div>UPI • Cards • NetBanking • Corporate Invoicing</div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: PAYMENT CONFIRMATION RECEIPT & UNLOCKED SYLLABUS
+       ======================================================================== -->
+  <div class="modal-backdrop" id="receipt-modal" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" type="button" onclick="closeReceiptModal()" aria-label="Close">&times;</button>
+      
+      <div style="text-align:center;margin-bottom:18px;">
+        <div style="width:54px;height:54px;border-radius:50%;background:rgba(30,158,74,0.15);border:2px solid var(--lt);display:inline-flex;align-items:center;justify-content:center;color:var(--lt);font-size:26px;margin-bottom:12px;">
+          ✓
+        </div>
+        <h2 style="font-size:24px;">Registration Confirmed!</h2>
+        <p style="color:var(--mut);font-size:14px;">Your seat has been reserved in the TrayakshAI AI Infrastructure Cohort.</p>
+      </div>
+
+      <!-- Printable Receipt -->
+      <div class="receipt-box" id="printable-receipt">
+        <div class="receipt-row">
+          <span class="receipt-label">Registration ID:</span>
+          <span class="receipt-val" id="receipt-reg-id" style="color:var(--lt);">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Payment ID:</span>
+          <span class="receipt-val" id="receipt-payment-id">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Candidate Name:</span>
+          <span class="receipt-val" id="receipt-name">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Email:</span>
+          <span class="receipt-val" id="receipt-email">—</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Plan Enrolled:</span>
+          <span class="receipt-val" id="receipt-plan">Seat Registration Fee</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Amount Paid:</span>
+          <span class="receipt-val" id="receipt-amount" style="color:var(--gold);font-weight:700;">₹9,999</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Timestamp:</span>
+          <span class="receipt-val" id="receipt-date">—</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <a class="btn p" href="classroom.html" style="text-align:center;background:linear-gradient(90deg, #1E9E4A, #157335);padding:13px;font-size:15px;">
+          <span>Enter Student Classroom &amp; Labs →</span>
+        </a>
+        <button class="btn" type="button" onclick="downloadSyllabusUnlocked()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download Unlocked Full Syllabus Blueprint</span>
+        </button>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <button class="btn" type="button" onclick="printReceipt()">Print Receipt</button>
+          <button class="btn" type="button" onclick="closeReceiptModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="course.js"></script>
+</body>
+</html>

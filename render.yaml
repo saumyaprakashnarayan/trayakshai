@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: trayaksh-course-api
+    env: node
+    rootDir: backend
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: trayaksh-course-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: info@trayakshai.com
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: ADDITIONAL_CORS_ORIGIN
+        value: https://course.trayakshai.com
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: CLUSTER_PROVISIONING_URL
+        sync: false
+      - key: CLUSTER_PROVISIONING_TOKEN
+        sync: false
+      - key: CLUSTER_SSH_HOST
+        sync: false
+      - key: LAB_EXECUTION_URL
+        sync: false
+      - key: LAB_EXECUTION_TOKEN
+        sync: false
+
+databases:
+  - name: trayaksh-course-db
+    databaseName: trayaksh_course
+    user: trayaksh_user
+    plan: starter
+

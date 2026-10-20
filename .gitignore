@@ -11,6 +11,8 @@ hpc/
 quantumcomputing/
 Screenshot*.png
 *.png
+!assets/*.png
+!trayaksh_course/assets/*.png
 
 # --- Duplicate & Draft Files ---
 # Exact duplicate of index.html with special characters

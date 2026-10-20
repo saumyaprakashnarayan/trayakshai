@@ -1,0 +1,5 @@
+/register    /register.html    200
+/login       /login.html       200
+/admin       /admin-login.html 200
+/upload      /course-upload.html 200
+/classroom   /classroom.html   200

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /register.html
+Allow: /login.html
+Disallow: /classroom.html
+Disallow: /classroom
+Disallow: /admin-login.html
+Disallow: /course-upload.html
+
+Sitemap: https://course.trayakshai.com/sitemap.xml
