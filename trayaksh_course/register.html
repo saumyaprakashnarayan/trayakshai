@@ -251,13 +251,13 @@
 
             <!-- Total Bar -->
             <div class="reg-total-bar">
-              <span class="reg-total-label">Payable via Razorpay Today:</span>
-              <span class="reg-total-val" id="reg-total-display">₹9,999</span>
+              <span class="reg-total-label">Portal Access:</span>
+              <span class="reg-total-val" id="reg-total-display">Instant Access</span>
             </div>
 
             <!-- Submit Button -->
-            <button class="btn p" type="submit" id="reg-submit-btn" style="width:100%;font-size:15px;padding:14px;">
-              <span id="reg-btn-text">Pay Registration Fee (₹9,999) &amp; Unlock Course Content →</span>
+            <button class="btn p" type="submit" id="reg-submit-btn" style="width:100%;font-size:15px;padding:14px;background:linear-gradient(90deg, #1E9E4A, #157335);">
+              <span id="reg-btn-text">Register Account &amp; Enter Candidate Portal →</span>
             </button>
 
             <!-- Trust Footer -->
@@ -359,13 +359,10 @@
       try {
         const data = await handleGoogleAuth();
         if (data && data.user) {
-          showToast(`Google Verified as ${data.user.email}!`, 'success');
-          document.getElementById('reg-name').value = data.user.name || '';
-          document.getElementById('reg-email').value = data.user.email || '';
-          const passGroup = document.getElementById('reg-password-group');
-          if (passGroup) passGroup.style.display = 'none';
-          const passInput = document.getElementById('reg-password');
-          if (passInput) passInput.removeAttribute('required');
+          showToast(`Google Verified as ${data.user.email}! Entering Candidate Portal...`, 'success');
+          setTimeout(() => {
+            window.location.href = 'classroom.html';
+          }, 600);
         }
       } catch (err) {
         showToast(err.message || 'Google verification failed.', 'error');
@@ -417,6 +414,14 @@
         return;
       }
 
+      // Clear any legacy admin credentials to avoid permission overlap
+      localStorage.removeItem('trayaksh_admin_user');
+      localStorage.removeItem('trayaksh_admin_token');
+      localStorage.removeItem('trayaksh_admin_auth');
+      sessionStorage.removeItem('trayaksh_admin_user');
+      sessionStorage.removeItem('trayaksh_admin_token');
+      sessionStorage.removeItem('trayaksh_admin_auth');
+
       // If not already authenticated via Google, register credentials with backend
       if (!hasGoogleToken) {
         try {
@@ -431,9 +436,22 @@
             password,
             verification_code: verificationCode || undefined
           });
-          localStorage.setItem('trayaksh_user', JSON.stringify(regRes.user));
-          if (regRes.token) localStorage.setItem('trayaksh_token', regRes.token);
-          showToast('Account registered successfully!', 'success');
+
+          if (regRes.user) {
+            localStorage.setItem('trayaksh_user', JSON.stringify(regRes.user));
+          }
+          if (regRes.token) {
+            localStorage.setItem('trayaksh_token', regRes.token);
+          }
+          if (regRes.enrollment) {
+            localStorage.setItem('trayaksh_enrollment', JSON.stringify(regRes.enrollment));
+          }
+
+          showToast(`Account registered successfully as ${email}! Entering Candidate Portal...`, 'success');
+          setTimeout(() => {
+            window.location.href = 'classroom.html';
+          }, 600);
+          return;
         } catch (err) {
           console.error('Registration error:', err.message);
           if (err.message && (err.message.includes('verification code') || err.message.includes('guest checkout') || err.message.includes('verify email'))) {
@@ -446,36 +464,23 @@
             showToast('Verification code required to claim this guest checkout account.' + preview, 'warn');
             return;
           }
+          if (err.message && (err.message.includes('already exists') || err.message.includes('Please sign in'))) {
+            showToast('An account with this email already exists. Redirecting to sign in...', 'warn');
+            setTimeout(() => {
+              window.location.href = `login.html?returnTo=${encodeURIComponent('classroom.html')}`;
+            }, 1200);
+            return;
+          }
           showToast(err.message || 'Registration failed. If you already registered, please sign in.', 'error');
           return;
         }
+      } else {
+        // Authenticated via Google
+        showToast('Google Account verified! Entering Candidate Portal...', 'success');
+        setTimeout(() => {
+          window.location.href = 'classroom.html';
+        }, 600);
       }
-
-      try {
-        const profile = await window.TrayakshAPI.getMe();
-        if (!profile || !profile.user || String(profile.user.email || '').toLowerCase() !== email.toLowerCase()) {
-          throw new Error('The signed-in account does not match the registration email.');
-        }
-        if (profile.enrollment) {
-          localStorage.setItem('trayaksh_enrollment', JSON.stringify(profile.enrollment));
-          showToast('Your existing cohort enrollment is confirmed. Opening the classroom…', 'success');
-          setTimeout(() => { window.location.href = 'classroom.html'; }, 600);
-          return;
-        }
-        localStorage.removeItem('trayaksh_enrollment');
-      } catch (err) {
-        showToast(`Could not verify the candidate account: ${err.message}`, 'error');
-        return;
-      }
-
-      // Trigger payment checkout
-      triggerPayment({
-        name,
-        email,
-        phone,
-        company,
-        gstin
-      }, 'registration');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
