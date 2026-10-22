@@ -2900,11 +2900,13 @@ footer {
     height: 62px;
     padding: 0 16px;
   }
-  .auth-nav-wrap > div > span {
+  .auth-nav-wrap > div > span,
+  .auth-nav-wrap .btn {
     display: none;
   }
   .auth-nav-link {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
   }
 }
 
