@@ -333,7 +333,7 @@ router.get('/cohort-settings', requireAdmin, async (req, res) => {
     res.json({
       registrationOpen: (await getAdminSetting('cohort_registrations_open', 'true')) === 'true',
       maxSeats: Number(await getAdminSetting('cohort_max_seats', '25')) || 25,
-      deadline: '2026-10-23T23:59:59+05:30'
+      deadline: '2026-11-01T23:59:59+05:30'
     });
   } catch (err) {
     console.error('Load cohort settings error:', err);

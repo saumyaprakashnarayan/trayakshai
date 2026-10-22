@@ -130,7 +130,7 @@ VALUES (
     'AI Infrastructure & AI Factory Training',
     999900,
     4999900,
-    '2026-10-23 23:59:59+05:30'
+    '2026-11-01 23:59:59+05:30'
 ) ON CONFLICT (id) DO NOTHING;
 
 -- SEED PRODUCTION CURRICULUM MODULES

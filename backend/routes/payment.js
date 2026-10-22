@@ -97,7 +97,7 @@ const PRICING = {
     amountPaise: 999900,
     amountRupees: 9999,
     name: 'Seat Registration Fee',
-    description: 'TrayakshAI Registration Fee (Seat locked before 23 Oct deadline)'
+    description: 'TrayakshAI Registration Fee (Seat locked before 1 Nov deadline)'
   },
   course_fee: {
     amountPaise: 4999900,
@@ -163,7 +163,7 @@ router.post('/create-order', optionalAuth, async (req, res) => {
 
       }
     } else {
-      const deadline = new Date('2026-10-23T23:59:59+05:30');
+      const deadline = new Date('2026-11-01T23:59:59+05:30');
       if (new Date() > deadline) {
         return res.status(403).json({ error: 'Cohort registration deadline has passed. Registrations are closed.' });
       }

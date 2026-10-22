@@ -18,10 +18,10 @@
     razorpayKeyId: '',
     companyName: 'TrayakshAI',
     supportEmail: 'hello@trayakshai.com',
-    targetDeadlineString: '23 October 2026',
+    targetDeadlineString: '1 November 2026',
     targetDeadlineYear: 2026,
-    targetDeadlineMonth: 9, // October (0-indexed: 9 = October)
-    targetDeadlineDay: 23,
+    targetDeadlineMonth: 10, // November (0-indexed: 10 = November)
+    targetDeadlineDay: 1,
     plans: {
       registration: {
         id: 'plan_reg_9999',
@@ -263,7 +263,7 @@
   };
 
   // =========================================================================
-  // 2. DYNAMIC COUNTDOWN TIMER (TARGET: 23 OCTOBER 2026)
+  // 2. DYNAMIC COUNTDOWN TIMER (TARGET: 1 NOVEMBER 2026)
   // =========================================================================
   function initCountdown() {
     const daysEl = document.getElementById('cd-days');
@@ -274,8 +274,8 @@
     if (!daysEl) return;
 
     function getTargetDeadline() {
-      // Explicitly 23 October 2026 at 23:59:59 IST (+05:30)
-      return new Date('2026-10-23T23:59:59+05:30');
+      // Explicitly 1 November 2026 at 23:59:59 IST (+05:30)
+      return new Date('2026-11-01T23:59:59+05:30');
     }
 
     const deadline = getTargetDeadline();
@@ -795,7 +795,7 @@
           company: company || 'Individual',
           gstin: gstin || 'Not Provided',
           course: 'AI Infrastructure & AI Factory Training',
-          registration_deadline: '23 October 2026'
+          registration_deadline: '1 November 2026'
         },
         theme: {
           color: '#1E9E4A'
