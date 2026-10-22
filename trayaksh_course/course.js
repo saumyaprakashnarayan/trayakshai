@@ -1011,69 +1011,35 @@
   };
 
   window.downloadSyllabusUnlocked = function () {
-    showToast('Downloading the course curriculum overview. Published lessons and runbooks are available in the classroom.', 'info');
-    const syllabusContent = `# TrayakshAI | AI Infrastructure & AI Factory Curriculum Overview
-Access: Public curriculum overview. Lesson and lab access requires a verified enrollment.
+    const enrollment = window.readStoredJson ? window.readStoredJson('trayaksh_enrollment') : null;
+    const token = localStorage.getItem('trayaksh_token') || sessionStorage.getItem('trayaksh_token');
+    const adminToken = localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
 
-============================================================
-COURSE TRACKS:
-============================================================
+    const isEnrolled = Boolean(enrollment && (enrollment.regId || enrollment.status === 'Confirmed' || enrollment.status === 'active')) || Boolean(adminToken);
 
-Track 01: AI Factory Architecture & Design
-- Power Budgeting (40kW - 100kW+ Per Rack), PUE Optimization
-- Liquid Cooling: CDUs, Secondary Loops, Manifolds, In-Row Heat Exchangers
-- Multi-tier Network Cabling Plant & Spine-Leaf Topology
+    if (!isEnrolled && !token) {
+      showToast('Candidate Registration Required: Please register for your cohort seat (₹9,999) to unlock the official 3-Day Training Curriculum PDF.', 'warn');
+      if (typeof openCheckout === 'function') {
+        openCheckout('registration');
+      } else {
+        window.location.href = 'register.html';
+      }
+      return;
+    }
 
-Track 02: NVIDIA DGX/HGX Infrastructure
-- DGX H100, H200 & B200 SXM Baseboard Topologies
-- NVSwitch 900GB/s to 1.8TB/s All-to-All Full Mesh Fabric
-- Baseboard Management Controller (BMC), Redfish Automation & DCGM
+    showToast('Downloading official NVIDIA AI Infrastructure 3-Day Training Curriculum PDF...', 'success');
 
-Track 03: GPU Computing: H100, H200 & B200
-- Hopper (GH100) vs Blackwell (B200/GB200) Microarchitecture
-- FP8 & FP4 Micro-Scaling Formats, Transformer Engine Auto-Casting
-- MIG (Multi-Instance GPU) Hardware Partitioning & QoS
-
-Track 04: AI Networking: InfiniBand, RoCE & RDMA
-- Quantum-2 400G & Quantum-X800 InfiniBand Fabrics
-- RoCE v2, Lossless Ethernet (PFC & ECN Buffer Tuning)
-- NCCL Tuning for Distributed Ring All-Reduce Collectives
-
-Track 05: AI Storage & High-Performance Computing
-- WEKA, Lustre & GPFS Parallel Storage Topologies
-- GPUDirect Storage (GDS) DMA Bypassing CPU Memory
-- High-IOPS Checkpointing Architecture for 70B+ LLM Training
-
-Track 06: Kubernetes, Slurm & GPU Orchestration
-- NVIDIA GPU Operator, Container Device Interface (CDI)
-- Slurm Cluster Architecture, Backfill & Fair-share Scheduling
-- Kubernetes Multi-Tenant Gang Scheduling (Kueue, KubeRay)
-
-Track 07: Generative AI Infrastructure & LLM Deployment
-- Distributed 3D Parallelism: Tensor (TP), Pipeline (PP), ZeRO-3
-- Megatron-LM & DeepSpeed Cluster Sizing
-- Production Inference: vLLM, TensorRT-LLM, PagedAttention
-
-Track 08: AI Infrastructure Migration & Optimisation
-- Cloud-to-Colo Repatriation Financial Modeling & TCO
-- NVIDIA DCGM Telemetry, Prometheus & Grafana Dashboards
-- Cutover Runbooks & 99.999% Reliability SRE Practices
-
-============================================================
-This overview does not include private lesson recordings, lab runbooks, or cluster credentials.
-Support: hello@trayakshai.com | TrayakshAI Consulting Ltd.
-`;
-
-    const blob = new Blob([syllabusContent], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
+    const pdfFilename = 'NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf';
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'TrayakshAI_AI_Factory_Curriculum_Overview.md';
+    a.href = pdfFilename;
+    a.download = pdfFilename;
+    a.target = '_blank';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
+
+  window.downloadCurriculumPDF = window.downloadSyllabusUnlocked;
 
   // =========================================================================
   // 7. CURRICULUM FILTERS

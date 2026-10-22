@@ -61,6 +61,14 @@
     {
       "source": "/admin-studio.html",
       "destination": "/course-upload.html"
+    },
+    {
+      "source": "/curriculum.pdf",
+      "destination": "/NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf"
+    },
+    {
+      "source": "/syllabus.pdf",
+      "destination": "/NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf"
     }
   ]
 }
