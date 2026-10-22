@@ -333,6 +333,13 @@
     const userAvatarDisplay = document.getElementById('nav-user-avatar');
     const userDropdownEmail = document.getElementById('user-dropdown-email');
 
+    // Mobile drawer auth state elements
+    const mobGuest = document.getElementById('mobile-nav-auth-guest');
+    const mobUser = document.getElementById('mobile-nav-auth-user');
+    const mobUserName = document.getElementById('mobile-user-name');
+    const mobUserEmail = document.getElementById('mobile-user-email');
+    const mobUserAvatar = document.getElementById('mobile-user-avatar');
+
     if (currentUser) {
       if (navAuthButtons) navAuthButtons.style.display = 'none';
       if (navUserPill) {
@@ -342,10 +349,19 @@
         if (userNameDisplay) userNameDisplay.textContent = currentUser.name;
         if (userAvatarDisplay) userAvatarDisplay.textContent = initials || 'AI';
         if (userDropdownEmail) userDropdownEmail.textContent = currentUser.email;
+
+        if (mobGuest) mobGuest.style.display = 'none';
+        if (mobUser) mobUser.style.display = 'block';
+        if (mobUserName) mobUserName.textContent = currentUser.name;
+        if (mobUserEmail) mobUserEmail.textContent = currentUser.email;
+        if (mobUserAvatar) mobUserAvatar.textContent = initials || 'AI';
       }
     } else {
       if (navAuthButtons) navAuthButtons.style.display = 'inline-flex';
       if (navUserPill) navUserPill.style.display = 'none';
+
+      if (mobGuest) mobGuest.style.display = 'flex';
+      if (mobUser) mobUser.style.display = 'none';
     }
   }
 
@@ -578,6 +594,49 @@
       dropdown.classList.toggle('active');
     }
   };
+
+  // Mobile Navigation Drawer Toggle & Handler
+  window.toggleMobileMenu = function (forceState) {
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    const toggleBtn = document.getElementById('mobile-menu-btn');
+    if (!drawer) return;
+
+    const isOpen = drawer.classList.contains('active');
+    const nextState = typeof forceState === 'boolean' ? forceState : !isOpen;
+
+    if (nextState) {
+      drawer.classList.add('active');
+      if (backdrop) backdrop.classList.add('active');
+      if (toggleBtn) {
+        toggleBtn.classList.add('active');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+      }
+      document.body.style.overflow = 'hidden';
+    } else {
+      drawer.classList.remove('active');
+      if (backdrop) backdrop.classList.remove('active');
+      if (toggleBtn) {
+        toggleBtn.classList.remove('active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+      document.body.style.overflow = '';
+    }
+  };
+
+  // Close mobile drawer on Escape key or window resize above 1080px
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      window.toggleMobileMenu(false);
+      window.toggleUserDropdown(false);
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1080) {
+      window.toggleMobileMenu(false);
+    }
+  });
 
   // =========================================================================
   // 5. RAZORPAY CHECKOUT GATEWAY INTEGRATION

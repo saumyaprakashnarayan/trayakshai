@@ -185,10 +185,107 @@
               <span>Sign Out</span>
             </div>
           </div>
-        </div>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Backdrop & Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileMenu(false)"></div>
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation Menu">
+    <div class="mobile-nav-header">
+      <div class="brand">
+        <svg width="30" height="24" viewBox="0 0 100 62" aria-hidden="true">
+          <g fill="none" stroke-linecap="round">
+            <circle cx="50" cy="28" r="19" stroke="#1E9E4A" stroke-width="6"/>
+            <circle cx="50" cy="28" r="8" fill="#1E9E4A" stroke="none"/>
+            <circle cx="17" cy="40" r="12" stroke="#74D08F" stroke-width="5"/>
+            <circle cx="17" cy="40" r="5" fill="#74D08F" stroke="none"/>
+            <circle cx="83" cy="40" r="12" stroke="#3FC06C" stroke-width="5"/>
+            <circle cx="83" cy="40" r="5" fill="#3FC06C" stroke="none"/>
+          </g>
+        </svg>
+        <span>Trayaksh<b>AI</b></span>
+      </div>
+      <button class="mobile-nav-close" type="button" aria-label="Close navigation" onclick="toggleMobileMenu(false)">&times;</button>
+    </div>
+
+    <div class="mobile-nav-urgency-pill">
+      <span class="pulse-dot"></span>
+      <span>Registration Ends: <strong>23 October</strong></span>
+    </div>
+
+    <!-- Mobile Nav Links -->
+    <div class="mobile-nav-links">
+      <a href="#about" onclick="toggleMobileMenu(false)">
+        <span>About Program</span>
+        <span class="mobile-nav-arrow">→</span>
+      </a>
+      <a href="#curriculum" onclick="toggleMobileMenu(false)">
+        <span>Curriculum (8 Tracks)</span>
+        <span class="mobile-nav-tag">H100 • B200</span>
+      </a>
+      <a href="#audience" onclick="toggleMobileMenu(false)">
+        <span>Who Should Attend</span>
+        <span class="mobile-nav-arrow">→</span>
+      </a>
+      <a href="#calculator" onclick="toggleMobileMenu(false)">
+        <span>ROI Calculator</span>
+        <span class="mobile-nav-tag">Save ₹3.4Cr</span>
+      </a>
+      <a href="#pricing" onclick="toggleMobileMenu(false)">
+        <span>Fees &amp; Registration</span>
+        <span class="mobile-nav-tag gold">₹9,999</span>
+      </a>
+      <a href="#leadership" onclick="toggleMobileMenu(false)">
+        <span>Leadership &amp; Faculty</span>
+        <span class="mobile-nav-arrow">→</span>
+      </a>
+      <a href="#faqs" onclick="toggleMobileMenu(false)">
+        <span>FAQs &amp; Corporate Invoicing</span>
+        <span class="mobile-nav-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Mobile Auth Actions -->
+    <div class="mobile-nav-auth" id="mobile-nav-auth-guest">
+      <a class="btn p" href="register.html" style="width:100%;margin-bottom:10px;">
+        <span>Register Now (₹9,999)</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a class="btn" href="login.html" style="width:100%;">
+        <span>Sign In to Candidate Portal</span>
+      </a>
+    </div>
+
+    <!-- Logged in state inside mobile drawer -->
+    <div class="mobile-nav-user" id="mobile-nav-auth-user" style="display:none;">
+      <div class="mobile-user-card">
+        <div class="user-avatar-circle" id="mobile-user-avatar">AI</div>
+        <div>
+          <strong id="mobile-user-name" style="display:block;font-size:14px;color:var(--tx);">Candidate</strong>
+          <span id="mobile-user-email" style="font-size:12px;color:var(--mut);">user@domain.com</span>
+        </div>
+      </div>
+      <a class="btn p" href="classroom.html" style="width:100%;margin-bottom:10px;">
+        <span>Enter Student Classroom →</span>
+      </a>
+      <button class="btn btn-sm" type="button" onclick="handleSignOut()" style="width:100%;border-color:rgba(239,68,68,0.4);color:#fca5a5;">
+        <span>Sign Out</span>
+      </button>
+    </div>
+
+    <div class="mobile-nav-footer">
+      <a href="admin-login.html" style="color:var(--gold);font-size:12px;display:inline-flex;align-items:center;gap:6px;">
+        <span>⚙ Instructor &amp; Admin Studio</span>
+      </a>
+    </div>
+  </aside>
 
   <!-- ========================================================================
        HERO SECTION

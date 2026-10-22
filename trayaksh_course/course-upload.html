@@ -19,8 +19,8 @@
 <body style="background:var(--bg);">
 
   <!-- Studio Top Navigation -->
-  <nav>
-    <div class="wrap" style="max-width:1400px;">
+  <nav class="studio-nav">
+    <div class="wrap studio-nav-wrap" style="max-width:1400px;">
       <a class="brand" href="index.html">
         <svg width="34" height="26" viewBox="0 0 100 62" aria-hidden="true">
           <g fill="none" stroke-linecap="round">
@@ -33,20 +33,20 @@
           </g>
         </svg>
         <span>Trayaksh<b>AI</b></span>
-        <span class="brand-badge" style="background:rgba(245,166,35,0.18);color:var(--gold);border-color:rgba(245,166,35,0.35);">INSTRUCTOR STUDIO</span>
+        <span class="brand-badge" style="background:rgba(245,166,35,0.18);color:var(--gold);border-color:rgba(245,166,35,0.35);">STUDIO</span>
       </a>
 
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div class="studio-nav-actions" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <!-- Admin Account Status -->
         <div class="auth-badge-pill" style="padding:5px 12px;gap:8px;">
           <span class="pulse-dot" style="background:var(--lt);"></span>
           <span style="font-family:var(--font-mono);color:var(--tx);font-size:12px;" id="nav-admin-email-display">info@trayakshai.com</span>
-          <span class="admin-badge" style="font-size:9.5px;padding:2px 6px;">SUPER ADMIN</span>
+          <span class="admin-badge" style="font-size:9.5px;padding:2px 6px;">ADMIN</span>
         </div>
 
         <button class="btn btn-sm" onclick="switchStudioTab('auth-settings')" style="border-color:rgba(245,166,35,0.4);color:var(--gold);">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-          <span>Auth Settings</span>
+          <span>Auth</span>
         </button>
 
         <a class="btn btn-sm" href="classroom.html" target="_blank" style="border-color:var(--lt);color:var(--lt);">
