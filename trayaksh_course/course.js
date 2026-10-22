@@ -173,6 +173,29 @@
     }),
     getClassroomModules: () => apiRequest('/classroom/modules', 'GET'),
     downloadBlueprint: (moduleId) => apiRequest(`/classroom/blueprint/${moduleId}`, 'GET'),
+    downloadCurriculumPDF: async () => {
+      const token = localStorage.getItem('trayaksh_token') || sessionStorage.getItem('trayaksh_token') ||
+                    localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
+      if (!token) {
+        const err = new Error('Authentication required. Please sign in or register to download the curriculum PDF.');
+        err.status = 401;
+        throw err;
+      }
+      const response = await fetch(`${API_BASE}/classroom/curriculum-pdf`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (!response.ok) {
+        let errData = {};
+        try { errData = await response.json(); } catch(e) {}
+        const error = new Error(errData.error || errData.message || `Download failed (${response.status})`);
+        error.status = response.status;
+        throw error;
+      }
+      return await response.blob();
+    },
     executeLabCommand: (command) => apiRequest('/classroom/lab-exec', 'POST', { command }),
     getOrderStatus: (orderId) => apiRequest(`/payment/status/${orderId}`, 'GET'),
     sendVerificationCode: (email) => apiRequest('/auth/send-verification-code', 'POST', { email }),
@@ -1010,15 +1033,12 @@
     window.print();
   };
 
-  window.downloadSyllabusUnlocked = function () {
-    const enrollment = window.readStoredJson ? window.readStoredJson('trayaksh_enrollment') : null;
-    const token = localStorage.getItem('trayaksh_token') || sessionStorage.getItem('trayaksh_token');
-    const adminToken = localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
+  window.downloadSyllabusUnlocked = async function () {
+    const token = localStorage.getItem('trayaksh_token') || sessionStorage.getItem('trayaksh_token') ||
+                  localStorage.getItem('trayaksh_admin_token') || sessionStorage.getItem('trayaksh_admin_token');
 
-    const isEnrolled = Boolean(enrollment && (enrollment.regId || enrollment.status === 'Confirmed' || enrollment.status === 'active')) || Boolean(adminToken);
-
-    if (!isEnrolled && !token) {
-      showToast('Candidate Registration Required: Please register for your cohort seat (₹9,999) to unlock the official 3-Day Training Curriculum PDF.', 'warn');
+    if (!token) {
+      showToast('Registration Required: Please complete your cohort seat registration (₹9,999) to unlock the official 3-Day Training Curriculum PDF.', 'warn');
       if (typeof openCheckout === 'function') {
         openCheckout('registration');
       } else {
@@ -1027,16 +1047,31 @@
       return;
     }
 
-    showToast('Downloading official NVIDIA AI Infrastructure 3-Day Training Curriculum PDF...', 'success');
-
-    const pdfFilename = 'NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf';
-    const a = document.createElement('a');
-    a.href = pdfFilename;
-    a.download = pdfFilename;
-    a.target = '_blank';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    try {
+      showToast('Verifying cohort enrollment & retrieving curriculum PDF...', 'info');
+      const blob = await window.TrayakshAPI.downloadCurriculumPDF();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      showToast('Curriculum PDF downloaded successfully!', 'success');
+    } catch (err) {
+      console.error('Curriculum PDF download error:', err.message);
+      if (err.status === 401 || err.status === 403) {
+        showToast(err.message || 'Active seat registration required to download the official curriculum PDF.', 'error');
+        if (typeof openCheckout === 'function') {
+          setTimeout(() => openCheckout('registration'), 1200);
+        } else {
+          setTimeout(() => { window.location.href = 'register.html'; }, 1200);
+        }
+      } else {
+        showToast(err.message || 'Failed to download curriculum PDF. Please try again.', 'error');
+      }
+    }
   };
 
   window.downloadCurriculumPDF = window.downloadSyllabusUnlocked;

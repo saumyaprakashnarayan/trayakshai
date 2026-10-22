@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const fs = require('fs');
 const db = require('../db');
 const { requireAuth, requireEnrollment } = require('../middleware/auth');
 
@@ -142,6 +144,36 @@ router.post('/lab-exec', requireEnrollment, async (req, res) => {
   } catch (err) {
     console.error('Lab command execution error:', err);
     res.status(500).json({ error: 'Failed to process cluster telemetry command.' });
+  }
+});
+
+// 4. SECURE 3-DAY TRAINING CURRICULUM PDF (RBAC PROTECTED)
+router.get('/curriculum-pdf', requireEnrollment, (req, res) => {
+  try {
+    const pdfPath = path.resolve(__dirname, '..', 'private_assets', 'NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf');
+
+    if (!fs.existsSync(pdfPath)) {
+      console.error('Curriculum PDF not found at:', pdfPath);
+      return res.status(404).json({ error: 'Curriculum PDF document is temporarily unavailable. Please contact support.' });
+    }
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="NVIDIA_AI_Infrastructure_3_Day_Training_Curriculum_TrayakshAI.pdf"');
+    res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+
+    const fileStream = fs.createReadStream(pdfPath);
+    fileStream.on('error', (err) => {
+      console.error('Error reading PDF file stream:', err);
+      if (!res.headersSent) {
+        res.status(500).json({ error: 'Failed to stream curriculum PDF.' });
+      }
+    });
+    fileStream.pipe(res);
+  } catch (err) {
+    console.error('Error streaming curriculum PDF:', err);
+    res.status(500).json({ error: 'Failed to download curriculum PDF.' });
   }
 });
 
