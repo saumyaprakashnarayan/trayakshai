@@ -48,7 +48,7 @@ h1{font-size:clamp(36px,5.6vw,64px);letter-spacing:-.025em}
 .lead{color:var(--mut);font-size:18px;margin:22px 0 30px;max-width:560px}.cta{display:flex;gap:12px;flex-wrap:wrap}
 .art{display:flex;justify-content:center}.art svg{width:min(380px,100%);height:auto}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);background:var(--bg2)}
-.stats div{padding:26px 22px;border-right:1px solid var(--line)}.stats div:last-child{border:0}
+.stats div{padding:26px 22px;border-right:1px solid var(--line);transition:background .2s}.stats div:hover{background:rgba(30,158,74,0.06)}.stats div:last-child{border:0}
 .stats b{display:block;font:700 30px Sora;color:var(--lt)}.stats span{font-size:13px;color:var(--mut)}
 section{padding:84px 0}.tag{font:600 12px Sora;letter-spacing:.14em;color:var(--lt);margin-bottom:12px}
 h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.015em;margin-bottom:14px}.sub{color:var(--mut);max-width:640px;margin:0 0 44px}
@@ -65,7 +65,33 @@ h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.015em;margin-bottom:14px}.sub
 footer{border-top:1px solid var(--line);padding:52px 0 28px;font-size:14px;color:var(--mut)}
 .fg{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px}.fg h4{color:var(--tx);margin:0 0 12px;font:600 13px Sora}.fg a{display:block;padding:3px 0}.fg a:hover{color:var(--lt)}
 .dis{border-top:1px solid var(--line);margin-top:32px;padding-top:20px;font-size:12px}
+
+/* Industries Showcase */
+#industries{position:relative;background:radial-gradient(circle at 50% 0%,rgba(30,158,74,0.12) 0%,rgba(5,15,9,0) 70%),var(--bg);padding:96px 0;overflow:hidden}
+#industries::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(116,208,143,0.35),transparent)}
+.industries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
+.industry-card{position:relative;background:radial-gradient(130% 120% at 50% 0%,rgba(14,38,24,0.75) 0%,rgba(8,20,13,0.95) 100%);border:1px solid rgba(116,208,143,0.16);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s ease,box-shadow .35s ease;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 12px 32px -10px rgba(0,0,0,0.65),inset 0 1px 0 rgba(116,208,143,0.12)}
+.industry-card:hover{transform:translateY(-8px);border-color:rgba(116,208,143,0.55);box-shadow:0 24px 48px -12px rgba(0,0,0,0.8),0 0 28px -4px rgba(30,158,74,0.35),inset 0 1px 0 rgba(116,208,143,0.3)}
+.industry-media{position:relative;width:100%;height:195px;overflow:hidden;background:#020804}
+.industry-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .6s ease;filter:brightness(.92) contrast(1.06)}
+.industry-card:hover .industry-media img{transform:scale(1.07);filter:brightness(1.02) contrast(1.1)}
+.industry-media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,15,9,0.1) 0%,rgba(8,20,13,0.45) 60%,rgba(8,20,13,1) 100%);pointer-events:none}
+.industry-badge{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:99px;font-family:'Sora',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#E9F7EE;background:rgba(4,15,9,0.85);border:1px solid rgba(116,208,143,0.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+.industry-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--lt);box-shadow:0 0 8px var(--lt);display:inline-block;animation:pulseDot 2s infinite}
+.industry-body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.industry-title-wrap{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.industry-icon{width:38px;height:38px;min-width:38px;border-radius:10px;background:rgba(30,158,74,0.15);border:1px solid rgba(116,208,143,0.28);display:flex;align-items:center;justify-content:center;color:var(--lt);box-shadow:0 0 16px rgba(30,158,74,0.2)}
+.industry-icon svg{width:20px;height:20px;stroke:var(--lt)}
+.industry-body h3{font-size:20px;font-weight:700;color:var(--tx);letter-spacing:-.01em;margin:0}
+.industry-body p{color:var(--mut);font-size:14.5px;line-height:1.6;margin:0 0 16px;flex:1}
+.industry-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.industry-tags span{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:6px;background:rgba(30,158,74,0.08);border:1px solid rgba(116,208,143,0.18);color:#c9e6d4;letter-spacing:.02em}
+.industry-metric{display:flex;align-items:center;gap:8px;padding-top:14px;border-top:1px solid rgba(116,208,143,0.12);font-size:12px;font-weight:600;color:var(--lt)}
+.industry-metric svg{width:14px;height:14px;color:var(--lt);flex-shrink:0}
+
+@media (max-width:992px){.industries-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:900px){.hero,.g2,.g3,.g4,.fg{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.links{display:none}.hero{padding-top:50px}section{padding:60px 0}.stats div:nth-child(2){border-right:0}}
+@media (max-width:640px){.industries-grid{grid-template-columns:1fr}.industry-media{height:170px}.hud-pill{font-size:10px;padding:5px 10px}}
 
 
 /* SPA Specific Routing & Pointer Utilities */
@@ -135,15 +161,210 @@ footer{border-top:1px solid var(--line);padding:52px 0 28px;font-size:14px;color
 <div class="card step"><span class="n">4</span><h3>Deploy &amp; Support</h3><p>Staged rollout, monitoring dashboards, documentation and team training.</p><span class="wk">Ongoing</span></div>
 </div></div></section>
 <section id="industries"><div class="wrap">
-<div class="tag">INDUSTRIES</div><h2>Expertise across <em>every vertical</em></h2><p class="sub">Nine industry verticals, including the six below.</p>
-<div class="g3">
-<div class="card"><div class="ind">🏦</div><h3>Finance</h3><p>Fraud detection, credit scoring, algorithmic trading and regulatory reporting automation.</p></div>
-<div class="card"><div class="ind">🏥</div><h3>Healthcare</h3><p>Clinical decision support, patient risk stratification, radiology AI and drug discovery.</p></div>
-<div class="card"><div class="ind">🛒</div><h3>Retail</h3><p>Demand forecasting, dynamic pricing, recommendation engines and inventory optimization.</p></div>
-<div class="card"><div class="ind">🏭</div><h3>Manufacturing</h3><p>Predictive maintenance, quality inspection vision AI and supply chain optimization.</p></div>
-<div class="card"><div class="ind">⚡</div><h3>Energy</h3><p>Grid load forecasting, renewable optimization and equipment failure prediction.</p></div>
-<div class="card"><div class="ind">🚚</div><h3>Logistics</h3><p>Route optimization, demand sensing, warehouse automation and delivery prediction.</p></div>
-</div></div></section>
+<div class="tag">INDUSTRIES &amp; VERTICALS</div>
+<h2>Expertise across <em>every vertical</em></h2>
+<p class="sub">Production-grade AI architectures, custom bare-metal pipelines, and validated models tailored to high-stakes enterprise sectors.</p>
+
+<div class="industries-grid">
+  <!-- 1. Finance -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-finance.jpg" alt="AI in Financial Services and Algorithmic Trading" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> QUANT &amp; HFT</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+        </div>
+        <h3>Finance</h3>
+      </div>
+      <p>High-frequency algorithmic trading clusters, real-time fraud mitigation, credit scoring models, and automated compliance risk matrix reporting.</p>
+      <div class="industry-tags">
+        <span>Sub-ms Latency</span>
+        <span>Fraud Detection</span>
+        <span>Risk Modeling</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span>12x Faster Quantitative Backtesting</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Healthcare -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-healthcare.jpg" alt="Clinical AI and Healthcare Precision Medicine" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> CLINICAL &amp; PHARMA</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <h3>Healthcare</h3>
+      </div>
+      <p>Clinical decision intelligence, patient stratification engines, 3D radiology imaging segmentation, and accelerated molecular drug discovery pipelines.</p>
+      <div class="industry-tags">
+        <span>HIPAA Compliant</span>
+        <span>Genomics AI</span>
+        <span>Diagnostic Vision</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span>99.4% Model Diagnostic Precision</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Retail -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-retail.jpg" alt="AI Smart Commerce and Demand Forecasting" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> NEURAL COMMERCE</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <h3>Retail</h3>
+      </div>
+      <p>Omnichannel demand sensing, dynamic algorithmic pricing, real-time personalized recommendation graphs, and automated warehouse fulfillment.</p>
+      <div class="industry-tags">
+        <span>Dynamic Pricing</span>
+        <span>Stock Optimization</span>
+        <span>Customer Graph</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+          <polyline points="17 6 23 6 23 12"></polyline>
+        </svg>
+        <span>34% Inventory Carrying Cost Reduction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Manufacturing -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-manufacturing.jpg" alt="AI Industrial Robotics and Vision Inspection" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> INDUSTRY 4.0</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </div>
+        <h3>Manufacturing</h3>
+      </div>
+      <p>Edge vision AI for zero-defect production lines, acoustic predictive maintenance telemetry, and digital twin simulation of assembly processes.</p>
+      <div class="industry-tags">
+        <span>Vision Inspection</span>
+        <span>Digital Twins</span>
+        <span>Predictive Uptime</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+        </svg>
+        <span>99.98% Surface Defect Isolation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Energy -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-energy.jpg" alt="Smart Grid AI and Renewable Load Forecasting" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> SMART GRID</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <h3>Energy</h3>
+      </div>
+      <p>High-resolution electrical grid load prediction, automated renewable solar/wind dispatching, and transformer telemetry failure prevention.</p>
+      <div class="industry-tags">
+        <span>Grid Telemetry</span>
+        <span>Renewable Dispatch</span>
+        <span>Fault Prediction</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10"></path>
+          <path d="M12 20V4"></path>
+          <path d="M6 20v-6"></path>
+        </svg>
+        <span>40% Peak Load Imbalance Reduction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Logistics -->
+  <div class="industry-card">
+    <div class="industry-media">
+      <img src="assets/ind-logistics.jpg" alt="AI Autonomous Fleet and Supply Chain Routing" loading="lazy">
+      <div class="industry-media-overlay"></div>
+      <span class="industry-badge"><span class="dot"></span> SUPPLY CHAIN</span>
+    </div>
+    <div class="industry-body">
+      <div class="industry-title-wrap">
+        <div class="industry-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+        </div>
+        <h3>Logistics</h3>
+      </div>
+      <p>Dynamic multi-modal route graph optimization, real-time demand sensing, autonomous fleet telemetry, and automated container dispatching.</p>
+      <div class="industry-tags">
+        <span>Graph Routing</span>
+        <span>Fleet Telemetry</span>
+        <span>Warehouse Robotics</span>
+      </div>
+      <div class="industry-metric">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+        </svg>
+        <span>28% Multi-Drop Dispatch Optimization</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div></section>
 <section class="alt" id="partners"><div class="wrap">
 <div class="tag">ECOSYSTEM</div><h2>Going to be official partners with</h2><p class="sub">Working with the leaders in accelerated computing, networking and storage.</p>
 <div class="part"><span>NVIDIA</span><span>AMD</span><span>WEKA</span><span>DDN</span><span>Supermicro</span><span>Intel</span><span>VAST Data</span><span>Cisco</span></div>
